@@ -1,6 +1,8 @@
 import React from 'react';
 
 export const GreetDump = (props) => {
+  // Note 🌈 ::  props are immutable.
+  // Maintain state instead.
   const { name, children } = props;
   return (
     <>

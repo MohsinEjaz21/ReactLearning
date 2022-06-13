@@ -1,5 +1,6 @@
 import { Greet } from '@pages/Greet';
 import { Home } from '@pages/Home';
+import { Welcome } from '@pages/Welcome';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 const MyRoutes = () => {
@@ -8,6 +9,8 @@ const MyRoutes = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/greet" element={<Greet />} />
+        <Route path="/wellcome" element={<Welcome />} />
+
       </Routes>
     </BrowserRouter>
   );
