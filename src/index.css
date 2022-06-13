@@ -14,7 +14,6 @@ code {
 
 h1 {
   text-align: center;
-  display: block;
 }
 
 hr {
@@ -32,7 +31,7 @@ button, input {
 }
 
 input {
-  border: 1px solid rgb(85, 35, 35);
+  border: 1px solid black;
 }
 
 button {
@@ -41,9 +40,12 @@ button {
 }
 
 .page-container {
+  /* display: flex; */
   background-color: #ddd;
-  min-height: 100%;
+  min-height: 100vh;
   min-width: 100%;
+  /* align-items: center; */
+  /* justify-content: center; */
 }
 
 .content-container {
