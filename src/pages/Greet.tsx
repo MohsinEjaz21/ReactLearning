@@ -1,7 +1,11 @@
-import React from 'react'
+import { Component, ReactNode } from "react";
 
-export const Greet = () => {
-  return (
-    <div>Greet</div>
-  )
+export class Greet extends Component {
+  render(): ReactNode {
+    return (
+      <div>
+        <h1>Greet</h1>
+      </div>
+    );
+  }
 }
