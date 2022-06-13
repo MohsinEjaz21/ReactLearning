@@ -22,14 +22,14 @@
     "noEmit": true,
     "jsx": "react-jsx",
     "paths": {
-      "@src": [
-        "src/*"
-      ],
       "@pages/*": [
         "src/pages/*"
       ],
       "@config/*": [
         "config/*"
+      ],
+      "@src/*": [
+        "src/*"
       ],
     }
   },
