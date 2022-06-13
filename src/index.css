@@ -40,12 +40,9 @@ button {
 }
 
 .page-container {
-  /* display: flex; */
   background-color: #ddd;
   min-height: 100vh;
   min-width: 100%;
-  /* align-items: center; */
-  /* justify-content: center; */
 }
 
 .content-container {
