@@ -12,10 +12,6 @@ code {
     monospace;
 }
 
-h1 {
-  text-align: center;
-}
-
 hr {
   margin: 32px 0;
 }
@@ -58,7 +54,6 @@ button {
   border-radius: 8px;
   margin-bottom: 8px;
   padding: 16px;
-  text-align: center;
 }
 
 .fail {
@@ -66,5 +61,4 @@ button {
   border-radius: 8px;
   margin-bottom: 8px;
   padding: 16px;
-  text-align: center;
 }

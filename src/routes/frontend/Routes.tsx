@@ -4,6 +4,7 @@ import { EventBind } from '@pages/EventBind';
 import { FunctionClick } from '@pages/FunctionClick';
 import { Greet } from '@pages/Greet';
 import { Home } from '@pages/Home';
+import { NamesList } from '@pages/NamesList';
 import { Parent } from '@pages/Parent';
 import UserGreeting from '@pages/UserGreeting';
 import { Welcome } from '@pages/Welcome';
@@ -22,6 +23,7 @@ const MyRoutes = () => {
         <Route path="/eventBind" element={<EventBind />} />
         <Route path="/parent" element={<Parent />} />
         <Route path="/userGreeting" element={<UserGreeting />} />
+        <Route path="/namesList" element={<NamesList />} />
 
       </Routes>
     </BrowserRouter>

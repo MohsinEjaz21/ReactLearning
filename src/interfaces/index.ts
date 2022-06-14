@@ -25,5 +25,11 @@ namespace IApp {
     email: string,
     password: string,
   }
+  export type Person = {
+    name: string,
+    age: number,
+    skills: string[]
+  }
+
 }
 export default IApp;
