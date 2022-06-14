@@ -1,6 +1,7 @@
 import { ClassClick } from '@pages/ClassClick';
 import { Counter } from '@pages/Counter';
 import { EventBind } from '@pages/EventBind';
+import { Form } from '@pages/Form';
 import { FunctionClick } from '@pages/FunctionClick';
 import { Greet } from '@pages/Greet';
 import { Home } from '@pages/Home';
@@ -28,6 +29,7 @@ const MyRoutes = () => {
         <Route path="/namesList" element={<NamesList />} />
         <Route path="/styleSheet" element={<Stylesheet className='primary' />} />
         <Route path="/inlineCss" element={<InlineCss />} />
+        <Route path="/form" element={<Form />} />
 
       </Routes>
     </BrowserRouter>

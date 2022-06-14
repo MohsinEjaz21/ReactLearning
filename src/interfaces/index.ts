@@ -31,5 +31,11 @@ namespace IApp {
     skills: string[]
   }
 
+  export type Form = {
+    username: string,
+    comments: string,
+    topic: string,
+  }
+
 }
 export default IApp;
