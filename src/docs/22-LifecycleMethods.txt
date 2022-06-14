@@ -14,7 +14,7 @@ Updating
  - shouldComponentUpdate
  - render
  - getSnapshotBeforeUpdate 
- - componentDidUpdate
+ - componentDidUpdate (for sideEffects)
 
 Unmounting
  - When a component is removed from the dom
@@ -27,3 +27,46 @@ ErrorHandling
 
   - static getDerivedStateFromError 
   - componentDidCatch
+
+--------------------------------------------------------------------------------
+-> ComponentMountingLifeCycle
+  1- constructor
+   - called when the component is created
+   - initializing state and binding event handlers
+   - donot cause side effects .Ex : fetching data from server
+
+   example 
+    constructor(props) {
+      super(props);
+      this.state = { name: '', age: ''};
+    }
+
+  2- static getDerivedStateFromProps
+    - used to update the state based on the props
+    - donot cause sideeffects
+
+  3- render
+    - donot intract with dom / change the state of component or make ajax call
+    - children components lifecycle also executed
+
+  4- componentDidMount
+    - perfect for side effects like fetching data from server
+    - invoke after component and all its children are rendered
+
+  componentWillUnmount
+  - Cancelling any network request
+  - Cleaning up the dom
+  - Unbinding event handlers
+  - Cancelling any timers
+  - Cancelling any animation
+  - Cancelling any interval
+  - Cancelling any timeout
+  - ⚠️ donot call setState
+  
+  componenentDidCatch(error, info)
+  - used to handle error either during rendering 
+  or in the life cycle method or in constructor
+
+  
+
+  Lecture 23 , 24 revise

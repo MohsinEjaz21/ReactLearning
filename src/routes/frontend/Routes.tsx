@@ -11,6 +11,7 @@ import { Parent } from '@pages/Parent';
 import { Stylesheet } from '@pages/Stylesheet';
 import UserGreeting from '@pages/UserGreeting';
 import { Welcome } from '@pages/Welcome';
+import { LifecycleA } from '@src/components/LifecycleA';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 const MyRoutes = () => {
@@ -30,6 +31,8 @@ const MyRoutes = () => {
         <Route path="/styleSheet" element={<Stylesheet className='primary' />} />
         <Route path="/inlineCss" element={<InlineCss />} />
         <Route path="/form" element={<Form />} />
+        <Route path="/mounting" element={<LifecycleA />} />
+
 
       </Routes>
     </BrowserRouter>
