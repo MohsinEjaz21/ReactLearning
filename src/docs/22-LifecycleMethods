@@ -1,0 +1,29 @@
+Mounting
+ - When component is created or inserted in dom
+ - constructor, static getDerivedStateFromProps, render and didMount
+
+ - constructor
+ - static getDerivedStateFromProps
+ - render
+ - componetDidMount 
+
+Updating
+ - When a component rerenders either of props or state changes
+ 
+ - static getDerivedStateFromProps
+ - shouldComponentUpdate
+ - render
+ - getSnapshotBeforeUpdate 
+ - componentDidUpdate
+
+Unmounting
+ - When a component is removed from the dom
+
+ - componentWillUnmount
+
+ErrorHandling
+ - When there is error during rendering, in a life cycle method 
+   or in the constructor of life cycle hook
+
+  - static getDerivedStateFromError 
+  - componentDidCatch
