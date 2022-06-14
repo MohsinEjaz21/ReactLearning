@@ -14,10 +14,10 @@ export class ParentComponent extends Component<{}, STATE> {
       parentName: 'ParentComponent'
     }
     // resolving this keyword undefined inside the greetParent function
-    this.greetParent = this.greetParent.bind(this);
+    this.greetParentHandler = this.greetParentHandler.bind(this);
   }
 
-  greetParent() {
+  greetParentHandler() {
     // use template literal to print out message
     console.log(`Hello ${this.state.parentName}`)
   }
@@ -27,7 +27,7 @@ export class ParentComponent extends Component<{}, STATE> {
       <>
         <div>Parent Component</div>
         {/* See your console log to see the clicks of child accessing parent message */}
-        <ChildComponent greetParent={this.greetParent} />
+        <ChildComponent greetParentHandler={this.greetParentHandler} />
       </>
     )
   }

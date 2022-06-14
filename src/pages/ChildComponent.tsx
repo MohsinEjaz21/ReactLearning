@@ -1,8 +1,8 @@
 import React from 'react';
 
 export const ChildComponent = (props) => {
-  const { greetParent } = props;
+  const { greetParentHandler } = props;
   return (
-    <button onClick={greetParent}>GreetParent</button>
+    <button onClick={greetParentHandler}>CHILD will call parent greeting method (see console) </button>
   )
 }
