@@ -4,8 +4,10 @@ import { EventBind } from '@pages/EventBind';
 import { FunctionClick } from '@pages/FunctionClick';
 import { Greet } from '@pages/Greet';
 import { Home } from '@pages/Home';
+import { InlineCss } from '@pages/InlineCss';
 import { NamesList } from '@pages/NamesList';
 import { Parent } from '@pages/Parent';
+import { Stylesheet } from '@pages/Stylesheet';
 import UserGreeting from '@pages/UserGreeting';
 import { Welcome } from '@pages/Welcome';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
@@ -24,6 +26,8 @@ const MyRoutes = () => {
         <Route path="/parent" element={<Parent />} />
         <Route path="/userGreeting" element={<UserGreeting />} />
         <Route path="/namesList" element={<NamesList />} />
+        <Route path="/styleSheet" element={<Stylesheet className='primary' />} />
+        <Route path="/inlineCss" element={<InlineCss />} />
 
       </Routes>
     </BrowserRouter>
