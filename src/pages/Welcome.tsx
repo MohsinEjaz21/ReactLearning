@@ -21,14 +21,15 @@ export default class WellcomeDump extends Component<WelcomeProps, WelcomeState> 
   }
 
   render() {
+    const { name, children } = this.state;
     return (
       <>
         <h1>
-          {this.state.name && `Hi ${this.state.name}`}
-          {!this.state.name && 'Hello World'}
+          {name && `Hi ${name}`}
+          {!name && 'Hello World'}
         </h1>
         <button onClick={() => this.changeName("Kamran Safdar")} >Change Name</button>
-        {this.state?.children}
+        {children}
       </>
     )
   }
