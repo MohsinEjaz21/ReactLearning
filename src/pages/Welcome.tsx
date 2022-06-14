@@ -11,21 +11,24 @@ interface WelcomeState {
 }
 
 export default class WellcomeDump extends Component<WelcomeProps, WelcomeState> {
-  state: Readonly<WelcomeState>;
-
   constructor(props: WelcomeProps) {
     super(props);
     this.state = { ...props };
+  }
+
+  changeName = (name: string) => {
+    this.setState({ name });
   }
 
   render() {
     return (
       <>
         <h1>
-          {this.props.name && `Hi ${this.props.name}`}
-          {!this.props.name && 'Hello World'}
+          {this.state.name && `Hi ${this.state.name}`}
+          {!this.state.name && 'Hello World'}
         </h1>
-        {this.props?.children}
+        <button onClick={() => this.changeName("Kamran Safdar")} >Change Name</button>
+        {this.state?.children}
       </>
     )
   }

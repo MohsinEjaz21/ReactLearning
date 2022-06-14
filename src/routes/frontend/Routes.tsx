@@ -1,3 +1,4 @@
+import { Counter } from '@pages/Counter';
 import { Greet } from '@pages/Greet';
 import { Home } from '@pages/Home';
 import { Welcome } from '@pages/Welcome';
@@ -10,6 +11,7 @@ const MyRoutes = () => {
         <Route path="/" element={<Home />} />
         <Route path="/greet" element={<Greet />} />
         <Route path="/wellcome" element={<Welcome />} />
+        <Route path="/counter" element={<Counter />} />
 
       </Routes>
     </BrowserRouter>
