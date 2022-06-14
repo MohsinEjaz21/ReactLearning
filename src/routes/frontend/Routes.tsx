@@ -8,10 +8,12 @@ import { Home } from '@pages/Home';
 import { InlineCss } from '@pages/InlineCss';
 import { NamesList } from '@pages/NamesList';
 import { Parent } from '@pages/Parent';
+import { ParentComp } from '@pages/ParentComp';
 import { Stylesheet } from '@pages/Stylesheet';
 import UserGreeting from '@pages/UserGreeting';
 import { Welcome } from '@pages/Welcome';
 import { LifecycleA } from '@src/components/LifecycleA';
+import { PureComponent } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 const MyRoutes = () => {
@@ -32,6 +34,8 @@ const MyRoutes = () => {
         <Route path="/inlineCss" element={<InlineCss />} />
         <Route path="/form" element={<Form />} />
         <Route path="/mounting" element={<LifecycleA />} />
+        <Route path="/pureComponent" element={<PureComponent />} />
+        <Route path="/parentComp" element={<ParentComp />} />
 
 
       </Routes>

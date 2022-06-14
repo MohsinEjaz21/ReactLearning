@@ -1,0 +1,21 @@
+-> a regular component doesnot implements shouldComponentUpdate method it is always return true
+-> a pure component implements shouldComponentUpdate with shallow prop and state comparison
+  => shallow comparisons (SC)
+    - premitives types
+    a SC b returns true if a and b are the same value as well types
+    - complex types
+    a SC b returns true if a and b are the same exact object
+    ie let x= [12,4,2]; let y = [12,4,2]; let z = x  
+    SC(x,y) => false ; SC(x,z) => true
+
+    Hence component will rerender when props or state differs from the previous one in pure component
+
+
+Summary
+We can create a component by extending the PureComponent class.
+A PureComponent implements the shouldComponentUpdate lifecycle method by performing a
+shallow comparison on the props and state of the component.
+If there is no difference,the component is not re-rendered-performance boost.
+It is a good idea to ensure that all the children components are also pure to avoid unexpected
+behaviour.
+Never mutate the state.Always return a new object that reflects the new state.
