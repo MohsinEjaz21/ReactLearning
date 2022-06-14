@@ -4,6 +4,7 @@ import { EventBind } from '@pages/EventBind';
 import { FunctionClick } from '@pages/FunctionClick';
 import { Greet } from '@pages/Greet';
 import { Home } from '@pages/Home';
+import { ParentComponent } from '@pages/ParentComponent';
 import { Welcome } from '@pages/Welcome';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
@@ -18,6 +19,7 @@ const MyRoutes = () => {
         <Route path="/functionClick" element={<FunctionClick />} />
         <Route path="/classClick" element={<ClassClick />} />
         <Route path="/eventBind" element={<EventBind />} />
+        <Route path="/parentComponent" element={<ParentComponent />} />
 
       </Routes>
     </BrowserRouter>
