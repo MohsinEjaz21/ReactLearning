@@ -1,5 +1,6 @@
 import { ClassClick } from '@pages/ClassClick';
 import { Counter } from '@pages/Counter';
+import { EventBind } from '@pages/EventBind';
 import { FunctionClick } from '@pages/FunctionClick';
 import { Greet } from '@pages/Greet';
 import { Home } from '@pages/Home';
@@ -16,6 +17,8 @@ const MyRoutes = () => {
         <Route path="/counter" element={<Counter />} />
         <Route path="/functionClick" element={<FunctionClick />} />
         <Route path="/classClick" element={<ClassClick />} />
+        <Route path="/eventBind" element={<EventBind />} />
+
       </Routes>
     </BrowserRouter>
   );
