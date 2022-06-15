@@ -6,6 +6,7 @@ import { ForwardRef } from '@pages/ForwardRef';
 import { FocusInput } from '@pages/FousInput';
 import { FunctionClick } from '@pages/FunctionClick';
 import { Greet } from '@pages/Greet';
+import { HeroImpl } from '@pages/Hero';
 import { Home } from '@pages/Home';
 import { InlineCss } from '@pages/InlineCss';
 import { MemoComponent } from '@pages/MemoComponent';
@@ -48,6 +49,7 @@ const MyRoutes = () => {
         <Route path="/forwardRef" element={<ForwardRef />} />
         <Route path="/UseRef" element={<UseRef />} />
         <Route path="/portals" element={<PortalDemo />} />
+        <Route path="/hero" element={<HeroImpl />} />
 
       </Routes>
     </BrowserRouter>
