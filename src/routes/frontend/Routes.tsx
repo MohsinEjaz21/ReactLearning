@@ -6,6 +6,7 @@ import { FunctionClick } from '@pages/FunctionClick';
 import { Greet } from '@pages/Greet';
 import { Home } from '@pages/Home';
 import { InlineCss } from '@pages/InlineCss';
+import { MemoComponent } from '@pages/MemoComponent';
 import { NamesList } from '@pages/NamesList';
 import { Parent } from '@pages/Parent';
 import { ParentComp } from '@pages/ParentComp';
@@ -36,7 +37,7 @@ const MyRoutes = () => {
         <Route path="/mounting" element={<LifecycleA />} />
         <Route path="/pureComponent" element={<PureComponent />} />
         <Route path="/parentComp" element={<ParentComp />} />
-
+        <Route path="/memo" element={<MemoComponent />} />
 
       </Routes>
     </BrowserRouter>
