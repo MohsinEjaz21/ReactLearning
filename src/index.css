@@ -62,3 +62,15 @@ button {
   margin-bottom: 8px;
   padding: 16px;
 }
+
+.form1 {
+  display: flex;
+}
+
+.form1--attr:nth-child(1) {
+  flex: 0.8;
+}
+
+.form1--attr:nth-child(2) {
+  flex: 0.2;
+}

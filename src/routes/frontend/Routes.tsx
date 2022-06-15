@@ -10,6 +10,7 @@ import { MemoComponent } from '@pages/MemoComponent';
 import { NamesList } from '@pages/NamesList';
 import { Parent } from '@pages/Parent';
 import { ParentComp } from '@pages/ParentComp';
+import { RefsDemo } from '@pages/RefsDemo';
 import { Stylesheet } from '@pages/Stylesheet';
 import UserGreeting from '@pages/UserGreeting';
 import { Welcome } from '@pages/Welcome';
@@ -38,6 +39,7 @@ const MyRoutes = () => {
         <Route path="/pureComponent" element={<PureComponent />} />
         <Route path="/parentComp" element={<ParentComp />} />
         <Route path="/memo" element={<MemoComponent />} />
+        <Route path="/refs" element={<RefsDemo />} />
 
       </Routes>
     </BrowserRouter>
