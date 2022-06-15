@@ -2,6 +2,7 @@ import { ClassClick } from '@pages/ClassClick';
 import { Counter } from '@pages/Counter';
 import { EventBind } from '@pages/EventBind';
 import { Form } from '@pages/Form';
+import { FocusInput } from '@pages/FousInput';
 import { FunctionClick } from '@pages/FunctionClick';
 import { Greet } from '@pages/Greet';
 import { Home } from '@pages/Home';
@@ -40,6 +41,7 @@ const MyRoutes = () => {
         <Route path="/parentComp" element={<ParentComp />} />
         <Route path="/memo" element={<MemoComponent />} />
         <Route path="/refs" element={<RefsDemo />} />
+        <Route path="/focusInput" element={<FocusInput />} />
 
       </Routes>
     </BrowserRouter>
