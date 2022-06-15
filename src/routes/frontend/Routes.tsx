@@ -2,6 +2,7 @@ import { ClassClick } from '@pages/ClassClick';
 import { Counter } from '@pages/Counter';
 import { EventBind } from '@pages/EventBind';
 import { Form } from '@pages/Form';
+import { ForwardRef } from '@pages/ForwardRef';
 import { FocusInput } from '@pages/FousInput';
 import { FunctionClick } from '@pages/FunctionClick';
 import { Greet } from '@pages/Greet';
@@ -13,6 +14,7 @@ import { Parent } from '@pages/Parent';
 import { ParentComp } from '@pages/ParentComp';
 import { RefsDemo } from '@pages/RefsDemo';
 import { Stylesheet } from '@pages/Stylesheet';
+import { UseRef } from '@pages/UseRefImpl';
 import UserGreeting from '@pages/UserGreeting';
 import { Welcome } from '@pages/Welcome';
 import { LifecycleA } from '@src/components/LifecycleA';
@@ -42,6 +44,8 @@ const MyRoutes = () => {
         <Route path="/memo" element={<MemoComponent />} />
         <Route path="/refs" element={<RefsDemo />} />
         <Route path="/focusInput" element={<FocusInput />} />
+        <Route path="/forwardRef" element={<ForwardRef />} />
+        <Route path="/UseRef" element={<UseRef />} />
 
       </Routes>
     </BrowserRouter>
