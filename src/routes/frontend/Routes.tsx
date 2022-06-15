@@ -12,6 +12,7 @@ import { MemoComponent } from '@pages/MemoComponent';
 import { NamesList } from '@pages/NamesList';
 import { Parent } from '@pages/Parent';
 import { ParentComp } from '@pages/ParentComp';
+import PortalDemo from '@pages/PortalDemo';
 import { RefsDemo } from '@pages/RefsDemo';
 import { Stylesheet } from '@pages/Stylesheet';
 import { UseRef } from '@pages/UseRefImpl';
@@ -46,6 +47,7 @@ const MyRoutes = () => {
         <Route path="/focusInput" element={<FocusInput />} />
         <Route path="/forwardRef" element={<ForwardRef />} />
         <Route path="/UseRef" element={<UseRef />} />
+        <Route path="/portals" element={<PortalDemo />} />
 
       </Routes>
     </BrowserRouter>
