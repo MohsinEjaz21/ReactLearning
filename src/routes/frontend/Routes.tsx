@@ -1,4 +1,5 @@
 import { ClassClick } from '@pages/ClassClick';
+import ClickCounter from '@pages/ClickCounter';
 import { Counter } from '@pages/Counter';
 import { EventBind } from '@pages/EventBind';
 import { Form } from '@pages/Form';
@@ -8,6 +9,7 @@ import { FunctionClick } from '@pages/FunctionClick';
 import { Greet } from '@pages/Greet';
 import { HeroImpl } from '@pages/Hero';
 import { Home } from '@pages/Home';
+import HoverCounter from '@pages/HoverCounter';
 import { InlineCss } from '@pages/InlineCss';
 import { MemoComponent } from '@pages/MemoComponent';
 import { NamesList } from '@pages/NamesList';
@@ -50,6 +52,8 @@ const MyRoutes = () => {
         <Route path="/UseRef" element={<UseRef />} />
         <Route path="/portals" element={<PortalDemo />} />
         <Route path="/hero" element={<HeroImpl />} />
+        <Route path="/clickCounter" element={<ClickCounter name="Mohsin" />} />
+        <Route path="/hoverCounter" element={<HoverCounter />} />
 
       </Routes>
     </BrowserRouter>
