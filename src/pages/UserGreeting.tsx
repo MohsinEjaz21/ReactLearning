@@ -43,4 +43,3 @@ export class UserGreeting extends Component<{}, IUserGreetingState> {
   }
 }
 
-export default UserGreeting

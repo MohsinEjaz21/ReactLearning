@@ -1,7 +1,7 @@
 import React from 'react'
 import { withCounter } from './WithCounter'
 
-function HoverCounter(props) {
+function HoverCounterImpl(props) {
   const { count, handleIncrement } = props
   return (
     <button onMouseOver={handleIncrement}>
@@ -10,4 +10,4 @@ function HoverCounter(props) {
   )
 }
 
-export default withCounter(HoverCounter)
+export const HoverCounter = withCounter(HoverCounterImpl)

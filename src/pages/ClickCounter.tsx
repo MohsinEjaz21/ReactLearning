@@ -1,7 +1,7 @@
 import React from 'react'
 import { withCounter } from './WithCounter'
 
-function ClickCounter(props) {
+function ClickCounterImpl(props) {
   const { count, handleIncrement } = props
   return (
     <button onClick={handleIncrement}>
@@ -10,4 +10,4 @@ function ClickCounter(props) {
   )
 }
 
-export default withCounter(ClickCounter, 5)
+export const ClickCounter = withCounter(ClickCounterImpl, 5)
