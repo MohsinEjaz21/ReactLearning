@@ -1,11 +1,12 @@
-import { Slices } from '@redux/store';
+import { Redux } from '@redux/store';
 import React, { useEffect } from 'react';
 
 export const ReduxTest = () => {
-  const { name } = Slices.DataGrid.state()
-  const { setName } = Slices.DataGrid.actions()
+  const { name } = Redux.DataGridSlice.state()
+  const { setName } = Redux.DataGridSlice.actions
 
   useEffect(() => {
+    // console.log(name)
     setName("Oeee behnc ki dum")
     return () => { }
   }, [])

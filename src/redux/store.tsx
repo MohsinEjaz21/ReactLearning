@@ -14,13 +14,13 @@ export const reduxStore = configureStore({
   }),
 })
 
-export const Slices = {
-  Auth: {
-    actions: () => bindActionCreators(AuthSlice.actions, reduxStore.dispatch),
+export const Redux = {
+  AuthSlice: {
+    actions: bindActionCreators(AuthSlice.actions, reduxStore.dispatch),
     state: () => useSelector((state: RootState) => state.AuthSlice)
   },
-  DataGrid: {
-    actions: () => bindActionCreators(DataGridSlice.actions, reduxStore.dispatch),
+  DataGridSlice: {
+    actions: bindActionCreators(DataGridSlice.actions, reduxStore.dispatch),
     state: () => useSelector((state: RootState) => state.DataGridSlice)
   }
 }
