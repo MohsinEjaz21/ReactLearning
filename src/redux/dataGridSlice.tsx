@@ -1,18 +1,29 @@
-import { createSlice, current } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 
 export const DataGridSlice = createSlice({
-  name: 'DataGrid',
+  name: 'DataGridSlice',
   initialState: {
-    name: 'Hell world',
+    isFilterDialogOpen: false,
+    operators: {},
+    columns: [],
+    filters: [],
+    columnsWithAction: [],
   },
   reducers: {
-    setName: (state, action) => {
-      console.log(current(state), action)
-      state.name = action.payload
-    }
+    setFilters: (state, action) => {
+      state.filters = action.payload
+    },
+    setOperators: (state, action) => {
+      state.operators = action.payload
+    },
+    setColumns: (state, action) => {
+      state.columns = action.payload
+    },
+    setIsFilterDialogOpen: (state, action) => {
+      state.isFilterDialogOpen = action.payload
+    },
+    setColumnsWithAction: (state, action) => {
+      state.columnsWithAction = action.payload
+    },
   }
 })
-
-
-
-
