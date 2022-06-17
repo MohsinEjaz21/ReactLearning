@@ -1,8 +1,9 @@
 import React from 'react'
+import TableImpl from './Table'
 
 export const DataTable = () => {
   return (
-    <div>index</div>
+    <TableImpl />
   )
 }
 
