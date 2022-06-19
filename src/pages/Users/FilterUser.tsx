@@ -1,12 +1,10 @@
 import { Redux } from '@redux/store';
 import { FilterForm } from '@src/components/FilterModal';
-import { IColumns, IFilterForm } from '@src/interfaces';
-import { Button, Modal } from 'antd';
+import { IColumns } from '@src/interfaces';
+import { Button, Form, Modal } from 'antd';
 import React from 'react';
-import { useForm } from 'react-hook-form';
 
 export const FilterUser = ({ props: { handleFilterSubmit, handleFilterCancel } }) => {
-  const hookForm = useForm<IFilterForm>();
 
   const options: IColumns[] = [
     {
@@ -53,7 +51,7 @@ export const FilterUser = ({ props: { handleFilterSubmit, handleFilterCancel } }
   ];
 
   function handleSubmit(data) {
-    hookForm.handleSubmit(data)
+    console.log(data)
   }
 
   const { isFilterModalOpen } = Redux.DataGridSlice.state()
@@ -61,18 +59,17 @@ export const FilterUser = ({ props: { handleFilterSubmit, handleFilterCancel } }
     <Button key="back" onClick={handleFilterCancel}>
       Cancel
     </Button>,
-    <Button key="submit" type="primary" loading={false} onClick={hookForm.handleSubmit(handleSubmit)}>
+    <Button type="primary" htmlType="submit">
       Submit
     </Button>
   ];
 
   return (
-    // <Form onFinish={hookForm.handleSubmit(data => console.log(data))} >
-    <Modal title="Filter User" visible={isFilterModalOpen} footer={filterModalActions}>
-      {/* onSubmit={handleFilterSubmit} */}
-      <FilterForm options={options} hookForm={hookForm} />
-    </Modal>
-    // </Form>
+    <Form.Provider onFormFinish={handleSubmit}  >
+      <Modal title="Filter User" visible={isFilterModalOpen} footer={filterModalActions}>
+        <FilterForm options={options} />
+      </Modal>
+    </Form.Provider>
   );
 };
 

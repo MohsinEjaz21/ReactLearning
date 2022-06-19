@@ -1,16 +1,25 @@
-import { DevTool } from '@hookform/devtools';
 import { OperatorUtils } from '@src/helpers/utils/OperatorUtils';
-import { IColumns, IComponents, IFilterForm, IOperators } from '@src/interfaces';
-import { Row } from 'antd';
+import { IColumns, IComponents, IOperators } from '@src/interfaces';
+import { Form, FormInstance, Row } from 'antd';
 import React, { useState } from 'react';
-import { UseFormReturn } from 'react-hook-form';
 import { AntdCascader, AntdComponent, AntdSelect } from './AntdReusables';
 
-export function FilterForm({ options, hookForm }) {
-
-  const { control, setValue, formState: { errors } }: UseFormReturn<IFilterForm, any> = hookForm;
+export function FilterForm({ options }) {
+  const filterFormRef = React.createRef<FormInstance>();
   const [componentType, setComponentType] = React.useState<IComponents>("input");
   const [operators, setOperatorsOptions] = useState<IOperators[]>();
+
+  const onFinish = (values: any) => {
+    console.log('Success:', values);
+  };
+
+  const onFinishFailed = (errorInfo: any) => {
+    console.log('Failed:', errorInfo);
+  };
+
+  const setValue = (key, value) => {
+    filterFormRef.current!.setFieldsValue({ [key]: value });
+  }
 
   function handleColumnChange(value: any[], selectedOptions: IColumns[]) {
     const { datatype: _datatype, componentType: _componentType } = selectedOptions?.[selectedOptions.length - 1];
@@ -34,12 +43,10 @@ export function FilterForm({ options, hookForm }) {
     }
   }
 
-  console.log(errors)
+  // console.log(errors)
   const filterForm = {
     column: {
-      control,
       options,
-      errors,
       span: 24,
       label: "Column",
       controlName: "column",
@@ -48,16 +55,12 @@ export function FilterForm({ options, hookForm }) {
     },
     operator: {
       span: 24,
-      errors,
-      control: control,
       options: operators,
       controlName: "operator",
       label: "Operator",
     },
     value: {
       span: 24,
-      errors,
-      control,
       label: "Value",
       placeholder: "Enter value",
       controlName: "value",
@@ -66,14 +69,19 @@ export function FilterForm({ options, hookForm }) {
 
   return (
     <>
-      {/* <form onSubmit={handleSubmit(data => console.log(data))} > */}
-      <Row gutter={[8, 16]}>
-        <AntdCascader {...filterForm.column} />
-        <AntdSelect {...filterForm.operator} />
-        <AntdComponent type={componentType} {...filterForm.value} />
-      </Row>
-      {/* </form> */}
-      <DevTool control={control} />
+      <Form ref={filterFormRef}
+        name="filterForm"
+        onFinish={onFinish}
+        onFinishFailed={onFinishFailed}
+        autoComplete="off"
+      >
+
+        <Row gutter={[8, 16]}>
+          <AntdCascader {...filterForm.column} />
+          <AntdSelect {...filterForm.operator} />
+          <AntdComponent type={componentType} {...filterForm.value} />
+        </Row>
+      </Form>
     </>
   );
 }
