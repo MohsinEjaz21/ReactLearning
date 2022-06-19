@@ -1,13 +1,12 @@
 import TableImpl from '@src/components/Table';
 import axios from '@src/helpers/axios';
-import { IApp } from '@src/interfaces';
 import { Card, Space } from 'antd';
 import { ColumnsType } from 'antd/lib/table';
 import React, { useEffect } from 'react';
 
 export const UsersList = ({ props: { tuppleAcion, users, setUsers }, children }) => {
 
-  const columns: ColumnsType<IApp.Users> = [
+  const columns: ColumnsType<IUsers> = [
     {
       title: 'Name',
       dataIndex: 'name',

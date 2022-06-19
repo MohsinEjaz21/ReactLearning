@@ -1,12 +1,12 @@
 import { Redux } from '@redux/store';
 import { FilterForm } from '@src/components/FilterModal';
-import { IApp } from '@src/interfaces';
+import { IColumns } from '@src/interfaces';
 import { Modal } from 'antd';
 import React from 'react';
 
 export const FilterUser = ({ props: { handleFilterSubmit, handleFilterCancel } }) => {
 
-  const options: IApp.Cascader[] = [
+  const options: IColumns[] = [
     {
       value: 'Age',
       label: 'Age',

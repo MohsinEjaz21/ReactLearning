@@ -1,20 +1,18 @@
 import { DevTool } from '@hookform/devtools';
 import { OperatorUtils } from '@src/helpers/utils/OperatorUtils';
-import { IAntd, IApp } from '@src/interfaces';
+import { IColumns, IComponents, IFilterForm, IOperators } from '@src/interfaces';
 import { Row } from 'antd';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { AntdCascader, AntdComponent, AntdSelect } from './AntdReusables';
 
 export function FilterForm({ options, onSubmit }) {
-  // const [columns, setColumns] = React.useState<any>();
-  // console.log(getValues().column)
 
-  const { control, register, getValues, handleSubmit, setValue, formState: { errors } } = useForm<IApp.FilterForm>();
-  const [type, setType] = React.useState<IAntd.ComponentTypes | undefined>("input");
-  const [operators, setOperatorsOptions] = useState<IApp.Operators[]>();
+  const { control, register, getValues, handleSubmit, setValue, formState: { errors } } = useForm<IFilterForm>();
+  const [type, setType] = React.useState<IComponents>("input");
+  const [operators, setOperatorsOptions] = useState<IOperators[]>();
 
-  function handleColumnChange(value: any[], selectedOptions: any) {
+  function handleColumnChange(value: any[], selectedOptions: IColumns[]) {
     const { datatype, componentType } = selectedOptions?.[selectedOptions.length - 1];
     console.log(componentType);
 
@@ -118,3 +116,7 @@ export function FilterForm({ options, onSubmit }) {
 <Option value=">=">{'>='}</Option>
 <Option value="=">{'>='}</Option>
 </Select> */
+
+
+  // const [columns, setColumns] = React.useState<any>();
+  // console.log(getValues().column)

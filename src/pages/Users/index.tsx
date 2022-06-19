@@ -1,7 +1,6 @@
 import { DeleteOutlined, EditOutlined, FilterOutlined } from '@ant-design/icons';
 import { Redux } from '@redux/store';
 import { DeleteModal } from '@src/components/DeleteModal';
-import { IApp } from '@src/interfaces';
 import { Button, Space } from 'antd';
 import React from 'react';
 import { IoAddOutline } from 'react-icons/io5';
@@ -13,8 +12,8 @@ const Index = () => {
   const { setIsAddDialogOpen, setIsFilterModalOpen, setIsDeleteDialogOpen } = Redux.DataGridSlice.actions
   const { isDeleteDialogOpen, entityName } = Redux.DataGridSlice.state()
 
-  const [users, setUsers] = React.useState<IApp.Users[]>([]);
-  const [deleteUser, setDeleteUser] = React.useState<IApp.Users>();
+  const [users, setUsers] = React.useState<IUsers[]>([]);
+  const [deleteUser, setDeleteUser] = React.useState<IUsers>();
 
   // handle onClick Operations
   function onClickAdd() {

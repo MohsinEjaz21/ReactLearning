@@ -1,8 +1,8 @@
-import { IApp } from "@src/interfaces";
+import { IDatatype } from "@src/interfaces"
 
 export class OperatorUtils {
   // get operator based on datatypes
-  static getOperator(dataType: IApp.EntityDataType) {
+  static getOperator(dataType: IDatatype) {
     switch (dataType) {
       case 'string':
         return [
