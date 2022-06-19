@@ -2,7 +2,7 @@ import { IDatatype } from "@src/interfaces"
 
 export class OperatorUtils {
   // get operator based on datatypes
-  static getOperator(dataType: IDatatype) {
+  static getOperatorByDataType(dataType: IDatatype) {
     switch (dataType) {
       case 'string':
         return [

@@ -1,10 +1,12 @@
 import { Redux } from '@redux/store';
 import { FilterForm } from '@src/components/FilterModal';
-import { IColumns } from '@src/interfaces';
-import { Modal } from 'antd';
+import { IColumns, IFilterForm } from '@src/interfaces';
+import { Button, Modal } from 'antd';
 import React from 'react';
+import { useForm } from 'react-hook-form';
 
 export const FilterUser = ({ props: { handleFilterSubmit, handleFilterCancel } }) => {
+  const hookForm = useForm<IFilterForm>();
 
   const options: IColumns[] = [
     {
@@ -26,14 +28,8 @@ export const FilterUser = ({ props: { handleFilterSubmit, handleFilterCancel } }
         {
           value: 'hangzhou',
           label: 'Hangzhou',
-          children: [
-            {
-              datatype: 'string',
-              componentType: 'textarea',
-              value: 'xihu',
-              label: 'West Lake',
-            },
-          ],
+          datatype: 'string',
+          componentType: 'textarea',
         },
       ],
     },
@@ -56,17 +52,30 @@ export const FilterUser = ({ props: { handleFilterSubmit, handleFilterCancel } }
     },
   ];
 
-  function handleSubmit(user) {
-    console.log("user", user)
+  function handleSubmit(data) {
+    hookForm.handleSubmit(data)
   }
 
   const { isFilterModalOpen } = Redux.DataGridSlice.state()
+  const filterModalActions = [
+    <Button key="back" onClick={handleFilterCancel}>
+      Cancel
+    </Button>,
+    <Button key="submit" type="primary" loading={false} onClick={hookForm.handleSubmit(handleSubmit)}>
+      Submit
+    </Button>
+  ];
+
   return (
-    <>
-      <Modal title="Filter User" visible={isFilterModalOpen} onOk={handleFilterSubmit} onCancel={handleFilterCancel}>
-        <FilterForm options={options} onSubmit={handleFilterSubmit} />
-      </Modal>
-    </>
+    // <Form onFinish={hookForm.handleSubmit(data => console.log(data))} >
+    <Modal title="Filter User" visible={isFilterModalOpen} footer={filterModalActions}>
+      {/* onSubmit={handleFilterSubmit} */}
+      <FilterForm options={options} hookForm={hookForm} />
+    </Modal>
+    // </Form>
   );
 };
 
+
+// HookFormForm
+// { control, register, getValues, handleSubmit, setValue, formState: { errors } }

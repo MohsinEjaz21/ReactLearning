@@ -2,7 +2,9 @@ import { Cascader, Col, DatePicker, Input, InputNumber, Select, TimePicker } fro
 import React from 'react';
 import { Controller } from 'react-hook-form';
 
-const AntFormItem = ({ children, label, span }) => {
+const AntFormItem = ({ props: { label, span, controlName, ...rest }, children }) => {
+  const { errors } = rest
+  const error = errors?.[controlName]
   const ColWrapper = ({ children, span }) => {
     return span ? <Col span={span}>{children}</Col> : children;
   }
@@ -14,6 +16,9 @@ const AntFormItem = ({ children, label, span }) => {
         </div>
         {children}
       </div>
+      {error && <div className="ant-form-item-explain ant-form-item-explain-connected">
+        <div className="ant-form-item-explain-error">{error?.type}</div>
+      </div>}
     </ColWrapper>
   )
 }
@@ -52,7 +57,7 @@ export function AntdCascader({ label, control, options, onChange, setValue, cont
   }
 
   return (
-    <AntFormItem label={label} span={span}>
+    <AntFormItem props={{ label, span, controlName }} >
       <Controller
         rules={{ required: true }}
         name={controlName}
@@ -71,9 +76,9 @@ export function AntdCascader({ label, control, options, onChange, setValue, cont
 }
 
 export function AntdSelect({ label, control, options, controlName, ...props }) {
-  const { span } = props;
+  const { span, errors } = props;
   return (
-    <AntFormItem label={label} span={span}>
+    <AntFormItem props={{ label, span, errors, controlName }} >
       <Controller
         rules={{ required: true }}
         name={controlName}
@@ -85,10 +90,10 @@ export function AntdSelect({ label, control, options, controlName, ...props }) {
   );
 }
 
-export function AntdInput({ label, control, controlName, placeholder, ...props }) {
+export function AntdInput({ label, control, errors, controlName, placeholder, ...props }) {
   const { span } = props;
   return (
-    <AntFormItem label={label} span={span}>
+    <AntFormItem props={{ label, span, errors, controlName }}>
       <Controller
         rules={{ required: true }}
         name={controlName}
@@ -98,10 +103,10 @@ export function AntdInput({ label, control, controlName, placeholder, ...props }
   );
 }
 
-export function AntdInputNumber({ label, control, controlName, placeholder, ...props }) {
+export function AntdInputNumber({ label, control, errors, controlName, placeholder, ...props }) {
   const { span } = props;
   return (
-    <AntFormItem label={label} span={span}>
+    <AntFormItem props={{ label, span, errors, controlName }} >
       <Controller
         rules={{ required: true }}
         name={controlName}
@@ -111,23 +116,23 @@ export function AntdInputNumber({ label, control, controlName, placeholder, ...p
   );
 }
 
-export function AntdTextArea({ label, control, controlName, placeholder, ...props }) {
+export function AntdTextArea({ label, control, errors, controlName, placeholder, ...props }) {
   const { span, rows = 4 } = props;
   return (
-    <AntFormItem label={label} span={span}>
+    <AntFormItem props={{ label, span, errors, controlName }}>
       <Controller
         rules={{ required: true }}
         name={controlName}
         control={control}
-        render={({ field }) => <Input.TextArea style={{ width: '100%' }} rows={rows} {...field} placeholder={placeholder} />} />
+        render={({ field }) => <Input.TextArea style={{ width: '100%' }} status="error" rows={rows} {...field} placeholder={placeholder} />} />
     </AntFormItem>
   );
 }
 
-export function AntdDatePicker({ label, control, controlName, ...props }) {
+export function AntdDatePicker({ label, control, errors, controlName, ...props }) {
   const { span, picker = "date" } = props;
   return (
-    <AntFormItem label={label} span={span}>
+    <AntFormItem props={{ label, span, errors, controlName }} >
       <Controller
         rules={{ required: true }}
         name={controlName}
@@ -142,10 +147,10 @@ export function AntdDatePicker({ label, control, controlName, ...props }) {
   );
 }
 
-export function AntdTimePicker({ label, control, controlName, ...props }) {
+export function AntdTimePicker({ label, control, errors, controlName, ...props }) {
   const { span, format = "HH:mm" } = props;
   return (
-    <AntFormItem label={label} span={span}>
+    <AntFormItem props={{ label, span, errors, controlName }}>
       <Controller
         rules={{ required: true }}
         name={controlName}

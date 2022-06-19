@@ -1,6 +1,7 @@
 import { DeleteOutlined, EditOutlined, FilterOutlined } from '@ant-design/icons';
 import { Redux } from '@redux/store';
 import { DeleteModal } from '@src/components/DeleteModal';
+import { IUsers } from '@src/interfaces';
 import { Button, Space } from 'antd';
 import React from 'react';
 import { IoAddOutline } from 'react-icons/io5';
@@ -53,8 +54,8 @@ const Index = () => {
     setIsAddDialogOpen(false);
   }
 
-  function handleFilterSubmit(payload) {
-    console.log("filter payload ::", payload)
+  function handleFilterSubmit(event) {
+    console.log("filter payload ::", event.target.value)
     setIsFilterModalOpen(true);
   }
 
