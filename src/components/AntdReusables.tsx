@@ -31,7 +31,7 @@ export function AntdCascader({ label, options, onChange, setValue, controlName, 
   const { span } = props;
 
   function handleChange(value: any[], selectedOptions: any) {
-    console.log(value, selectedOptions);
+    // console.log(value, selectedOptions);
     const joinedValue = value.join('.');
     setValue(controlName, joinedValue);
     if (onChange) {
@@ -40,8 +40,8 @@ export function AntdCascader({ label, options, onChange, setValue, controlName, 
   }
 
   function displayRender(label, selectedOptions) {
-    console.log(label, selectedOptions);
-    console.log(label[label.length - 1]);
+    // console.log(label, selectedOptions);
+    // console.log(label[label.length - 1]);
     return label[label.length - 1].split('.').join(' / ');
   }
 

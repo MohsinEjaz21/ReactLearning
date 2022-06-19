@@ -1,11 +1,10 @@
 import { OperatorUtils } from '@src/helpers/utils/OperatorUtils';
 import { IColumns, IComponents, IOperators } from '@src/interfaces';
-import { Form, FormInstance, Row } from 'antd';
+import { Form, Row } from 'antd';
 import React, { useState } from 'react';
 import { AntdCascader, AntdComponent, AntdSelect } from './AntdReusables';
 
-export function FilterForm({ options }) {
-  const filterFormRef = React.createRef<FormInstance>();
+export function FilterForm({ options, filterFormRef }) {
   const [componentType, setComponentType] = React.useState<IComponents>("input");
   const [operators, setOperatorsOptions] = useState<IOperators[]>();
 
@@ -75,7 +74,6 @@ export function FilterForm({ options }) {
         onFinishFailed={onFinishFailed}
         autoComplete="off"
       >
-
         <Row gutter={[8, 16]}>
           <AntdCascader {...filterForm.column} />
           <AntdSelect {...filterForm.operator} />

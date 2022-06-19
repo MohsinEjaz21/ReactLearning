@@ -54,10 +54,11 @@ const Index = () => {
     setIsAddDialogOpen(false);
   }
 
-  function handleFilterSubmit(event) {
-    console.log("filter payload ::", event.target.value)
-    setIsFilterModalOpen(true);
+  function handleFilterSubmit(name, { values, forms }) {
+    console.log("handleFilterSubmit", { name, values, forms })
+    setIsAddDialogOpen(false);
   }
+
 
   function handleDeleteSubmit(payload) {
     const key = deleteUser?.key;
