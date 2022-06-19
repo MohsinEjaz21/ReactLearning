@@ -1,0 +1,53 @@
+import TableImpl from '@src/components/Table';
+import axios from '@src/helpers/axios';
+import { IApp } from '@src/interfaces';
+import { Card, Space } from 'antd';
+import { ColumnsType } from 'antd/lib/table';
+import React, { useEffect } from 'react';
+
+export const UsersList = ({ props: { tuppleAcion, users, setUsers }, children }) => {
+
+  const columns: ColumnsType<IApp.Users> = [
+    {
+      title: 'Name',
+      dataIndex: 'name',
+      key: 'name',
+      sorter: (a, b) => a.name.localeCompare(b.name),
+      render: text => <a>{text}</a>,
+    },
+    {
+      title: 'Age',
+      dataIndex: 'age',
+      key: 'age',
+      sorter: (a, b) => a.age - b.age,
+    },
+    {
+      title: 'Address',
+      dataIndex: 'address',
+      key: 'address',
+      sorter: (a, b) => a.address.localeCompare(b.address),
+    },
+    {
+      title: 'Action',
+      key: 'action',
+      render: tuppleAcion
+    },
+  ];
+
+  useEffect(() => {
+    axios.get({ url: '/api/mockTable' }).then(res => {
+      setUsers(res.data);
+    });
+    return () => { }
+  }, [])
+
+  return (
+    <>
+      <div className='container'>
+        <Card title="Users" extra={<Space size="middle">{children}</Space>} >
+          <TableImpl columns={columns} data={users} />
+        </Card>
+      </div>
+    </>
+  )
+}
