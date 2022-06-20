@@ -1,12 +1,33 @@
+import { CustomBtn } from '@src/components/CustomBtn';
 import TableImpl from '@src/components/Table';
 import axios from '@src/helpers/axios';
-import { IUsers } from '@src/interfaces';
-import { Card } from 'antd';
+import { IFilterForm, IUsers } from '@src/interfaces';
+import { Card, Tag } from 'antd';
 import { ColumnsType } from 'antd/lib/table';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
-export const UsersList = ({ props: { users, setUsers, headerActions, tuppleAcion } }) => {
 
+
+function FilterTag({ tags }) {
+
+  function applyFilters() { }
+  function handleTagClose(tag) {
+    console.log("close filter called", tag)
+  }
+
+  return (<Card>
+    {tags.map(tag =>
+      <Tag color="magenta" key={`${tag.column}${tag.operator}${tag.value}`} closable
+        onClose={() => handleTagClose(tag)}>
+        {tag.column} {tag.operator} {tag.value}
+      </Tag>
+    )}
+    <CustomBtn label='Apply Filter' handleClick={applyFilters} />
+  </Card>);
+}
+
+
+export const UsersList = ({ props: { users, setUsers, headerActions, tuppleAcion, tags } }) => {
   const columns: ColumnsType<IUsers> = [
     {
       title: 'Name',
@@ -45,6 +66,7 @@ export const UsersList = ({ props: { users, setUsers, headerActions, tuppleAcion
     <>
       <div className='container'>
         <Card title="Users" extra={headerActions} >
+          <FilterTag tags={tags}></FilterTag>
           <TableImpl columns={columns} data={users} />
         </Card>
       </div>

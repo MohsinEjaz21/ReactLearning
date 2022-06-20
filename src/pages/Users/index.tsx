@@ -1,13 +1,13 @@
 import { DeleteOutlined, EditOutlined, FilterOutlined } from '@ant-design/icons';
 import { Redux } from '@redux/store';
 import { DeleteModal } from '@src/components/DeleteModal';
-import { IUsers } from '@src/interfaces';
+import { IFilterForm, IUsers } from '@src/interfaces';
 import { Button, FormInstance, Space } from 'antd';
-import React from 'react';
+import React, { useState } from 'react';
 import { IoAddOutline } from 'react-icons/io5';
-import { AddUser } from './AddUser';
-import { FilterUser } from './FilterUser';
-import { UsersList } from './ListUser';
+import { UserFilter } from './UserFilter';
+import { UserForm } from './UserForm';
+import { UsersList } from './UserList';
 
 const Index = () => {
   const { setIsAddDialogOpen, setIsFilterModalOpen, setIsDeleteDialogOpen } = Redux.DataGridSlice.actions
@@ -15,6 +15,11 @@ const Index = () => {
 
   const [users, setUsers] = React.useState<IUsers[]>([]);
   const [deleteUser, setDeleteUser] = React.useState<IUsers>();
+
+  const [tags, setTags] = useState<IFilterForm[]>([
+    { column: "Age", operator: "=", value: "20" },
+    { column: "First Name", operator: "=", value: "John" }
+  ]);
 
   // &&&&&&&&&&&&&&&&&&&&&&&&&&
   //  OnClick Operations
@@ -69,6 +74,7 @@ const Index = () => {
 
   function handleFilterSubmit(name, { values, forms }) {
     console.log("handleFilterSubmit", { name, values, forms })
+    setTags([...tags, { ...values }]);
     setIsAddDialogOpen(false);
   }
 
@@ -97,9 +103,9 @@ const Index = () => {
 
   return (
     <>
-      <UsersList props={{ users, setUsers, tuppleAcion, headerActions }} />
-      <AddUser props={{ handleAddEditSubmit, handleAddEditCancel }} />
-      <FilterUser props={{ handleFilterSubmit, handleFilterCancel, handleResetFilterForm }} />
+      <UsersList props={{ users, setUsers, tuppleAcion, headerActions, tags }} />
+      <UserForm props={{ handleAddEditSubmit, handleAddEditCancel }} />
+      <UserFilter props={{ handleFilterSubmit, handleFilterCancel, handleResetFilterForm }} />
       <DeleteModal props={{ handleDeleteSubmit, handleDeleteCancel, isDeleteDialogOpen, entityName }} />
     </>
   )

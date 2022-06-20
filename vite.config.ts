@@ -11,7 +11,11 @@ export default defineConfig({
       '@config': path.resolve(__dirname, './src/config'),
       '@styles': path.resolve(__dirname, './src/styles'),
       '@redux': path.resolve(__dirname, './src/redux'),
+      '@interfaces': path.resolve(__dirname, './src/interfaces'),
     },
+  },
+  server: {
+    host: true
   },
   plugins: [react()]
 })

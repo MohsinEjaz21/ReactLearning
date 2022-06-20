@@ -2,7 +2,7 @@ import { Redux } from '@redux/store';
 import { Modal } from 'antd';
 import React from 'react';
 
-export const AddUser = ({ props: { handleAddEditSubmit, handleAddEditCancel } }) => {
+export const UserForm = ({ props: { handleAddEditSubmit, handleAddEditCancel } }) => {
   const { isAddModalOpen } = Redux.DataGridSlice.state()
   return (
     <>
