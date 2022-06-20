@@ -18,69 +18,55 @@ const Index = () => {
 
   const [users, setUsers] = React.useState<IUsers[]>([]);
   const [deleteUser, setDeleteUser] = React.useState<IUsers>();
-
   const [tags, setTags] = useState<IFilterForm[]>([
     { column: "Age", operator: "=", value: "20" },
     { column: "First Name", operator: "=", value: "John" }
   ]);
 
-  // &&&&&&&&&&&&&&&&&&&&&&&&&&
-  //  OnClick Operations
-  // &&&&&&&&&&&&&&&&&&&&&&&&&&
 
-  function onClickAdd() {
-    openAddDialog()
-  }
-  function onClickFilter() {
-    openFilterDialog()
-  }
+  // ADD/EDIT OPERATION
+
   function onClickEdit(payload) {
     console.log(payload)
     openAddDialog()
   }
-  function onClickDelete(payload) {
-    console.log(payload)
-    setDeleteUser(payload);
-    openDeleteDialog()
+  function onClickAdd() {
+    openAddDialog()
   }
-
-  // &&&&&&&&&&&&&&&&&&&&&&&&&&
-  //  OnCancel Operations
-  // &&&&&&&&&&&&&&&&&&&&&&&&&&
-
-  function handleResetFilterForm(filterFormRef: React.RefObject<FormInstance>) {
-    filterFormRef.current!.resetFields();
-  }
-
-  function handleFilterCancel(filterFormRef: React.RefObject<FormInstance>) {
-    filterFormRef.current!.resetFields();
-    closeFilterDialog()
-  }
-
   function handleAddEditCancel() {
     closeAddDialog()
   }
-
-  function handleDeleteCancel() {
-    setDeleteUser(undefined);
-    closeDeleteDialog();
-    console.log("deleteUser ::", deleteUser)
-  }
-
-  // &&&&&&&&&&&&&&&&&&&&&&&&&&
-  //  OnSubmit Operations
-  // &&&&&&&&&&&&&&&&&&&&&&&&&&
-
   function handleAddEditSubmit(payload) {
     openAddDialog()
   }
 
+  // FILTER OPERATION
+
+  function onClickFilter() {
+    openFilterDialog()
+  }
   function handleFilterSubmit(name, { values, forms }) {
     console.log("handleFilterSubmit", { name, values, forms })
     setTags([...tags, { ...values }]);
     closeFilterDialog()
   }
+  function handleFilterCancel(filterFormRef: React.RefObject<FormInstance>) {
+    filterFormRef.current!.resetFields();
+    closeFilterDialog()
+  }
 
+  // DELETE OPERATION
+
+  function onClickDelete(payload) {
+    console.log(payload)
+    setDeleteUser(payload);
+    openDeleteDialog()
+  }
+  function handleDeleteCancel() {
+    setDeleteUser(undefined);
+    closeDeleteDialog();
+    console.log("deleteUser ::", deleteUser)
+  }
   function handleDeleteSubmit(payload) {
     const key = deleteUser?.key;
     closeDeleteDialog();
@@ -88,9 +74,14 @@ const Index = () => {
       setUsers(users.filter(user => user.key !== key));
     }
   }
+
   // &&&&&&&&&&&&&&&&&&&&&&&&&&
-  //  Actions JSX
+  //  REST
   // &&&&&&&&&&&&&&&&&&&&&&&&&&
+
+  function handleResetFilterForm(filterFormRef: React.RefObject<FormInstance>) {
+    filterFormRef.current!.resetFields();
+  }
 
   const tuppleAcion = (_, record) => (
     <Space size="middle">
