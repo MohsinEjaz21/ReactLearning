@@ -9,14 +9,28 @@ export const DataGridSlice = createSlice({
     entityName: 'User',
   },
   reducers: {
-    setIsFilterModalOpen: (state, action) => {
-      state.isFilterModalOpen = action.payload
+    openDeleteDialog: (state) => {
+      state.isDeleteDialogOpen = true
     },
-    setIsAddDialogOpen: (state, action) => {
-      state.isAddModalOpen = action.payload
+    closeDeleteDialog: (state) => {
+      state.isDeleteDialogOpen = false
     },
-    setIsDeleteDialogOpen: (state, action) => {
-      state.isDeleteDialogOpen = action.payload
+    openAddDialog: (state) => {
+      state.isAddModalOpen = true
+    },
+    closeAddDialog: (state) => {
+      state.isAddModalOpen = false
+    },
+    openFilterDialog: (state) => {
+      state.isFilterModalOpen = true
+    },
+    closeFilterDialog: (state) => {
+      state.isFilterModalOpen = false
     }
+
   }
 })
+
+    // setIsFilterModalOpen: (state, action) => {
+    //   state.isFilterModalOpen = action.payload
+    // },

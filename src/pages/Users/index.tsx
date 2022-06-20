@@ -10,7 +10,10 @@ import { UserForm } from './UserForm';
 import { UsersList } from './UserList';
 
 const Index = () => {
-  const { setIsAddDialogOpen, setIsFilterModalOpen, setIsDeleteDialogOpen } = Redux.DataGridSlice.actions
+  const { openDeleteDialog, closeDeleteDialog } = Redux.DataGridSlice.actions
+  const { openFilterDialog, closeFilterDialog } = Redux.DataGridSlice.actions
+  const { openAddDialog, closeAddDialog } = Redux.DataGridSlice.actions
+
   const { isDeleteDialogOpen, entityName } = Redux.DataGridSlice.state()
 
   const [users, setUsers] = React.useState<IUsers[]>([]);
@@ -26,19 +29,19 @@ const Index = () => {
   // &&&&&&&&&&&&&&&&&&&&&&&&&&
 
   function onClickAdd() {
-    setIsAddDialogOpen(true);
+    openAddDialog()
   }
   function onClickFilter() {
-    setIsFilterModalOpen(true);
+    openFilterDialog()
   }
   function onClickEdit(payload) {
     console.log(payload)
-    setIsAddDialogOpen(true);
+    openAddDialog()
   }
   function onClickDelete(payload) {
     console.log(payload)
     setDeleteUser(payload);
-    setIsDeleteDialogOpen(true);
+    openDeleteDialog()
   }
 
   // &&&&&&&&&&&&&&&&&&&&&&&&&&
@@ -51,16 +54,16 @@ const Index = () => {
 
   function handleFilterCancel(filterFormRef: React.RefObject<FormInstance>) {
     filterFormRef.current!.resetFields();
-    setIsFilterModalOpen(false);
+    closeFilterDialog()
   }
 
   function handleAddEditCancel() {
-    setIsAddDialogOpen(false);
+    closeAddDialog()
   }
 
   function handleDeleteCancel() {
     setDeleteUser(undefined);
-    setIsDeleteDialogOpen(false);
+    closeDeleteDialog();
     console.log("deleteUser ::", deleteUser)
   }
 
@@ -69,18 +72,18 @@ const Index = () => {
   // &&&&&&&&&&&&&&&&&&&&&&&&&&
 
   function handleAddEditSubmit(payload) {
-    setIsAddDialogOpen(false);
+    openAddDialog()
   }
 
   function handleFilterSubmit(name, { values, forms }) {
     console.log("handleFilterSubmit", { name, values, forms })
     setTags([...tags, { ...values }]);
-    setIsAddDialogOpen(false);
+    closeFilterDialog()
   }
 
   function handleDeleteSubmit(payload) {
     const key = deleteUser?.key;
-    setIsDeleteDialogOpen(false);
+    closeDeleteDialog();
     if (key) {
       setUsers(users.filter(user => user.key !== key));
     }
@@ -88,6 +91,7 @@ const Index = () => {
   // &&&&&&&&&&&&&&&&&&&&&&&&&&
   //  Actions JSX
   // &&&&&&&&&&&&&&&&&&&&&&&&&&
+
   const tuppleAcion = (_, record) => (
     <Space size="middle">
       <Button type="ghost" icon={<EditOutlined />} size="middle" shape="circle" onClick={() => onClickEdit(record)} />
@@ -96,8 +100,8 @@ const Index = () => {
   )
   const headerActions = (
     <Space size="middle">
-      <Button type="ghost" icon={<IoAddOutline />} onClick={() => setIsAddDialogOpen(true)} size="middle" shape="circle" />
-      <Button type="ghost" icon={<FilterOutlined />} onClick={() => setIsFilterModalOpen(true)} size="middle" shape="circle" />
+      <Button type="ghost" icon={<IoAddOutline />} onClick={onClickAdd} size="middle" shape="circle" />
+      <Button type="ghost" icon={<FilterOutlined />} onClick={onClickFilter} size="middle" shape="circle" />
     </Space>
   )
 
