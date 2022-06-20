@@ -159,7 +159,7 @@ export function AntdTimePicker({ label, controlName, ...props }) {
         labelCol={{ span: 24 }}
         wrapperCol={{ span: 24 }}
         rules={[{ required: true, message: 'This Field is required' }]}
-        name={controlName}>
+        name={controlName}> 
         <TimePicker
           style={{ width: '100%' }}
           format={format} />

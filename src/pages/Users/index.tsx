@@ -2,7 +2,7 @@ import { DeleteOutlined, EditOutlined, FilterOutlined } from '@ant-design/icons'
 import { Redux } from '@redux/store';
 import { DeleteModal } from '@src/components/DeleteModal';
 import { IUsers } from '@src/interfaces';
-import { Button, Space } from 'antd';
+import { Button, FormInstance, Space } from 'antd';
 import React from 'react';
 import { IoAddOutline } from 'react-icons/io5';
 import { AddUser } from './AddUser';
@@ -16,7 +16,10 @@ const Index = () => {
   const [users, setUsers] = React.useState<IUsers[]>([]);
   const [deleteUser, setDeleteUser] = React.useState<IUsers>();
 
-  // handle onClick Operations
+  // &&&&&&&&&&&&&&&&&&&&&&&&&&
+  //  OnClick Operations
+  // &&&&&&&&&&&&&&&&&&&&&&&&&&
+
   function onClickAdd() {
     setIsAddDialogOpen(true);
   }
@@ -33,9 +36,16 @@ const Index = () => {
     setIsDeleteDialogOpen(true);
   }
 
-  // handle onCancel Operations
+  // &&&&&&&&&&&&&&&&&&&&&&&&&&
+  //  OnCancel Operations
+  // &&&&&&&&&&&&&&&&&&&&&&&&&&
 
-  function handleFilterCancel() {
+  function handleResetFilterForm(filterFormRef: React.RefObject<FormInstance>) {
+    filterFormRef.current!.resetFields();
+  }
+
+  function handleFilterCancel(filterFormRef: React.RefObject<FormInstance>) {
+    filterFormRef.current!.resetFields();
     setIsFilterModalOpen(false);
   }
 
@@ -44,11 +54,14 @@ const Index = () => {
   }
 
   function handleDeleteCancel() {
-    setIsDeleteDialogOpen(false);
     setDeleteUser(undefined);
+    setIsDeleteDialogOpen(false);
     console.log("deleteUser ::", deleteUser)
   }
-  // handle onSubmit Operations
+
+  // &&&&&&&&&&&&&&&&&&&&&&&&&&
+  //  OnSubmit Operations
+  // &&&&&&&&&&&&&&&&&&&&&&&&&&
 
   function handleAddEditSubmit(payload) {
     setIsAddDialogOpen(false);
@@ -59,7 +72,6 @@ const Index = () => {
     setIsAddDialogOpen(false);
   }
 
-
   function handleDeleteSubmit(payload) {
     const key = deleteUser?.key;
     setIsDeleteDialogOpen(false);
@@ -67,22 +79,27 @@ const Index = () => {
       setUsers(users.filter(user => user.key !== key));
     }
   }
-
+  // &&&&&&&&&&&&&&&&&&&&&&&&&&
+  //  Actions JSX
+  // &&&&&&&&&&&&&&&&&&&&&&&&&&
   const tuppleAcion = (_, record) => (
     <Space size="middle">
       <Button type="ghost" icon={<EditOutlined />} size="middle" shape="circle" onClick={() => onClickEdit(record)} />
       <Button type="ghost" icon={<DeleteOutlined />} size="middle" shape="circle" onClick={() => onClickDelete(record)} />
     </Space>
   )
+  const headerActions = (
+    <Space size="middle">
+      <Button type="ghost" icon={<IoAddOutline />} onClick={() => setIsAddDialogOpen(true)} size="middle" shape="circle" />
+      <Button type="ghost" icon={<FilterOutlined />} onClick={() => setIsFilterModalOpen(true)} size="middle" shape="circle" />
+    </Space>
+  )
 
   return (
     <>
-      <UsersList props={{ users, setUsers, tuppleAcion }} >
-        <Button type="ghost" icon={<IoAddOutline />} onClick={() => setIsAddDialogOpen(true)} size="middle" shape="circle" />
-        <Button type="ghost" icon={<FilterOutlined />} onClick={() => setIsFilterModalOpen(true)} size="middle" shape="circle" />
-      </UsersList>
+      <UsersList props={{ users, setUsers, tuppleAcion, headerActions }} />
       <AddUser props={{ handleAddEditSubmit, handleAddEditCancel }} />
-      <FilterUser props={{ handleFilterSubmit, handleFilterCancel }} />
+      <FilterUser props={{ handleFilterSubmit, handleFilterCancel, handleResetFilterForm }} />
       <DeleteModal props={{ handleDeleteSubmit, handleDeleteCancel, isDeleteDialogOpen, entityName }} />
     </>
   )

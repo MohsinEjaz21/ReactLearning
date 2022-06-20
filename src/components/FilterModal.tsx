@@ -4,7 +4,7 @@ import { Form, Row } from 'antd';
 import React, { useState } from 'react';
 import { AntdCascader, AntdComponent, AntdSelect } from './AntdReusables';
 
-export function FilterForm({ options, filterFormRef }) {
+export function FilterForm({ options, filterFormRef, setValue }) {
   const [componentType, setComponentType] = React.useState<IComponents>("input");
   const [operators, setOperatorsOptions] = useState<IOperators[]>();
 
@@ -15,10 +15,6 @@ export function FilterForm({ options, filterFormRef }) {
   const onFinishFailed = (errorInfo: any) => {
     console.log('Failed:', errorInfo);
   };
-
-  const setValue = (key, value) => {
-    filterFormRef.current!.setFieldsValue({ [key]: value });
-  }
 
   function handleColumnChange(value: any[], selectedOptions: IColumns[]) {
     const { datatype: _datatype, componentType: _componentType } = selectedOptions?.[selectedOptions.length - 1];
@@ -70,7 +66,7 @@ export function FilterForm({ options, filterFormRef }) {
     <>
       <Form ref={filterFormRef}
         name="filterForm"
-        onFinish={onFinish}
+        // onFinish={onFinish}
         onFinishFailed={onFinishFailed}
         autoComplete="off"
       >

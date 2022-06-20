@@ -1,10 +1,11 @@
 import TableImpl from '@src/components/Table';
 import axios from '@src/helpers/axios';
-import { Card, Space } from 'antd';
+import { IUsers } from '@src/interfaces';
+import { Card } from 'antd';
 import { ColumnsType } from 'antd/lib/table';
 import React, { useEffect } from 'react';
 
-export const UsersList = ({ props: { tuppleAcion, users, setUsers }, children }) => {
+export const UsersList = ({ props: { users, setUsers, headerActions, tuppleAcion } }) => {
 
   const columns: ColumnsType<IUsers> = [
     {
@@ -43,7 +44,7 @@ export const UsersList = ({ props: { tuppleAcion, users, setUsers }, children })
   return (
     <>
       <div className='container'>
-        <Card title="Users" extra={<Space size="middle">{children}</Space>} >
+        <Card title="Users" extra={headerActions} >
           <TableImpl columns={columns} data={users} />
         </Card>
       </div>

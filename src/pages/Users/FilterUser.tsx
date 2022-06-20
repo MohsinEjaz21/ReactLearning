@@ -4,7 +4,7 @@ import { IColumns } from '@src/interfaces';
 import { Button, Form, FormInstance, Modal } from 'antd';
 import React from 'react';
 
-export const FilterUser = ({ props: { handleFilterSubmit, handleFilterCancel } }) => {
+export const FilterUser = ({ props: { handleFilterSubmit, handleFilterCancel, handleResetFilterForm } }) => {
 
   const options: IColumns[] = [
     {
@@ -53,24 +53,29 @@ export const FilterUser = ({ props: { handleFilterSubmit, handleFilterCancel } }
   const filterFormRef = React.createRef<FormInstance>();
   const { isFilterModalOpen } = Redux.DataGridSlice.state()
   const filterModalActions = [
-    <Button key="back" onClick={handleFilterCancel}>
+    <Button key="back" onClick={() => handleFilterCancel(filterFormRef)}>
       Cancel
     </Button>,
-    <Button type="primary" htmlType="submit" onClick={submitForm} >
+    <Button key="clear" onClick={() => handleResetFilterForm(filterFormRef)}>
+      Clear
+    </Button>,
+    <Button type="primary" htmlType="submit" onClick={submitFilterForm} >
       Submit
     </Button>
   ];
 
-
-  function submitForm() {
-    filterFormRef.current?.submit()
+  const setValue = (key, value) => {
+    filterFormRef.current!.setFieldsValue({ [key]: value });
   }
 
+  function submitFilterForm() {
+    filterFormRef.current?.submit()
+  }
 
   return (
     <Form.Provider onFormFinish={handleFilterSubmit}  >
       <Modal title="Filter User" visible={isFilterModalOpen} footer={filterModalActions}>
-        <FilterForm options={options} filterFormRef={filterFormRef} />
+        <FilterForm options={options} filterFormRef={filterFormRef} setValue={setValue} />
       </Modal>
     </Form.Provider>
   );
