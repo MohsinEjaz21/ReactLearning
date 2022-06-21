@@ -126,7 +126,7 @@ export function AntdTextArea({ label, controlName, placeholder, ...props }) {
         rules={[{ required: true, message: 'This Field is required' }]}
         name={controlName}
       >
-        <Input.TextArea style={{ width: '100%' }} status="error" rows={rows} placeholder={placeholder} />
+        <Input.TextArea style={{ width: '100%' }} rows={rows} placeholder={placeholder} />
       </Form.Item>
     </AntFormItem>
   );
@@ -159,7 +159,7 @@ export function AntdTimePicker({ label, controlName, ...props }) {
         labelCol={{ span: 24 }}
         wrapperCol={{ span: 24 }}
         rules={[{ required: true, message: 'This Field is required' }]}
-        name={controlName}> 
+        name={controlName}>
         <TimePicker
           style={{ width: '100%' }}
           format={format} />

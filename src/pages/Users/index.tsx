@@ -37,7 +37,8 @@ const Index = () => {
     closeAddDialog()
   }
   function handleAddEditSubmit(payload) {
-    openAddDialog()
+    console.log("payload", payload)
+    closeAddDialog()
   }
 
   // FILTER OPERATION

@@ -50,6 +50,7 @@ export const UserFilter = ({ props: { handleFilterSubmit, handleFilterCancel, ha
     },
   ];
 
+  const filterForm = Form.useForm()[0];
   const filterFormRef = React.createRef<FormInstance>();
   const { isFilterModalOpen } = Redux.DataGridSlice.state()
   const filterFooterActions = [
