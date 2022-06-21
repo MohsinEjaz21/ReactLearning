@@ -1,18 +1,13 @@
 import { OperatorUtils } from '@src/helpers/utils/OperatorUtils';
 import { IColumns, IComponents, IOperators } from '@src/interfaces';
-import { Form, FormInstance, Row } from 'antd';
-import React, { Ref, useState } from 'react';
+import { Form, Row } from 'antd';
+import React, { useState } from 'react';
 import { AntdCascader, AntdComponent, AntdSelect } from './AntdReusables';
 
-export function FilterForm({ options, setValue, ...rest }) {
+export function FilterForm({ props: { options, handleFilterSubmit, setValue, ...rest } }) {
   const [componentType, setComponentType] = React.useState<IComponents>("input");
   const [operators, setOperatorsOptions] = useState<IOperators[]>();
-  const filterFormRef: Ref<FormInstance> = rest?.filterFormRef;
-  // const filterFormRef2: any = rest?.filterForm
-
-  const onFinish = (values: any) => {
-    console.log('Success:', values);
-  };
+  const filterFormRef: any = rest?.filterFormRef
 
   const onFinishFailed = (errorInfo: any) => {
     console.log('Failed:', errorInfo);
@@ -66,9 +61,9 @@ export function FilterForm({ options, setValue, ...rest }) {
 
   return (
     <>
-      <Form ref={filterFormRef}
+      <Form form={filterFormRef}
         name="filterForm"
-        // onFinish={onFinish}
+        onFinish={handleFilterSubmit}
         onFinishFailed={onFinishFailed}
         autoComplete="off"
       >

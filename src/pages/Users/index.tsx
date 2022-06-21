@@ -46,8 +46,8 @@ const Index = () => {
   function onClickFilter() {
     openFilterDialog()
   }
-  function handleFilterSubmit(name, { values, forms }) {
-    console.log("handleFilterSubmit", { name, values, forms })
+  function handleFilterSubmit(values) {
+    console.log(values)
     setTags([...tags, { ...values }]);
     closeFilterDialog()
   }
@@ -96,6 +96,7 @@ const Index = () => {
       <Button type="ghost" icon={<FilterOutlined />} onClick={onClickFilter} size="middle" shape="circle" />
     </Space>
   )
+  
 
   return (
     <>
