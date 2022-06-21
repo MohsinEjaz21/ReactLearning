@@ -4,7 +4,7 @@ import { Form, Row } from 'antd';
 import React, { useState } from 'react';
 import { AntdCascader, AntdComponent, AntdSelect } from './AntdReusables';
 
-export function FilterForm({ props: { options, handleFilterSubmit, setValue, ...rest } }) {
+export function FilterForm({ props: { options, handleFilterSubmit, ...rest } }) {
   const [componentType, setComponentType] = React.useState<IComponents>("input");
   const [operators, setOperatorsOptions] = useState<IOperators[]>();
   const filterFormRef: any = rest?.filterFormRef
@@ -33,6 +33,10 @@ export function FilterForm({ props: { options, handleFilterSubmit, setValue, ...
         setValue("value", null);
       }
     }
+  }
+
+  const setValue = (key, value) => {
+    filterFormRef.setFieldsValue({ [key]: value });
   }
 
   // console.log(errors)
