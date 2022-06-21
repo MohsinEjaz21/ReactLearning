@@ -52,7 +52,6 @@ export type IDatatype = (
   "boolean"
 );
 
-
 // export namespace Schemas {
 // }
 

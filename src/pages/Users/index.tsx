@@ -8,6 +8,7 @@ import { IoAddOutline } from 'react-icons/io5';
 import { UserFilter } from './UserFilter';
 import { UserForm } from './UserForm';
 import { UsersList } from './UserList';
+import { UserMeta } from './UserMeta';
 
 const Index = () => {
   const { openDeleteDialog, closeDeleteDialog } = Redux.DataGridSlice.actions
@@ -17,6 +18,7 @@ const Index = () => {
   const { isFilterModalOpen } = Redux.DataGridSlice.state()
 
   const filterFormRef = Form.useForm()[0];
+  const addFormRef = Form.useForm()[0];
 
   const [users, setUsers] = React.useState<IUsers[]>([]);
   const [deleteUser, setDeleteUser] = React.useState<IUsers>();
@@ -24,6 +26,7 @@ const Index = () => {
     { column: "Age", operator: "=", value: "20" },
     { column: "First Name", operator: "=", value: "John" }
   ]);
+
 
 
   // ADD/EDIT OPERATION
@@ -38,8 +41,8 @@ const Index = () => {
   function handleAddEditCancel() {
     closeAddDialog()
   }
-  function handleAddEditSubmit(payload) {
-    console.log("payload", payload)
+  function handleAddEditSubmit() {
+    console.log("addFormRef values", addFormRef.getFieldsValue())
     closeAddDialog()
   }
 
@@ -111,11 +114,22 @@ const Index = () => {
     </Button>
   ];
 
+  const addEditFooterActions = [
+    <Button type="default" htmlType="button" onClick={handleAddEditCancel} >
+      Cancel
+    </Button>,
+    <Button type="primary" htmlType="submit" onClick={() => addFormRef.submit()} >
+      Submit
+    </Button>
+  ];
+
+
+  const columns = UserMeta.getTableColumns(tuppleAcion)
 
   return (
     <>
-      <UsersList props={{ users, setUsers, tuppleAcion, headerActions, tags }} />
-      <UserForm props={{ handleAddEditSubmit, handleAddEditCancel }} />
+      <UsersList props={{ users, setUsers, columns, headerActions, tags }} />
+      <UserForm props={{ handleAddEditSubmit, addFormRef, addEditFooterActions }} />
       <UserFilter props={{ handleFilterSubmit, filterFooterActions, filterFormRef }} />
       <DeleteModal props={{ handleDeleteSubmit, handleDeleteCancel, isDeleteDialogOpen, entityName }} />
     </>
