@@ -5,7 +5,7 @@ import { IFilterForm, IUsers } from '@src/interfaces';
 import { Button, Form, FormInstance, Space } from 'antd';
 import React, { useState } from 'react';
 import { IoAddOutline } from 'react-icons/io5';
-import { UserFilter } from './UserFilter';
+import { FilterModal } from '../../components/FilterModal';
 import { UserForm } from './UserForm';
 import { UsersList } from './UserList';
 import { UserMeta } from './UserMeta';
@@ -27,6 +27,7 @@ const Index = () => {
     { column: "First Name", operator: "=", value: "John" }
   ]);
 
+  const filterAttr = UserMeta.filterUserAttributes
 
 
   // ADD/EDIT OPERATION
@@ -124,13 +125,13 @@ const Index = () => {
   ];
 
 
-  const columns = UserMeta.getTableColumns(tuppleAcion)
+  const columns = UserMeta.getUserEntityColumns(tuppleAcion)
 
   return (
     <>
       <UsersList props={{ users, setUsers, columns, headerActions, tags }} />
       <UserForm props={{ handleAddEditSubmit, addFormRef, addEditFooterActions }} />
-      <UserFilter props={{ handleFilterSubmit, filterFooterActions, filterFormRef }} />
+      <FilterModal props={{ handleFilterSubmit, filterFooterActions, filterFormRef, isFilterModalOpen, filterAttr }} />
       <DeleteModal props={{ handleDeleteSubmit, handleDeleteCancel, isDeleteDialogOpen, entityName }} />
     </>
   )

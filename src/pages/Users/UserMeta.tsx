@@ -2,7 +2,7 @@ import { IUsers } from "@interfaces/index";
 import { ColumnsType } from "antd/lib/table";
 
 export namespace UserMeta {
-  export const filterProperties = [
+  export const filterUserAttributes = [
     {
       value: 'Age',
       label: 'Age',
@@ -46,7 +46,7 @@ export namespace UserMeta {
     },
   ];
 
-  export const getTableColumns = (tuppleAcion): ColumnsType<IUsers> => {
+  export const getUserEntityColumns = (tuppleAcion): ColumnsType<IUsers> => {
     return ([
       {
         title: 'Name',

@@ -24,7 +24,6 @@ export const UserForm = ({ props: { handleAddEditSubmit, addFormRef, addEditFoot
   return (
     <>
       <Form form={addFormRef} onFinish={handleAddEditSubmit} >
-        {JSON.stringify(addFormRef.getFieldsValue(), null, 2)}
         <Modal title="Add User" visible={isAddModalOpen} footer={addEditFooterActions}>
           <AntdDatePicker {...addFormFields.dob} />
         </Modal>
@@ -33,3 +32,4 @@ export const UserForm = ({ props: { handleAddEditSubmit, addFormRef, addEditFoot
   );
 };
 
+{/* {JSON.stringify(addFormRef.getFieldsValue(), null, 2)} */ }
