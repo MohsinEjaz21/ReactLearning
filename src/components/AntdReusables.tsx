@@ -2,7 +2,7 @@ import { Cascader, Checkbox, Col, DatePicker, Form, Input, InputNumber, Select, 
 import React from 'react';
 
 const AntFormItem = ({ props, children }) => {
-  const { span, label, controlName, placeholder, ...rest } = props;
+  const { span, label, controlName, placeholder, extras } = props;
   const WrapperCol = ({ children }) => (
     span ? <Col span={span}>{children}</Col> : children
   )
@@ -10,7 +10,7 @@ const AntFormItem = ({ props, children }) => {
   return (
     <WrapperCol>
       <Form.Item
-        {...rest}
+        {...extras}
         labelCol={{ span: 24 }}
         wrapperCol={{ span: 24 }}
         label={label}
@@ -37,26 +37,21 @@ export const AntdComponent = ({ type, ...rest }: any) => {
 }
 
 
-export function AntdCascader({ label, options, onChange, setValue, controlName, ...props }) {
-  const { span, placeholder } = props;
+export function AntdCascader(props) {
+  const { options, onChange, setValue, controlName } = props
 
   function handleChange(value: any[], selectedOptions: any) {
-    // console.log(value, selectedOptions);
     const joinedValue = value.join('.');
     setValue(controlName, joinedValue);
-    if (onChange) {
-      onChange(value, selectedOptions);
-    }
+    if (onChange) onChange(value, selectedOptions);
   }
 
   function displayRender(label, selectedOptions) {
-    // console.log(label, selectedOptions);
-    // console.log(label[label.length - 1]);
     return label[label.length - 1].split('.').join(' / ');
   }
 
   return (
-    <AntFormItem props={{ span, label, controlName, placeholder }} >
+    <AntFormItem props={props} >
       <Cascader
         displayRender={displayRender}
         options={options}
@@ -65,65 +60,64 @@ export function AntdCascader({ label, options, onChange, setValue, controlName, 
   );
 }
 
-export function AntdSelect({ label, options, controlName, ...props }) {
-  const { span, placeholder } = props;
+export function AntdSelect(props) {
+  const { options } = props;
   return (
-    <AntFormItem props={{ span, label, controlName, placeholder }} >
+    <AntFormItem props={props} >
       <Select options={options} />
     </AntFormItem>
   );
 }
 
-export function AntdInput({ label, controlName, placeholder, ...props }) {
-  const { span } = props;
+export function AntdInput(props) {
   return (
-    <AntFormItem props={{ span, label, controlName, placeholder }}>
+    <AntFormItem props={props}>
       <Input />
     </AntFormItem>
   );
 }
 
-export function AntdInputNumber({ span, label, controlName, ...props }) {
-  const { placeholder } = props;
+export function AntdInputNumber(props) {
   return (
-    <AntFormItem props={{ span, label, controlName, placeholder }} >
+    <AntFormItem props={props} >
       <InputNumber />
     </AntFormItem>
   );
 }
 
-export function AntdTextArea({ span, label, controlName, ...props }) {
-  const { placeholder, rows = 4 } = props;
+export function AntdTextArea(props) {
+  const { rows = 4 } = props;
   return (
-    <AntFormItem props={{ span, label, controlName, placeholder }}>
+    <AntFormItem props={props}>
       <Input.TextArea rows={rows} />
     </AntFormItem>
   );
 }
 
-export function AntdDatePicker({ span, label, controlName, ...props }) {
-  const { picker = "date" } = props;
+export function AntdDatePicker(props) {
+  const picker = props?.picker || 'date';
+  const format = props?.format || 'DD-MMM-YYYY';
   return (
-    <AntFormItem props={{ span, label, controlName }} >
+    <AntFormItem props={props} >
       <DatePicker
-        format={'DD-MMM-YYYY'}
+        format={format}
         picker={picker} />
     </AntFormItem>
   );
 }
 
-export function AntdTimePicker({ span, label, controlName, ...props }) {
-  const { format = "HH:mm" } = props;
+export function AntdTimePicker(props) {
+  const format = props?.format || 'HH:mm';
   return (
-    <AntFormItem props={{ span, label, controlName }}>
+    <AntFormItem props={props}>
       <TimePicker format={format} />
     </AntFormItem>
   );
 }
 
-export function AntdCheckbox({ span, label, controlName, ...props }) {
+export function AntdCheckbox(props) {
   return (
-    <AntFormItem props={{ span, label, controlName, valuePropName: "checked" }}>
+    <AntFormItem props={{ ...props, extras: { valuePropName: "checked" } }}>
       <Checkbox />
     </AntFormItem>
   );
