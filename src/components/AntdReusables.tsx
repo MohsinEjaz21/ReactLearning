@@ -1,11 +1,8 @@
-import { Cascader, Checkbox, Col, DatePicker, Form, Input, InputNumber, Select, Switch, TimePicker } from 'antd';
+import { Cascader, Checkbox, Col, DatePicker, Form, Input, InputNumber, Select, TimePicker } from 'antd';
 import React from 'react';
 
-const AntFormItem = ({ children, props }) => {
-  const { span, label, controlName, placeholder, layout = {}, extras } = props;
-  const labelCol = layout?.labelCol || 24
-  const wrapperCol = layout?.wrapperCol || 24
-  // const span = props?.span || layout?.span || 24
+const AntFormItem = ({ props, children }) => {
+  const { span, label, controlName, placeholder, extras } = props;
   const WrapperCol = ({ children }) => (
     span ? <Col span={span}>{children}</Col> : children
   )
@@ -14,9 +11,8 @@ const AntFormItem = ({ children, props }) => {
     <WrapperCol>
       <Form.Item
         {...extras}
-        span={span}
-        labelCol={labelCol}
-        wrapperCol={wrapperCol}
+        labelCol={{ span: 24 }}
+        wrapperCol={{ span: 24 }}
         label={label}
         rules={[{ required: true, message: 'This Field is required' }]}
         name={controlName}>
@@ -123,18 +119,6 @@ export function AntdCheckbox(props) {
   return (
     <AntFormItem props={{ ...props, extras: { valuePropName: "checked" } }}>
       <Checkbox />
-    </AntFormItem>
-  );
-}
-
-export function AntdSwitch(props) {
-  return (
-    <AntFormItem props={{
-      ...props,
-      extras: { valuePropName: "checked" },
-      // layout: { span: 6, labelCol: 12, wrapperCol: 12 }
-    }}>
-      <Switch />
     </AntFormItem>
   );
 }
