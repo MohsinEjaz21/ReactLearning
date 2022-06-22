@@ -42,8 +42,7 @@ const Index = () => {
     closeAddDialog()
   }
   function handleAddEditSubmit() {
-    console.log("addFormRef values", addFormRef.getFieldsValue())
-    console.log("dateOfBirth", addFormRef.getFieldValue("dob").format("YYYY-MM-DD"))
+    console.log("ADDFORM VALUES", addFormRef.getFieldsValue())
     closeAddDialog()
   }
 
@@ -94,7 +93,7 @@ const Index = () => {
   const tuppleAcion = (_, record) => (
     <Space size="small" className='tupple-actions'>
       <Button type="ghost"
-        icon={<EditOutlined stroke-width="1" />}
+        icon={<EditOutlined />}
         size="middle" shape="circle"
         onClick={() => onClickEdit(record)} />
 

@@ -52,6 +52,12 @@ export type IDatatype = (
   "boolean"
 );
 
-// export namespace Schemas {
-// }
+export namespace AntdTypes {
+  export type formItem = {
+    [x: string]: any;
+    span: any;
+    label: any;
+    controlName: any;
+  }
+}
 
