@@ -1,13 +1,14 @@
 import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
+import { IFilterForm } from '@interfaces/IFilterForm';
+import { IUserEntity } from '@interfaces/IUserEntity';
 import { Redux } from '@redux/store';
 import { DeleteModal } from '@src/components/modals/DeleteModal';
-import { IFilterForm, IUsers } from '@src/interfaces';
+import { FilterModal } from '@src/components/modals/FilterModal';
 import { Button, Form, FormInstance, Space } from 'antd';
 import moment from 'moment';
 import React, { useState } from 'react';
 import { BsFunnel } from 'react-icons/bs';
 import { IoAddOutline } from 'react-icons/io5';
-import { FilterModal } from '../../components/FilterModal';
 import { UserForm } from './UserForm';
 import { UsersList } from './UserList';
 import { UserMeta } from './UserMeta';
@@ -22,8 +23,8 @@ const Index = () => {
   const filterFormRef = Form.useForm()[0];
   const addFormRef = Form.useForm()[0];
 
-  const [users, setUsers] = React.useState<IUsers[]>([]);
-  const [deleteUser, setDeleteUser] = React.useState<IUsers>();
+  const [users, setUsers] = React.useState<IUserEntity[]>([]);
+  const [deleteUser, setDeleteUser] = React.useState<IUserEntity>();
   const [tags, setTags] = useState<IFilterForm[]>([]);
 
   const filterAttr = UserMeta.filterUserAttributes

@@ -1,3 +1,4 @@
-export * from './GET';
-export * from './POST';
+import { GET } from './GET';
+import { POST } from './POST';
 
+export const axios = { GET, POST };

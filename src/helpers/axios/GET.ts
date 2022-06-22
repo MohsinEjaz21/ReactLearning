@@ -2,7 +2,6 @@
 import { config } from "@src/config";
 import axios from "axios";
 
-
 export function GET(params: IGET) {
   const { data, url: routeTo, method = 'GET' } = params;
   console.log(`serverUrl is ${config.SERVER_URL}`);

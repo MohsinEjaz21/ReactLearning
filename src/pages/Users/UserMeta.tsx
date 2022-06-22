@@ -1,4 +1,4 @@
-import { IUsers } from "@interfaces/index";
+import { IUserEntity } from "@interfaces/IUserEntity";
 import { ColumnsType } from "antd/lib/table";
 
 export namespace UserMeta {
@@ -46,7 +46,7 @@ export namespace UserMeta {
     },
   ];
 
-  export const getUserEntityColumns = (tuppleAcion): ColumnsType<IUsers> => {
+  export const getUserEntityColumns = (tuppleAcion): ColumnsType<IUserEntity> => {
     return ([
       {
         title: 'Name',

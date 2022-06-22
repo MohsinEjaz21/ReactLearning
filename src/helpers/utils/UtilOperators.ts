@@ -1,8 +1,8 @@
-import { IDatatype } from "@src/interfaces"
+import { IDatatypes } from "@interfaces/IFilterForm"
 
-export class OperatorUtils {
+export class UtilOperators {
 
-  static fetchOperatorsByDataType(dataType: IDatatype) {
+  static fetchOperatorsByDataType(dataType: IDatatypes) {
     switch (dataType) {
       case 'string':
         return [

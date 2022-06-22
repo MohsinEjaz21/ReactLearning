@@ -1,4 +1,4 @@
-export class CommonUtils {
+export class UtilCommons {
 
   static evaluateResult(o, keys) {
     let obj = o

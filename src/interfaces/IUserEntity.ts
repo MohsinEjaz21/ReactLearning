@@ -1,4 +1,4 @@
-export type IUsers = {
+export type IUserEntity = {
   key: string;
   name: string;
   age: number;

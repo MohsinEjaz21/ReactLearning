@@ -1,13 +1,13 @@
-import DataTable from '@src/components/widgets/DataTable';
+import { DataTable } from '@src/components/widgets/DataTable';
 import { FilterChips } from '@src/components/widgets/FilterChips';
-import axios from '@src/helpers/axios';
+import { axios } from '@src/helpers/axios';
 import { Card } from 'antd';
 import React, { useEffect } from 'react';
 
 export const UsersList = ({ props: { users, setUsers, headerActions, columns, tags, setTags } }) => {
 
   useEffect(() => {
-    axios.get({ url: '/api/mockTable' }).then(res => {
+    axios.GET({ url: '/api/mockTable' }).then(res => {
       setUsers(res.data);
     });
     return () => { }
