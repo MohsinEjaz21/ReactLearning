@@ -1,12 +1,26 @@
 import { Redux } from '@redux/store';
-import { AntdCheckbox, AntdDatePicker } from '@src/components/AntdReusables';
+import { AntdDatePicker, AntdRadio, AntdSwitch } from '@src/components/AntdReusables';
 import { Form, Modal } from 'antd';
 import React from 'react';
 
 export const UserForm = ({ props: { handleAddEditSubmit, addFormRef, addEditFooterActions } }) => {
   const { isAddModalOpen } = Redux.DataGridSlice.state()
 
+
   const addFormFields = {
+    role: {
+      controlName: 'role',
+      label: 'Role',
+      type: 'button',
+      options: [
+        { label: 'Admin', value: 'admin' },
+        { label: 'User', value: 'user' },
+      ],
+      value: 'user',
+      onChange: (e) => {
+        setValue('role', e.target.value);
+      }
+    },
     dob: {
       span: 24,
       label: "Date Of Birth",
@@ -20,7 +34,7 @@ export const UserForm = ({ props: { handleAddEditSubmit, addFormRef, addEditFoot
       ],
     },
     isMarried: {
-      span: 24,
+      span: 24, labelCol: 24, wrapperCol: 24,
       label: "Is Married",
       placeholder: "Enter value",
       controlName: "isMarried",
@@ -42,7 +56,9 @@ export const UserForm = ({ props: { handleAddEditSubmit, addFormRef, addEditFoot
       <Form form={addFormRef} onFinish={handleAddEditSubmit} >
         <Modal title="Add User" visible={isAddModalOpen} footer={addEditFooterActions}>
           <AntdDatePicker {...addFormFields.dob} />
-          <AntdCheckbox {...addFormFields.isMarried} />
+          <AntdSwitch {...addFormFields.isMarried} />
+          {/* <AntdRadio {...addFormFields.role} /> */}
+          <AntdRadio {...addFormFields.role} />
         </Modal>
       </Form>
     </>
@@ -50,3 +66,5 @@ export const UserForm = ({ props: { handleAddEditSubmit, addFormRef, addEditFoot
 };
 
 {/* {JSON.stringify(addFormRef.getFieldsValue(), null, 2)} */ }
+
+{/* <AntdCheckbox {...addFormFields.isMarried} /> */ }

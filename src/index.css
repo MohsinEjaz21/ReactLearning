@@ -23,4 +23,8 @@
 }
 .header-actions .filter-icon svg > path {
   stroke-width: 0.35;
+}
+
+.w100 {
+  width: 100%;
 }/*# sourceMappingURL=index.css.map */
