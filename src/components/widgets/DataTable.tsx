@@ -1,11 +1,8 @@
 import { Table } from 'antd';
 import React from 'react';
 
-const TableImpl = ({ columns, data }) => {
+export const DataTable = ({ columns, data }) => {
   return (
     <Table columns={columns} dataSource={data} />
   )
 }
-
-
-export default TableImpl;

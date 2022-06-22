@@ -1,6 +1,6 @@
 import "@styles/CustomBtn.css"
 import React from 'react'
-export const CustomBtn = ({ label, handleClick }) => {
+export const FilterSubmitBtn = ({ label, handleClick }) => {
   return (
     <button className="cta" onClick={handleClick} >
       <span>{label}</span>

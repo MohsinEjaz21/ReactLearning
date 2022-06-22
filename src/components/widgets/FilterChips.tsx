@@ -1,10 +1,7 @@
 import { Card, Tag } from "antd";
-import { CustomBtn } from "./CustomBtn";
+import { FilterSubmitBtn } from "./FilterSubmitBtn";
 
-export function FilterTag({ props: { tags, setTags } }) {
-  // const [tags, setTags] = useState(props.tags);
-  // console.log(props.tags)
-
+export function FilterChips({ props: { tags, setTags } }) {
   function applyFilters() { }
 
   function handleTagClose(tag) {
@@ -22,7 +19,7 @@ export function FilterTag({ props: { tags, setTags } }) {
               {tag.column} {tag.operator} {tag.value}
             </Tag>
           )}
-          {tags.length ? <CustomBtn label='Apply Filter' handleClick={applyFilters} /> : null}
+          {tags.length ? <FilterSubmitBtn label='Apply Filter' handleClick={applyFilters} /> : null}
         </Card>
       )
     }

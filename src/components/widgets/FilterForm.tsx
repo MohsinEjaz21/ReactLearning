@@ -1,11 +1,13 @@
+import { IAntdWidgetType } from '@interfaces/IAntdWidgetType';
+import { IColumns } from '@interfaces/IColumns';
+import { IOperators } from '@interfaces/IOperators';
 import { OperatorUtils } from '@src/helpers/utils/OperatorUtils';
-import { IColumns, IComponents, IOperators } from '@src/interfaces';
 import { Form, Row } from 'antd';
 import React, { useState } from 'react';
-import { AntdCascader, AntdComponent, AntdSelect } from './AntdReusables';
+import { AntdCascader, AntdComponent, AntdSelect } from './AntdWidgets';
 
 export function FilterForm({ props: { options, handleFilterSubmit, ...rest } }) {
-  const [componentType, setComponentType] = React.useState<IComponents>("input");
+  const [componentType, setComponentType] = React.useState<IAntdWidgetType>("input");
   const [operators, setOperatorsOptions] = useState<IOperators[]>();
   const filterFormRef: any = rest?.filterFormRef
 
@@ -22,7 +24,7 @@ export function FilterForm({ props: { options, handleFilterSubmit, ...rest } }) 
 
     function changeOperatorOptionValues() {
       if (_datatype) {
-        setOperatorsOptions(OperatorUtils.getOperatorByDataType(_datatype));
+        setOperatorsOptions(OperatorUtils.fetchOperatorsByDataType(_datatype));
         setValue("operator", "=");
       }
     }

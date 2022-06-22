@@ -1,5 +1,5 @@
-import { FilterTag } from '@src/components/FilterChips';
-import TableImpl from '@src/components/Table';
+import DataTable from '@src/components/widgets/DataTable';
+import { FilterChips } from '@src/components/widgets/FilterChips';
 import axios from '@src/helpers/axios';
 import { Card } from 'antd';
 import React, { useEffect } from 'react';
@@ -17,8 +17,8 @@ export const UsersList = ({ props: { users, setUsers, headerActions, columns, ta
     <>
       <div className='container'>
         <Card title="Users" extra={headerActions} >
-          <FilterTag props={{ tags, setTags }}></FilterTag>
-          <TableImpl columns={columns} data={users} />
+          <FilterChips props={{ tags, setTags }}></FilterChips>
+          <DataTable columns={columns} data={users} />
         </Card>
       </div>
     </>

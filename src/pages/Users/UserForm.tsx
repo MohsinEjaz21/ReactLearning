@@ -1,5 +1,5 @@
 import { Redux } from '@redux/store';
-import { AntdDatePicker, AntdRadio, AntdSwitch } from '@src/components/AntdReusables';
+import { AntdDatePicker, AntdRadio, AntdSwitch } from '@src/components/widgets/AntdWidgets';
 import { Form, Modal } from 'antd';
 import React from 'react';
 

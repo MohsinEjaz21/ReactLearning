@@ -1,6 +1,6 @@
 import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
 import { Redux } from '@redux/store';
-import { DeleteModal } from '@src/components/DeleteModal';
+import { DeleteModal } from '@src/components/modals/DeleteModal';
 import { IFilterForm, IUsers } from '@src/interfaces';
 import { Button, Form, FormInstance, Space } from 'antd';
 import moment from 'moment';

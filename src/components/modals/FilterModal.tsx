@@ -1,6 +1,6 @@
-import { FilterForm } from '@src/components/FilterForm';
 import { Modal } from 'antd';
 import React from 'react';
+import { FilterForm } from '../widgets/FilterForm';
 export const FilterModal = ({ props: { handleFilterSubmit, filterFooterActions, filterFormRef, isFilterModalOpen, filterAttr } }) => {
   return (
     <Modal title="Filter User" visible={isFilterModalOpen} footer={filterFooterActions}>

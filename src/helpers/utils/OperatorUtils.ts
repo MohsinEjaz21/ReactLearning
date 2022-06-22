@@ -1,8 +1,8 @@
 import { IDatatype } from "@src/interfaces"
 
 export class OperatorUtils {
-  // get operator based on datatypes
-  static getOperatorByDataType(dataType: IDatatype) {
+
+  static fetchOperatorsByDataType(dataType: IDatatype) {
     switch (dataType) {
       case 'string':
         return [
@@ -38,10 +38,8 @@ export class OperatorUtils {
 
       default:
         return []
-
     }
   }
-  //  all possible datatypes interface
 
 }
 

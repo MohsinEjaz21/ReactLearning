@@ -3,8 +3,8 @@ import { config } from "@src/config";
 import axios from "axios";
 
 
-export default function get(params: IGET) {
-  const { data, url: routeTo, method = 'GET' } = params;
+export function POST(params: IPost) {
+  const { data, url: routeTo, method = 'POST' } = params;
   console.log(`serverUrl is ${config.SERVER_URL}`);
   return (
     axios({
@@ -14,12 +14,13 @@ export default function get(params: IGET) {
       },
       method: method,
       url: `${config.SERVER_URL}${routeTo}`,
+      data: data || {},
     })
   )
 }
 
-interface IGET {
-  data?: any
+interface IPost {
+  data: any
   url?: string
   method?: any,
   token?: string
