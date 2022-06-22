@@ -1,5 +1,5 @@
 import { Redux } from '@redux/store';
-import { AntdCheckbox, AntdDatePicker } from '@src/components/AntdReusables';
+import { AntdCheckbox, AntdDatePicker, AntdSwitch } from '@src/components/AntdReusables';
 import { Form, Modal } from 'antd';
 import React from 'react';
 
@@ -43,6 +43,7 @@ export const UserForm = ({ props: { handleAddEditSubmit, addFormRef, addEditFoot
         <Modal title="Add User" visible={isAddModalOpen} footer={addEditFooterActions}>
           <AntdDatePicker {...addFormFields.dob} />
           <AntdCheckbox {...addFormFields.isMarried} />
+          <AntdSwitch {...addFormFields.isMarried} />
         </Modal>
       </Form>
     </>
