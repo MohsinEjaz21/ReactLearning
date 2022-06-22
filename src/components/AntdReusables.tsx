@@ -25,7 +25,7 @@ const AntFormItem = ({ props, children }) => {
 export const AntdComponent = ({ type, ...rest }: any) => {
   const { options, ...props } = rest
   const jsx = {
-    cascader: <AntdCascader {...props} />,
+    cascader: <AntdCascader {...props} options={options} />,
     input: <AntdInput {...props} />,
     textarea: <AntdTextArea {...props} />,
     datepicker: <AntdDatePicker {...props} />,
@@ -78,7 +78,7 @@ export function AntdInput({ label, controlName, placeholder, ...props }) {
   const { span } = props;
   return (
     <AntFormItem props={{ span, label, controlName, placeholder }}>
-      <Input placeholder={placeholder} />
+      <Input />
     </AntFormItem>
   );
 }
