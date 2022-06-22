@@ -2,7 +2,7 @@ import { Cascader, Checkbox, Col, DatePicker, Form, Input, InputNumber, Select, 
 import React from 'react';
 
 const AntFormItem = ({ props: { span, label, controlName }, children }) => {
-  const WrapperCol = span ? <Col span={span}>{children}</Col> : children
+  const WrapperCol = ({ children }) => span ? <Col span={span}>{children}</Col> : children
   return (
     <WrapperCol>
       <Form.Item
