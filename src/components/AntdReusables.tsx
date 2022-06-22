@@ -2,7 +2,9 @@ import { Cascader, Checkbox, Col, DatePicker, Form, Input, InputNumber, Select, 
 import React from 'react';
 
 const AntFormItem = ({ props: { span, label, controlName }, children }) => {
-  const WrapperCol = ({ children }) => span ? <Col span={span}>{children}</Col> : children
+  const WrapperCol = ({ children }) => (
+    span ? <Col span={span}>{children}</Col> : children
+  )
   return (
     <WrapperCol>
       <Form.Item
@@ -11,7 +13,7 @@ const AntFormItem = ({ props: { span, label, controlName }, children }) => {
         label={label}
         rules={[{ required: true, message: 'This Field is required' }]}
         name={controlName}>
-        {children}
+        {React.cloneElement(children, { style: { width: '100%' } })}
       </Form.Item>
     </WrapperCol>
   )
@@ -54,7 +56,6 @@ export function AntdCascader({ label, options, onChange, setValue, controlName, 
     <AntFormItem props={{ span, label, controlName }} >
       <Cascader
         displayRender={displayRender}
-        style={{ width: '100%' }}
         options={options}
         onChange={handleChange}
         placeholder={placeholder} />
@@ -66,7 +67,7 @@ export function AntdSelect({ label, options, controlName, ...props }) {
   const { span, errors, placeholder } = props;
   return (
     <AntFormItem props={{ span, label, controlName }} >
-      <Select style={{ width: '100%' }} options={options} placeholder={placeholder} />
+      <Select options={options} placeholder={placeholder} />
     </AntFormItem>
   );
 }
@@ -75,7 +76,7 @@ export function AntdInput({ label, controlName, placeholder, ...props }) {
   const { span } = props;
   return (
     <AntFormItem props={{ span, label, controlName }}>
-      <Input style={{ width: '100%' }} placeholder={placeholder} />
+      <Input placeholder={placeholder} />
     </AntFormItem>
   );
 }
@@ -84,7 +85,7 @@ export function AntdInputNumber({ label, controlName, placeholder, ...props }) {
   const { span } = props;
   return (
     <AntFormItem props={{ span, label, controlName }} >
-      <InputNumber style={{ width: '100%' }} placeholder={placeholder} />
+      <InputNumber placeholder={placeholder} />
     </AntFormItem>
   );
 }
@@ -105,7 +106,6 @@ export function AntdDatePicker({ label, controlName, ...props }) {
     <AntFormItem props={{ span, label, controlName }} >
       <DatePicker
         format={dateFormat}
-        style={{ width: '100%' }}
         picker={picker} />
     </AntFormItem>
   );
@@ -115,9 +115,7 @@ export function AntdTimePicker({ label, controlName, ...props }) {
   const { span, format = "HH:mm" } = props;
   return (
     <AntFormItem props={{ span, label, controlName }}>
-      <TimePicker
-        style={{ width: '100%' }}
-        format={format} />
+      <TimePicker format={format} />
     </AntFormItem>
   );
 }
@@ -126,7 +124,7 @@ export function AntdCheckbox({ label, controlName, ...props }) {
   const { span } = props;
   return (
     <AntFormItem props={{ span, label, controlName }}>
-      <Checkbox style={{ width: '100%' }} />
+      <Checkbox />
     </AntFormItem>
   );
 }
