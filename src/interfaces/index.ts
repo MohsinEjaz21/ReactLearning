@@ -1,3 +1,4 @@
+import { Checkbox } from 'antd';
 
 export type IGenrics = {
   [key: string]: any;
@@ -58,6 +59,10 @@ export namespace AntdTypes {
     span: any;
     label: any;
     controlName: any;
+  }
+
+  export type Checkbox = {
+  
   }
 }
 
