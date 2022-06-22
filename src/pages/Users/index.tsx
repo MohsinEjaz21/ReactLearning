@@ -1,9 +1,11 @@
-import { DeleteOutlined, EditOutlined, FilterOutlined } from '@ant-design/icons';
+import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
 import { Redux } from '@redux/store';
 import { DeleteModal } from '@src/components/DeleteModal';
 import { IFilterForm, IUsers } from '@src/interfaces';
 import { Button, Form, FormInstance, Space } from 'antd';
+import moment from 'moment';
 import React, { useState } from 'react';
+import { BsFunnel } from 'react-icons/bs';
 import { IoAddOutline } from 'react-icons/io5';
 import { FilterModal } from '../../components/FilterModal';
 import { UserForm } from './UserForm';
@@ -22,10 +24,7 @@ const Index = () => {
 
   const [users, setUsers] = React.useState<IUsers[]>([]);
   const [deleteUser, setDeleteUser] = React.useState<IUsers>();
-  const [tags, setTags] = useState<IFilterForm[]>([
-    { column: "Age", operator: "=", value: "20" },
-    { column: "First Name", operator: "=", value: "John" }
-  ]);
+  const [tags, setTags] = useState<IFilterForm[]>([]);
 
   const filterAttr = UserMeta.filterUserAttributes
 
@@ -44,6 +43,7 @@ const Index = () => {
   }
   function handleAddEditSubmit() {
     console.log("addFormRef values", addFormRef.getFieldsValue())
+    console.log("dateOfBirth", addFormRef.getFieldValue("dob").format("YYYY-MM-DD"))
     closeAddDialog()
   }
 
@@ -52,9 +52,10 @@ const Index = () => {
   function onClickFilter() {
     openFilterDialog()
   }
-  function handleFilterSubmit(values) {
-    console.log(values)
-    setTags([...tags, { ...values }]);
+  function handleFilterSubmit(response: IFilterForm) {
+    console.log(response)
+    normalizePayload(response);
+    setTags([...tags, { ...response }]);
     closeFilterDialog()
   }
   function handleFilterCancel(filterFormRef: FormInstance) {
@@ -91,15 +92,32 @@ const Index = () => {
   }
 
   const tuppleAcion = (_, record) => (
-    <Space size="middle">
-      <Button type="ghost" icon={<EditOutlined />} size="middle" shape="circle" onClick={() => onClickEdit(record)} />
-      <Button type="ghost" icon={<DeleteOutlined />} size="middle" shape="circle" onClick={() => onClickDelete(record)} />
+    <Space size="small" className='tupple-actions'>
+      <Button type="ghost"
+        icon={<EditOutlined stroke-width="1" />}
+        size="middle" shape="circle"
+        onClick={() => onClickEdit(record)} />
+
+      <Button type="ghost"
+        icon={<DeleteOutlined />}
+        size="middle" shape="circle"
+        onClick={() => onClickDelete(record)} />
     </Space>
   )
+
   const headerActions = (
-    <Space size="middle">
-      <Button type="ghost" icon={<IoAddOutline />} onClick={onClickAdd} size="middle" shape="circle" />
-      <Button type="ghost" icon={<FilterOutlined />} onClick={onClickFilter} size="middle" shape="circle" />
+    <Space size="small" className='header-actions'>
+      <Button
+        className='center-icon add-icon'
+        type="ghost" size="middle" shape="circle"
+        icon={<IoAddOutline className='add-icon' />}
+        onClick={onClickAdd}
+      />
+      <Button
+        className='center-icon filter-icon'
+        type="ghost" size="middle" shape="circle"
+        icon={<BsFunnel className='filter-icon' />}
+        onClick={onClickFilter} />
     </Space>
   )
 
@@ -129,7 +147,7 @@ const Index = () => {
 
   return (
     <>
-      <UsersList props={{ users, setUsers, columns, headerActions, tags }} />
+      <UsersList props={{ users, setUsers, columns, headerActions, tags, setTags }} />
       <UserForm props={{ handleAddEditSubmit, addFormRef, addEditFooterActions }} />
       <FilterModal props={{ handleFilterSubmit, filterFooterActions, filterFormRef, isFilterModalOpen, filterAttr }} />
       <DeleteModal props={{ handleDeleteSubmit, handleDeleteCancel, isDeleteDialogOpen, entityName }} />
@@ -138,3 +156,9 @@ const Index = () => {
 }
 
 export default Index;
+
+function normalizePayload(response: IFilterForm) {
+  if (response.value instanceof Date || response.value instanceof moment) {
+    response.value = moment(response.value).format("YYYY-MM-DD");
+  }
+}

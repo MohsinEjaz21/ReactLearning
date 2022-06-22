@@ -1,5 +1,5 @@
 import { Redux } from '@redux/store';
-import { AntdDatePicker } from '@src/components/AntdReusables';
+import { AntdCheckbox, AntdDatePicker } from '@src/components/AntdReusables';
 import { Form, Modal } from 'antd';
 import React from 'react';
 
@@ -18,7 +18,23 @@ export const UserForm = ({ props: { handleAddEditSubmit, addFormRef, addEditFoot
           message: "Please enter date of birth",
         },
       ],
-    }
+    },
+    isMarried: {
+      span: 24,
+      label: "Is Married",
+      placeholder: "Enter value",
+      controlName: "isMarried",
+      rules: [
+        {
+          required: true,
+          message: "Please enter isMarried",
+        },
+      ],
+    },
+  }
+
+  const setValue = (key, value) => {
+    addFormRef.setFieldsValue({ [key]: value });
   }
 
   return (
@@ -26,6 +42,7 @@ export const UserForm = ({ props: { handleAddEditSubmit, addFormRef, addEditFoot
       <Form form={addFormRef} onFinish={handleAddEditSubmit} >
         <Modal title="Add User" visible={isAddModalOpen} footer={addEditFooterActions}>
           <AntdDatePicker {...addFormFields.dob} />
+          <AntdCheckbox {...addFormFields.isMarried} />
         </Modal>
       </Form>
     </>

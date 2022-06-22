@@ -1,6 +1,5 @@
 /* import url antd css in css */
-@import url('antd/dist/antd.css');
-
+@import "antd/dist/antd.css";
 #root {
   height: 100vh;
   display: flex;
@@ -10,7 +9,18 @@
   padding: 0 24px;
 }
 
-
-.addIcon svg {
-  font-size: 18px;
+.center-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+
+.header-actions .add-icon svg {
+  font-size: large;
+}
+.header-actions .add-icon svg > path {
+  stroke-width: 38;
+}
+.header-actions .filter-icon svg > path {
+  stroke-width: 0.35;
+}/*# sourceMappingURL=index.css.map */

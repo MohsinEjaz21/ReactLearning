@@ -1,4 +1,4 @@
-import { Cascader, Col, DatePicker, Form, Input, InputNumber, Select, TimePicker } from 'antd';
+import { Cascader, Checkbox, Col, DatePicker, Form, Input, InputNumber, Select, TimePicker } from 'antd';
 import React from 'react';
 
 const AntFormItem = ({ props: { label, span, controlName, ...rest }, children }) => {
@@ -28,7 +28,7 @@ export const AntdComponent = ({ type, ...rest }: any) => {
 
 
 export function AntdCascader({ label, options, onChange, setValue, controlName, ...props }) {
-  const { span } = props;
+  const { span, placeholder } = props;
 
   function handleChange(value: any[], selectedOptions: any) {
     // console.log(value, selectedOptions);
@@ -58,14 +58,14 @@ export function AntdCascader({ label, options, onChange, setValue, controlName, 
           style={{ width: '100%' }}
           options={options}
           onChange={handleChange}
-          placeholder="Please select" />
+          placeholder={placeholder} />
       </Form.Item>
     </AntFormItem>
   );
 }
 
 export function AntdSelect({ label, options, controlName, ...props }) {
-  const { span, errors } = props;
+  const { span, errors, placeholder } = props;
   return (
     <AntFormItem props={{ label, span, controlName }} >
       <Form.Item
@@ -75,7 +75,7 @@ export function AntdSelect({ label, options, controlName, ...props }) {
         rules={[{ required: true, message: 'This Field is required' }]}
         name={controlName}
       >
-        <Select style={{ width: '100%' }} options={options} />
+        <Select style={{ width: '100%' }} options={options} placeholder={placeholder} />
       </Form.Item>
     </AntFormItem>
   );
@@ -133,6 +133,7 @@ export function AntdTextArea({ label, controlName, placeholder, ...props }) {
 }
 
 export function AntdDatePicker({ label, controlName, ...props }) {
+  const dateFormat = 'DD-MMM-YYYY';
   const { span, picker = "date" } = props;
   return (
     <AntFormItem props={{ label, span, controlName }} >
@@ -143,6 +144,7 @@ export function AntdDatePicker({ label, controlName, ...props }) {
         rules={[{ required: true, message: 'This Field is required' }]}
         name={controlName} >
         <DatePicker
+          format={dateFormat}
           style={{ width: '100%' }}
           picker={picker} />
       </Form.Item>
@@ -163,6 +165,22 @@ export function AntdTimePicker({ label, controlName, ...props }) {
         <TimePicker
           style={{ width: '100%' }}
           format={format} />
+      </Form.Item>
+    </AntFormItem>
+  );
+}
+
+export function AntdCheckbox({ label, controlName, ...props }) {
+  const { span } = props;
+  return (
+    <AntFormItem props={{ label, span, controlName }}>
+      <Form.Item
+        label={label}
+        labelCol={{ span: 24 }}
+        wrapperCol={{ span: 24 }}
+        rules={[{ required: true, message: 'This Field is required' }]}
+        name={controlName}>
+        <Checkbox style={{ width: '100%' }} />
       </Form.Item>
     </AntFormItem>
   );

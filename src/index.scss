@@ -1,0 +1,36 @@
+
+/* import url antd css in css */
+@import "antd/dist/antd.css";
+
+#root {
+	height: 100vh;
+	display: flex;
+}
+
+.container {
+	padding: 0 24px;
+}
+
+.center-icon {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.header-actions {
+	.add-icon {
+		svg {
+			font-size: large;
+			>path {
+				stroke-width: 38;
+			}
+		}
+	}
+	.filter-icon {
+		svg {
+			>path {
+				stroke-width: 0.35;
+			}
+		}
+	}
+}
