@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "scripts": {
-    "dbstart": "json-server --watch db.json --port 4000 --routes routes.json",
+    "mock": "json-server --watch db.json --port 4000 --routes routes.json",
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview"

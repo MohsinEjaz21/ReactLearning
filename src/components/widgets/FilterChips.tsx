@@ -1,8 +1,71 @@
 import { Card, Tag } from "antd";
 import { FilterSubmitBtn } from "./FilterSubmitBtn";
 
-export function FilterChips({ props: { tags, setTags } }) {
-  function applyFilters() { }
+export function FilterChips({ props: { tags, setTags, handleQueryReturn } }) {
+
+  function makeQuery() {
+    const duplicateCols = findduplicateColumns();
+    // columns other than duplicateCols
+    let query1 = "", query2 = "";
+    duplicateCols.forEach(col => {
+      query2 += createQueryForDuplicates([col]);
+    })
+    query1 = createQueryForNonDuplicates(duplicateCols) || "";
+
+    const query = query1 + query2;
+
+    handleQueryReturn(query);
+  }
+
+  function createQueryForNonDuplicates(duplicateCols) {
+    let query = ""
+    const nonDuplicates = tags.filter(({ column }) => !duplicateCols.includes(column));
+    nonDuplicates.map((tag, index) => {
+      if (index % 2 !== 0) {
+        query += " AND ";
+      }
+      query += `${tag.column} ${tag.operator} ${tag.value}`;
+    });
+    if (!!query.length) {
+      query = ` AND (${query}) `;
+    }
+    return query;
+  }
+
+
+  function createQueryForDuplicates(duplicateCol) {
+    let query = ""
+    const duplicates = tags.filter(({ column }) => duplicateCol == column);
+    duplicates.map((tag, index) => {
+      if (index % 2 !== 0) {
+        query += " OR ";
+      }
+      query += `${tag.column} ${tag.operator} ${tag.value}`;
+    });
+    if (!!query.length) {
+      query = ` AND (${query}) `;
+    }
+    return query;
+  }
+
+  function findduplicateColumns() {
+    let columns = tags.map(tag => tag.column);
+    const duplicateColumnSet = new Set();
+    columns.map(column => {
+      if (columnCountMoreThanOunce(column)) {
+        duplicateColumnSet.add(column);
+      }
+    });
+    return Array.from(duplicateColumnSet);
+  }
+
+  function columnCountMoreThanOunce(column) {
+    let count = 0;
+    tags.map(tag => {
+      if (tag.column === column) count++;
+    })
+    return count > 1;
+  }
 
   function handleTagClose(tag) {
     setTags(tags.filter(t => t !== tag));
@@ -19,7 +82,7 @@ export function FilterChips({ props: { tags, setTags } }) {
               {tag.column} {tag.operator} {tag.value}
             </Tag>
           )}
-          {tags.length ? <FilterSubmitBtn label='Apply Filter' handleClick={applyFilters} /> : null}
+          {tags.length ? <FilterSubmitBtn label='Apply Filter' handleClick={makeQuery} /> : null}
         </Card>
       )
     }

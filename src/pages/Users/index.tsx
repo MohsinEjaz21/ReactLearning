@@ -4,6 +4,7 @@ import { IUserEntity } from '@interfaces/IUserEntity';
 import { Redux } from '@redux/store';
 import { DeleteModal } from '@src/components/modals/DeleteModal';
 import { FilterModal } from '@src/components/modals/FilterModal';
+import { UtilsNotification } from '@src/helpers/utils/utils-notification';
 import { Button, Form, FormInstance, Space } from 'antd';
 import moment from 'moment';
 import React, { useState } from 'react';
@@ -54,10 +55,24 @@ const Index = () => {
   }
   function handleFilterSubmit(response: IFilterForm) {
     console.log(response)
+    // check response object matches inside tags array
     normalizePayload(response);
+    const isTagExistAlready = isTagExactMatchWithAlreadyAdded(response)
+    if (isTagExistAlready) {
+      UtilsNotification.filterTagExactlyMatch(response)
+      return;
+    }
+
     setTags([...tags, { ...response }]);
     closeFilterDialog()
   }
+
+  function isTagExactMatchWithAlreadyAdded(response: IFilterForm) {
+    return tags.filter(tag => tag.column === response.column
+      && tag.value === response.value
+      && tag.operator === response.operator)?.[0];
+  }
+
   function handleFilterCancel(filterFormRef: FormInstance) {
     filterFormRef.resetFields();
     closeFilterDialog()

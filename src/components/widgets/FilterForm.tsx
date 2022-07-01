@@ -1,6 +1,6 @@
 
 import { IAntdWidgetType, IColumns, IOperators } from '@interfaces/IFilterForm';
-import { UtilOperators } from '@src/helpers/utils/UtilOperators';
+import { UtilOperators } from '@src/helpers/utils/utils-opertator';
 import { Form, Row } from 'antd';
 import React, { useState } from 'react';
 import { AntdCascader, AntdComponent, AntdSelect } from './AntdWidgets';

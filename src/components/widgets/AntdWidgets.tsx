@@ -1,8 +1,10 @@
+import { UtilCommons } from '@src/helpers/utils/utils-common';
 import { Cascader, Checkbox, Col, DatePicker, Form, Input, InputNumber, Radio, Select, Switch, TimePicker } from 'antd';
+import { Option } from 'antd/lib/mentions';
 import React from 'react';
 
 const AntFormItem = ({ props, children }) => {
-  const { span, label, controlName, placeholder, extras, labelCol, wrapperCol, width } = props;
+  const { span, label, controlName, placeholder, extras, labelCol, wrapperCol } = props;
   const WrapperCol = ({ children }) => (
     span ? <Col span={span}>{children}</Col> : children
   )
@@ -26,6 +28,16 @@ function boolExtraProp(props: any): any {
   return { ...props, extras: { valuePropName: "checked" } };
 }
 
+function ForeachOption(props) {
+  const { options, optionLabel = 'value', optionValue = 'label' } = props
+  const evaluateProp = (element, key) => UtilCommons.evaluateResult(element, key)
+  return options.map((option, index) => (
+    <props.widget key={index} value={evaluateProp(option, optionValue)}>
+      {evaluateProp(option, optionLabel)}
+    </props.widget>
+  ))
+}
+
 export const AntdComponent = ({ type, ...rest }: any) => {
   const { options, ...props } = rest
   const jsx = {
@@ -36,6 +48,7 @@ export const AntdComponent = ({ type, ...rest }: any) => {
     timepicker: <AntdTimePicker {...props} />,
     select: <AntdSelect {...props} options={options} />,
     number: <AntdInputNumber {...props} />,
+    multiselect: <AntdMultiSelect {...props} options={options} />,
   }
   return jsx[type];
 }
@@ -63,14 +76,6 @@ export function AntdCascader(props) {
   );
 }
 
-export function AntdSelect(props) {
-  const { options } = props;
-  return (
-    <AntFormItem props={props} >
-      <Select options={options} />
-    </AntFormItem>
-  );
-}
 
 export function AntdInput(props) {
   return (
@@ -135,17 +140,56 @@ export function AntdSwitch(props) {
   );
 }
 
+export function AntdSelect(props) {
+  return (
+    <AntFormItem props={props} >
+      <Select>
+        <ForeachOption {...props} widget={<Option />} />
+      </Select>
+    </AntFormItem>
+  );
+}
+
+export function AntdMultiSelect(props) {
+  return (
+    <AntFormItem props={props} >
+      <Select mode="multiple" >
+        <ForeachOption {...props} widget={<Option />} />
+      </Select>
+    </AntFormItem>
+  );
+}
+
 export function AntdRadio(props) {
-  const { options, onChange, type } = props;
+  const { options, onChange, type = 'default' } = props;
   return (
     <AntFormItem props={boolExtraProp(props)}>
-      <Radio.Group options={options} onChange={onChange} optionType={type || 'default'} buttonStyle="solid" >
-        {options.map((option, index) => (
-          <Radio.Button key={index} value={option.value}>{option.label}</Radio.Button>
-        ))}
+      <Radio.Group options={options} onChange={onChange} optionType={type} buttonStyle="solid" >
+        <ForeachOption {...props} widget={<Radio.Button />} />
       </Radio.Group>
     </AntFormItem>
   );
 }
 
+
+// export function AntdRadio(props) {
+//   const { options, onChange, type = 'default' } = props;
+//   const { optionLabel = 'value', optionValue = 'label' } = props
+
+
+//   return (
+//     <AntFormItem props={boolExtraProp(props)}>
+//       <Radio.Group options={options} onChange={onChange} optionType={type} buttonStyle="solid" >
+//         {options.map((option, index) => forEachOption(option, index))}
+//       </Radio.Group>
+//     </AntFormItem>
+//   );
+
+//   function forEachOption(option: any, index: number) {
+//     const evaluateProp = (element, key) => UtilCommons.evaluateResult(element, key)
+//     return <Radio.Button key={index} value={evaluateProp(option, optionValue)}>
+//       {evaluateProp(option, optionLabel)}
+//     </Radio.Button>;
+//   }
+// }
 

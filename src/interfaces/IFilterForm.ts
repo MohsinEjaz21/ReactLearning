@@ -35,6 +35,7 @@ export type IAntdWidgetType = (
   "radio" |
   "switch" |
   "slider" |
+  "multiselect" |
   "rate" |
   "number"
 )
