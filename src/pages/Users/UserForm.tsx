@@ -1,5 +1,5 @@
 import { Redux } from '@redux/store';
-import { AntdDatePicker, AntdMultiSelect, AntdRadio, AntdSwitch } from '@src/components/widgets/AntdWidgets';
+import { AntdDatePicker, AntdMultiSelect, AntdSwitch } from '@src/components/widgets/AntdWidgets';
 import { Form, Modal } from 'antd';
 
 export const UserForm = ({ props: { handleAddEditSubmit, addFormRef, addEditFooterActions } }) => {
@@ -11,6 +11,7 @@ export const UserForm = ({ props: { handleAddEditSubmit, addFormRef, addEditFoot
       controlName: 'role',
       label: 'Role',
       type: 'button',
+      placeholder: "Enter Role",
       options: [
         { label: 'Admin', value: 'admin' },
         { label: 'User', value: 'user' },
@@ -58,7 +59,7 @@ export const UserForm = ({ props: { handleAddEditSubmit, addFormRef, addEditFoot
         <Modal title="Add User" visible={isAddModalOpen} footer={addEditFooterActions}>
           <AntdDatePicker {...addFormFields.dob} />
           <AntdSwitch {...addFormFields.isMarried} />
-          <AntdRadio {...addFormFields.role} />
+          {/* <AntdRadio {...addFormFields.role} /> */}
           <AntdMultiSelect {...addFormFields.role} />
         </Modal>
       </Form>

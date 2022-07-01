@@ -1,6 +1,5 @@
 import { UtilCommons } from '@src/helpers/utils/utils-common';
 import { Cascader, Checkbox, Col, DatePicker, Form, Input, InputNumber, Radio, Select, Switch, TimePicker } from 'antd';
-import { Option } from 'antd/lib/mentions';
 import React from 'react';
 
 const AntFormItem = ({ props, children }) => {
@@ -8,6 +7,7 @@ const AntFormItem = ({ props, children }) => {
   const WrapperCol = ({ children }) => (
     span ? <Col span={span}>{children}</Col> : children
   )
+  // const _placeholder = placeholder || `Select ${controlName}`
 
   return (
     <WrapperCol>
@@ -28,15 +28,7 @@ function boolExtraProp(props: any): any {
   return { ...props, extras: { valuePropName: "checked" } };
 }
 
-function ForeachOption(props) {
-  const { options, optionLabel = 'value', optionValue = 'label' } = props
-  const evaluateProp = (element, key) => UtilCommons.evaluateResult(element, key)
-  return options.map((option, index) => (
-    <props.widget key={index} value={evaluateProp(option, optionValue)}>
-      {evaluateProp(option, optionLabel)}
-    </props.widget>
-  ))
-}
+
 
 export const AntdComponent = ({ type, ...rest }: any) => {
   const { options, ...props } = rest
@@ -141,20 +133,22 @@ export function AntdSwitch(props) {
 }
 
 export function AntdSelect(props) {
+  // const { onChange } = props;
   return (
     <AntFormItem props={props} >
-      <Select>
-        <ForeachOption {...props} widget={<Option />} />
+      <Select >
+         {foreachOption(props, "Select.Option")}
       </Select>
     </AntFormItem>
   );
 }
 
 export function AntdMultiSelect(props) {
+  // const { onChange, controlName } = props;
   return (
     <AntFormItem props={props} >
-      <Select mode="multiple" >
-        <ForeachOption {...props} widget={<Option />} />
+      <Select mode="multiple"  >
+        {foreachOption(props, "Select.Option")}
       </Select>
     </AntFormItem>
   );
@@ -165,10 +159,27 @@ export function AntdRadio(props) {
   return (
     <AntFormItem props={boolExtraProp(props)}>
       <Radio.Group options={options} onChange={onChange} optionType={type} buttonStyle="solid" >
-        <ForeachOption {...props} widget={<Radio.Button />} />
+        {foreachOption(props, "Radio.Button")}
       </Radio.Group>
     </AntFormItem>
   );
+}
+
+function foreachOption(props, widget) {
+  const { options, optionLabel = 'value', optionValue = 'label' } = props
+  const evaluateProp = (element, key) => UtilCommons.evaluateResult(element, key)
+  return options?.map((option, index) => (
+    React.createElement(widget, {
+      key: index,
+      value: evaluateProp(option, optionValue),
+    }, evaluateProp(option, optionLabel))
+
+    // React.createElement(type,{props},children); 
+    // <Widget key={index}
+    //   value={evaluateProp(option, optionValue)}>
+    //   {evaluateProp(option, optionLabel)}
+    // </Widget>
+  ))
 }
 
 
