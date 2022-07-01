@@ -1,13 +1,14 @@
 import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
 import { IFilterForm } from '@interfaces/IFilterForm';
-import { IUserEntity } from '@interfaces/IUserEntity';
+import { IUserTemp } from '@interfaces/IUserEntity';
 import { Redux } from '@redux/store';
+import { ActionCreatorWithPayload } from '@reduxjs/toolkit';
 import { DeleteModal } from '@src/components/modals/DeleteModal';
 import { FilterModal } from '@src/components/modals/FilterModal';
 import { UtilsNotification } from '@src/helpers/utils/utils-notification';
 import { Button, Form, FormInstance, Space } from 'antd';
 import moment from 'moment';
-import React, { useState } from 'react';
+import { useEffect } from 'react';
 import { BsFunnel } from 'react-icons/bs';
 import { IoAddOutline } from 'react-icons/io5';
 import { UserForm } from './UserForm';
@@ -19,18 +20,19 @@ const Index = () => {
   const { openFilterDialog, closeFilterDialog } = Redux.DataGridSlice.actions
   const { openAddDialog, closeAddDialog } = Redux.DataGridSlice.actions
   const { isDeleteDialogOpen, isFilterModalOpen } = Redux.DataGridSlice.state()
+  const { entityState: state } = Redux.DataGridSlice.state()
+  const setState: ActionCreatorWithPayload<IUserTemp, string> = Redux.DataGridSlice.actions.setEntityState;
 
-  const { entityName } = Redux.DataGridSlice.state()
-  const filterFormRef = Form.useForm()[0];
-  const addFormRef = Form.useForm()[0];
+  useEffect(() => {
+    setState({
+      filterFormRef: Form.useForm()[0],
+      addFormRef: Form.useForm()[0],
+    })
+    return () => { }
+  }, [])
 
-  const [users, setUsers] = React.useState<IUserEntity[]>([]);
-  const [deleteUser, setDeleteUser] = React.useState<IUserEntity>();
-  const [tags, setTags] = useState<IFilterForm[]>([]);
 
   const filterAttr = UserMeta.filterUserAttributes
-
-
   // ADD/EDIT OPERATION
 
   function onClickEdit(payload) {
@@ -44,7 +46,7 @@ const Index = () => {
     closeAddDialog()
   }
   function handleAddEditSubmit() {
-    console.log("ADDFORM VALUES", addFormRef.getFieldsValue())
+    console.log("ADDFORM VALUES", state.addFormRef?.getFieldsValue())
     closeAddDialog()
   }
 
@@ -62,15 +64,16 @@ const Index = () => {
       UtilsNotification.filterTagExactlyMatch(response)
       return;
     }
-
-    setTags([...tags, { ...response }]);
+    const tags = [...state.tags, response]
+    setState({ tags })
     closeFilterDialog()
   }
 
   function isTagExactMatchWithAlreadyAdded(response: IFilterForm) {
-    return tags.filter(tag => tag.column === response.column
+    return state.tags.filter(tag => (
+      tag.column === response.column
       && tag.value === response.value
-      && tag.operator === response.operator)?.[0];
+      && tag.operator === response.operator)?.[0])
   }
 
   function handleFilterCancel(filterFormRef: FormInstance) {
@@ -81,20 +84,19 @@ const Index = () => {
   // DELETE OPERATION
 
   function onClickDelete(payload) {
-    console.log(payload)
-    setDeleteUser(payload);
+    setState({ deleteUser: payload })
     openDeleteDialog()
   }
   function handleDeleteCancel() {
-    setDeleteUser(undefined);
+    setState({ deleteUser: undefined });
     closeDeleteDialog();
-    console.log("deleteUser ::", deleteUser)
   }
   function handleDeleteSubmit(payload) {
-    const key = deleteUser?.key;
+    const key = state.deleteUser?.key;
     closeDeleteDialog();
     if (key) {
-      setUsers(users.filter(user => user.key !== key));
+      const users = state.users.filter(user => user.key !== key);
+      setState({ users });
     }
   }
 
@@ -137,13 +139,13 @@ const Index = () => {
   )
 
   const filterFooterActions = [
-    <Button key="back" onClick={() => handleFilterCancel(filterFormRef)}>
+    <Button key="back" onClick={() => handleFilterCancel(state.filterFormRef)}>
       Cancel
     </Button>,
-    <Button key="clear" onClick={() => handleResetFilterForm(filterFormRef)}>
+    <Button key="clear" onClick={() => handleResetFilterForm(state.filterFormRef)}>
       Clear
     </Button>,
-    <Button type="primary" htmlType="submit" onClick={() => { filterFormRef.submit() }} >
+    <Button type="primary" htmlType="submit" onClick={() => { state.filterFormRef.submit() }} >
       Submit
     </Button>
   ];
@@ -152,17 +154,17 @@ const Index = () => {
     <Button type="default" htmlType="button" onClick={handleAddEditCancel} >
       Cancel
     </Button>,
-    <Button type="primary" htmlType="submit" onClick={() => addFormRef.submit()} >
+    <Button type="primary" htmlType="submit" onClick={() => state.addFormRef.submit()} >
       Submit
     </Button>
   ];
 
 
   const columns = UserMeta.getUserEntityColumns(tuppleAcion)
-
+  const { addFormRef, filterFormRef, entityName, users, tags } = state
   return (
     <>
-      <UsersList props={{ users, setUsers, columns, headerActions, tags, setTags }} />
+      <UsersList props={{ users, columns, headerActions, tags, setState }} />
       <UserForm props={{ handleAddEditSubmit, addFormRef, addEditFooterActions }} />
       <FilterModal props={{ handleFilterSubmit, filterFooterActions, filterFormRef, isFilterModalOpen, filterAttr }} />
       <DeleteModal props={{ handleDeleteSubmit, handleDeleteCancel, isDeleteDialogOpen, entityName }} />

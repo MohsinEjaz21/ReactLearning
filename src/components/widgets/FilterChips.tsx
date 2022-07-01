@@ -1,7 +1,7 @@
 import { Card, Tag } from "antd";
 import { FilterSubmitBtn } from "./FilterSubmitBtn";
 
-export function FilterChips({ props: { tags, setTags, handleQueryReturn } }) {
+export function FilterChips({ props: { tags, setState, handleQueryReturn } }) {
 
   function makeQuery() {
     const duplicateCols = findduplicateColumns();
@@ -88,6 +88,12 @@ export function FilterChips({ props: { tags, setTags, handleQueryReturn } }) {
     }
     return null;
   }
+
+
+  const setTags = (tags) => {
+    setState({ tags })
+  }
+
 
   return (renderTags());
 }

@@ -4,7 +4,7 @@ import { axios } from '@src/helpers/axios';
 import { Card } from 'antd';
 import { useEffect } from 'react';
 
-export const UsersList = ({ props: { users, setUsers, headerActions, columns, tags, setTags } }) => {
+export const UsersList = ({ props: { users, headerActions, columns, tags, setState } }) => {
 
   const handleQueryReturn = (query) => {
     console.log("query :: ", query)
@@ -12,7 +12,7 @@ export const UsersList = ({ props: { users, setUsers, headerActions, columns, ta
 
   useEffect(() => {
     axios.GET({ url: '/api/mockTable' }).then(res => {
-      setUsers(res.data);
+      setState({ users: res.data })
     });
     return () => { }
   }, [])
@@ -21,7 +21,7 @@ export const UsersList = ({ props: { users, setUsers, headerActions, columns, ta
     <>
       <div className='container'>
         <Card title="Users" extra={headerActions} >
-          <FilterChips props={{ tags, setTags, handleQueryReturn }}></FilterChips>
+          <FilterChips props={{ tags, setState, handleQueryReturn }}></FilterChips>
           <DataTable columns={columns} data={users} />
         </Card>
       </div>

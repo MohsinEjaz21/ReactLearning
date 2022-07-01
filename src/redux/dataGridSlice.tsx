@@ -1,4 +1,7 @@
+import { IFilterForm } from '@interfaces/IFilterForm';
+import { IUserEntity } from '@interfaces/IUserEntity';
 import { createSlice } from '@reduxjs/toolkit';
+import { FormInstance } from 'antd';
 
 export const DataGridSlice = createSlice({
   name: 'DataGridSlice',
@@ -6,7 +9,14 @@ export const DataGridSlice = createSlice({
     isFilterModalOpen: false,
     isAddModalOpen: false,
     isDeleteDialogOpen: false,
-    entityName: 'User',
+    entityState: {
+      entityName: 'User',
+      filterFormRef: {} as FormInstance<any>,
+      addFormRef: {} as FormInstance<any>,
+      users: [] as IUserEntity[],
+      deleteUser: {} as IUserEntity,
+      tags: [] as IFilterForm[],
+    }
   },
   reducers: {
     openDeleteDialog: (state) => {
@@ -26,6 +36,9 @@ export const DataGridSlice = createSlice({
     },
     closeFilterDialog: (state) => {
       state.isFilterModalOpen = false
+    },
+    setEntityState: (state, action) => {
+      state.entityState = action.payload
     }
 
   }
