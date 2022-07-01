@@ -18,9 +18,9 @@ const Index = () => {
   const { openDeleteDialog, closeDeleteDialog } = Redux.DataGridSlice.actions
   const { openFilterDialog, closeFilterDialog } = Redux.DataGridSlice.actions
   const { openAddDialog, closeAddDialog } = Redux.DataGridSlice.actions
-  const { isDeleteDialogOpen, entityName } = Redux.DataGridSlice.state()
-  const { isFilterModalOpen } = Redux.DataGridSlice.state()
+  const { isDeleteDialogOpen, isFilterModalOpen } = Redux.DataGridSlice.state()
 
+  const { entityName } = Redux.DataGridSlice.state()
   const filterFormRef = Form.useForm()[0];
   const addFormRef = Form.useForm()[0];
 

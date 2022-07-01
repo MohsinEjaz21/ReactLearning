@@ -3,11 +3,11 @@ import { Cascader, Checkbox, Col, DatePicker, Form, Input, InputNumber, Radio, S
 import React from 'react';
 
 const AntFormItem = ({ props, children }) => {
-  const { span, label, controlName, placeholder, extras, labelCol, wrapperCol } = props;
+  const { span, label, controlName, placeholder: _placeholder, extras, labelCol, wrapperCol } = props;
   const WrapperCol = ({ children }) => (
     span ? <Col span={span}>{children}</Col> : children
   )
-  // const _placeholder = placeholder || `Select ${controlName}`
+  const placeholder = _placeholder || `Select ${controlName}`
 
   return (
     <WrapperCol>
@@ -136,8 +136,8 @@ export function AntdSelect(props) {
   // const { onChange } = props;
   return (
     <AntFormItem props={props} >
-      <Select >
-         {foreachOption(props, "Select.Option")}
+      <Select>
+        {foreachOption(props, "Select.Option")}
       </Select>
     </AntFormItem>
   );
@@ -146,8 +146,8 @@ export function AntdSelect(props) {
 export function AntdMultiSelect(props) {
   // const { onChange, controlName } = props;
   return (
-    <AntFormItem props={props} >
-      <Select mode="multiple"  >
+    <AntFormItem props={props}>
+      <Select mode="multiple">
         {foreachOption(props, "Select.Option")}
       </Select>
     </AntFormItem>
@@ -170,18 +170,18 @@ function foreachOption(props, widget) {
   const evaluateProp = (element, key) => UtilCommons.evaluateResult(element, key)
   return options?.map((option, index) => (
     React.createElement(widget, {
-      key: index,
+      key: option?.key || index,
       value: evaluateProp(option, optionValue),
     }, evaluateProp(option, optionLabel))
+  ))
+}
+
 
     // React.createElement(type,{props},children); 
     // <Widget key={index}
     //   value={evaluateProp(option, optionValue)}>
     //   {evaluateProp(option, optionLabel)}
     // </Widget>
-  ))
-}
-
 
 // export function AntdRadio(props) {
 //   const { options, onChange, type = 'default' } = props;

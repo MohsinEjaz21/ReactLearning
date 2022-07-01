@@ -1,5 +1,5 @@
 import { Redux } from '@redux/store';
-import { AntdDatePicker, AntdMultiSelect, AntdSwitch } from '@src/components/widgets/AntdWidgets';
+import { AntdDatePicker, AntdMultiSelect, AntdRadio, AntdSwitch } from '@src/components/widgets/AntdWidgets';
 import { Form, Modal } from 'antd';
 
 export const UserForm = ({ props: { handleAddEditSubmit, addFormRef, addEditFooterActions } }) => {
@@ -13,8 +13,8 @@ export const UserForm = ({ props: { handleAddEditSubmit, addFormRef, addEditFoot
       type: 'button',
       placeholder: "Enter Role",
       options: [
-        { label: 'Admin', value: 'admin' },
-        { label: 'User', value: 'user' },
+        { key: "1", label: 'Admin', value: 'admin' },
+        { key: "2", label: 'User', value: 'user' },
       ],
       value: 'user',
       onChange: (e) => {
@@ -59,7 +59,7 @@ export const UserForm = ({ props: { handleAddEditSubmit, addFormRef, addEditFoot
         <Modal title="Add User" visible={isAddModalOpen} footer={addEditFooterActions}>
           <AntdDatePicker {...addFormFields.dob} />
           <AntdSwitch {...addFormFields.isMarried} />
-          {/* <AntdRadio {...addFormFields.role} /> */}
+          <AntdRadio {...addFormFields.role} />
           <AntdMultiSelect {...addFormFields.role} />
         </Modal>
       </Form>
@@ -70,5 +70,4 @@ export const UserForm = ({ props: { handleAddEditSubmit, addFormRef, addEditFoot
 {/* <AntdRadio {...addFormFields.role} /> */ }
 {/* <AntdMultiSelect {...addFormFields.role} /> */ }
 {/* {JSON.stringify(addFormRef.getFieldsValue(), null, 2)} */ }
-
 {/* <AntdCheckbox {...addFormFields.isMarried} /> */ }
