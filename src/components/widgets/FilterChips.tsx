@@ -1,33 +1,28 @@
 import { Card, Tag } from "antd";
 import { FilterSubmitBtn } from "./FilterSubmitBtn";
 
-export function FilterChips({ props: { tags, setTags, handleQueryReturn } }) {
+export function FilterChips({ props: { tags, setTags, applyFilters } }) {
 
   function makeQuery() {
     const duplicateCols = findduplicateColumns();
-    // columns other than duplicateCols
     let query1 = "", query2 = "";
-    duplicateCols.forEach(col => {
-      query2 += createQueryForDuplicates([col]);
-    })
+    duplicateCols.forEach(col => { query2 += createQueryForDuplicates([col]) })
     query1 = createQueryForNonDuplicates(duplicateCols) || "";
-
     const query = query1 + query2;
-
-    handleQueryReturn(query);
+    applyFilters(query);
   }
 
   function createQueryForNonDuplicates(duplicateCols) {
     let query = ""
     const nonDuplicates = tags.filter(({ column }) => !duplicateCols.includes(column));
     nonDuplicates.map((tag, index) => {
-      if (index % 2 !== 0) {
+      if (index !== 0 && index !== nonDuplicates.length) {
         query += " AND ";
       }
       query += `${tag.column} ${tag.operator} ${tag.value}`;
     });
     if (!!query.length) {
-      query = ` AND (${query}) `;
+      query = ` AND (${query})`;
     }
     return query;
   }
@@ -37,10 +32,10 @@ export function FilterChips({ props: { tags, setTags, handleQueryReturn } }) {
     let query = ""
     const duplicates = tags.filter(({ column }) => duplicateCol == column);
     duplicates.map((tag, index) => {
-      if (index % 2 !== 0) {
+      if (index !== 0 && index !== duplicates.length) {
         query += " OR ";
       }
-      query += `${tag.column} ${tag.operator} ${tag.value}`;
+      query += ` ${tag.column} ${tag.operator} ${tag.value} `;
     });
     if (!!query.length) {
       query = ` AND (${query}) `;

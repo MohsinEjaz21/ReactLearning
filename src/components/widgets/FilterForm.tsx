@@ -1,19 +1,47 @@
 
-import { IAntdWidgetType, IColumns, IOperators } from '@interfaces/IFilterForm';
+import { IAntdWidgetType, IColumns, IFilterForm, IOperators } from '@interfaces/IFilterForm';
+import { UtilsNotification } from '@src/helpers/utils/utils-notification';
 import { UtilOperators } from '@src/helpers/utils/utils-opertator';
 import { Form, Row } from 'antd';
+import moment from 'moment';
 import React, { useState } from 'react';
 import { AntdCascader, AntdComponent, AntdSelect } from './AntdWidgets';
 
 
-export function FilterForm({ props: { options, handleFilterSubmit, ...rest } }) {
+export function FilterForm({ props: { options, ...rest } }) {
   const [componentType, setComponentType] = React.useState<IAntdWidgetType>("input");
   const [operators, setOperatorsOptions] = useState<IOperators[]>();
   const filterFormRef: any = rest?.filterFormRef
+  const { tags, setTags, closeFilterDialog } = rest
 
   const onFinishFailed = (errorInfo: any) => {
     console.log('Failed:', errorInfo);
   };
+
+  function handleFilterSubmit(response: IFilterForm) {
+    console.log(response)
+    // check response object matches inside tags array
+    normalizePayload(response);
+    const isTagExistAlready = isTagExactMatchWithAlreadyAdded(response)
+    if (isTagExistAlready) {
+      UtilsNotification.filterTagExactlyMatch(response)
+      return;
+    }
+    setTags([...tags, { ...response }]);
+    closeFilterDialog()
+  }
+
+  function normalizePayload(response: IFilterForm) {
+    if (response.value instanceof Date || response.value instanceof moment) {
+      response.value = moment(response.value).format("YYYY-MM-DD");
+    }
+  }
+
+  function isTagExactMatchWithAlreadyAdded(response: IFilterForm) {
+    return tags.filter(tag => tag.column === response.column
+      && tag.value === response.value
+      && tag.operator === response.operator)?.[0];
+  }
 
   function handleColumnChange(value: any[], selectedOptions: IColumns[]) {
     const { datatype: _datatype, componentType: _componentType } = selectedOptions?.[selectedOptions.length - 1];
