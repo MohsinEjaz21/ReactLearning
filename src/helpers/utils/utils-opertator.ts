@@ -9,6 +9,7 @@ export class UtilOperators {
           { value: "like", label: "contains" },
           { value: "=", label: "equals" },
           { value: "!=", label: "not equals" },
+          { value: "IN", label: "in" },
         ]
       case 'number':
         return [

@@ -1,22 +1,36 @@
 
-import { IAntdWidgetType, IColumns, IFilterForm, IOperators } from '@interfaces/IFilterForm';
+import { IAntdWidgetType, IColumns, IDatatypes, IFilterForm, IOperators, IOperatorTypes } from '@interfaces/IFilterForm';
 import { UtilsNotification } from '@src/helpers/utils/utils-notification';
 import { UtilOperators } from '@src/helpers/utils/utils-opertator';
-import { Form, Row } from 'antd';
+import { Form, FormInstance, Row } from 'antd';
 import moment from 'moment';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { AntdCascader, AntdComponent, AntdSelect } from './AntdWidgets';
 
 
 export function FilterForm({ props: { options, ...rest } }) {
   const [componentType, setComponentType] = React.useState<IAntdWidgetType>("input");
   const [operators, setOperatorsOptions] = useState<IOperators[]>();
-  const filterFormRef: any = rest?.filterFormRef
+  const filterFormRef: FormInstance = rest?.filterFormRef
   const { tags, setTags, closeFilterDialog } = rest
+  const [columnDataType, setColumnDataType] = useState<IDatatypes>();
+  const operator = Form.useWatch('operator', filterFormRef);
 
   const onFinishFailed = (errorInfo: any) => {
     console.log('Failed:', errorInfo);
   };
+
+  useEffect(() => {
+    const selectedOperator: IOperatorTypes = operator
+    console.log(columnDataType, selectedOperator)
+    if (selectedOperator.toUpperCase() === 'IN' || selectedOperator.toUpperCase() === 'NOT IN') {
+      if (columnDataType === 'string') {
+        setComponentType("multiselect")
+      }
+    }
+    return () => { }
+  }, [operator])
+
 
   function handleFilterSubmit(response: IFilterForm) {
     console.log(response)
@@ -38,14 +52,15 @@ export function FilterForm({ props: { options, ...rest } }) {
   }
 
   function isTagExactMatchWithAlreadyAdded(response: IFilterForm) {
-    return tags.filter(tag => tag.column === response.column
+    return !!tags.filter(tag => tag.column === response.column
       && tag.value === response.value
-      && tag.operator === response.operator)?.[0];
+      && tag.operator === response.operator)?.length;
   }
 
   function handleColumnChange(value: any[], selectedOptions: IColumns[]) {
     const { datatype: _datatype, componentType: _componentType } = selectedOptions?.[selectedOptions.length - 1];
 
+    setColumnDataType(_datatype);
     console.log(componentType);
     changeValueWidget();
     changeOperatorOptionValues();

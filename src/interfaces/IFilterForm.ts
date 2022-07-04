@@ -24,6 +24,18 @@ export type IDatatypes = (
   "boolean"
 );
 
+export type IOperatorTypes = (
+  ">" |
+  ">=" |
+  "<" |
+  "<=" |
+  "=" |
+  "!=" |
+  "IN" |
+  "NOT IN" |
+  "LIKE"
+)
+
 export type IAntdWidgetType = (
   "cascader" |
   "input" |
