@@ -11,9 +11,10 @@ import { AntdCascader, AntdComponent, AntdSelect } from './AntdWidgets';
 export function FilterForm({ props: { options, ...rest } }) {
   const [componentType, setComponentType] = React.useState<IAntdWidgetType>("input");
   const [operators, setOperatorsOptions] = useState<IOperators[]>();
-  const filterFormRef: FormInstance = rest?.filterFormRef
-  const { tags, setTags, closeFilterDialog } = rest
   const [columnDataType, setColumnDataType] = useState<IDatatypes>();
+  const { tags, setTags, closeFilterDialog } = rest
+
+  const filterFormRef: FormInstance = rest?.filterFormRef
   const operator = Form.useWatch('operator', filterFormRef);
 
   const onFinishFailed = (errorInfo: any) => {
@@ -23,7 +24,7 @@ export function FilterForm({ props: { options, ...rest } }) {
   useEffect(() => {
     const selectedOperator: IOperatorTypes = operator
     console.log(columnDataType, selectedOperator)
-    if (selectedOperator.toUpperCase() === 'IN' || selectedOperator.toUpperCase() === 'NOT IN') {
+    if (selectedOperator?.toUpperCase() === 'IN' || selectedOperator?.toUpperCase() === 'NOT IN') {
       if (columnDataType === 'string') {
         setComponentType("multiselect")
       }
@@ -62,7 +63,7 @@ export function FilterForm({ props: { options, ...rest } }) {
 
     setColumnDataType(_datatype);
     console.log(componentType);
-    changeValueWidget();
+    changeWidgetOfValue();
     changeOperatorOptionValues();
 
     function changeOperatorOptionValues() {
@@ -72,7 +73,7 @@ export function FilterForm({ props: { options, ...rest } }) {
       }
     }
 
-    function changeValueWidget() {
+    function changeWidgetOfValue() {
       if (_componentType) {
         setComponentType(_componentType);
         setValue("value", null);
@@ -85,6 +86,7 @@ export function FilterForm({ props: { options, ...rest } }) {
   }
 
   // console.log(errors)
+
   const filterForm = {
     column: {
       options,
