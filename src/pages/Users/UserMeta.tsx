@@ -1,8 +1,8 @@
 import { IUserEntity } from "@interfaces/IUserEntity";
 import { ColumnsType } from "antd/lib/table";
+export function UserMeta() {
 
-export namespace UserMeta {
-  export const filterUserAttributes = [
+  const filterUserAttributes = [
     {
       value: 'Age',
       label: 'Age',
@@ -14,6 +14,12 @@ export namespace UserMeta {
       label: 'Date of Birth',
       datatype: 'date',
       componentType: 'datepicker'
+    },
+    {
+      value: 'roles',
+      label: 'Role',
+      datatype: 'string',
+      componentType: 'select'
     },
     {
       value: 'zhejiang',
@@ -44,9 +50,9 @@ export namespace UserMeta {
         },
       ],
     },
-  ];
+  ]
 
-  export const getUserEntityColumns = (tuppleAcion): ColumnsType<IUserEntity> => {
+  const getUserEntityColumns = (tuppleAcion): ColumnsType<IUserEntity> => {
     return ([
       {
         title: 'Name',
@@ -74,5 +80,6 @@ export namespace UserMeta {
       },
     ])
   }
-}
 
+  return { filterUserAttributes, getUserEntityColumns }
+}

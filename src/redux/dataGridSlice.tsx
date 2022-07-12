@@ -7,6 +7,9 @@ export const DataGridSlice = createSlice({
     isAddModalOpen: false,
     isDeleteDialogOpen: false,
     entityName: 'User',
+    meta: {
+      roles: []
+    }
   },
   reducers: {
     openDeleteDialog: (state) => {
@@ -26,6 +29,9 @@ export const DataGridSlice = createSlice({
     },
     closeFilterDialog: (state) => {
       state.isFilterModalOpen = false
+    },
+    setRoles: (state, action) => {
+      state.meta.roles = action.payload
     }
 
   }

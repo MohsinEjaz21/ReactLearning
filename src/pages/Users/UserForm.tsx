@@ -5,7 +5,6 @@ import { Form, Modal } from 'antd';
 export const UserForm = ({ props: { handleAddEditSubmit, addFormRef, addEditFooterActions } }) => {
   const { isAddModalOpen } = Redux.DataGridSlice.state()
 
-
   const addFormFields = {
     role: {
       controlName: 'role',

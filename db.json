@@ -13,6 +13,23 @@
       "postId": 1
     }
   ],
+  "roles": [
+    {
+      "id": 1,
+      "label": "Administrator",
+      "value": "admin"
+    },
+    {
+      "id": 2,
+      "label": "User",
+      "value": "user"
+    },
+    {
+      "id": 3,
+      "label": "Guest",
+      "value": "guest"
+    }
+  ],
   "profile": {
     "name": "typicode"
   },

@@ -12,7 +12,7 @@ export function FilterForm({ props: { options, ...rest } }) {
   const [componentType, setComponentType] = React.useState<IAntdWidgetType>("input");
   const [operators, setOperatorsOptions] = useState<IOperators[]>();
   const [columnDataType, setColumnDataType] = useState<IDatatypes>();
-  const { tags, setTags, closeFilterDialog } = rest
+  const { tags, setTags, closeFilterDialog, afterHandleColumnChange, optionValues: optionsForValues } = rest
 
   const filterFormRef: FormInstance = rest?.filterFormRef
   const operator = Form.useWatch('operator', filterFormRef);
@@ -59,8 +59,8 @@ export function FilterForm({ props: { options, ...rest } }) {
   }
 
   function handleColumnChange(value: any[], selectedOptions: IColumns[]) {
-    const { datatype: _datatype, componentType: _componentType } = selectedOptions?.[selectedOptions.length - 1];
-
+    const selectedOptionFilter = selectedOptions?.[selectedOptions.length - 1];
+    const { datatype: _datatype, componentType: _componentType } = selectedOptionFilter;
     setColumnDataType(_datatype);
     console.log(componentType);
     changeWidgetOfValue();
@@ -79,6 +79,8 @@ export function FilterForm({ props: { options, ...rest } }) {
         setValue("value", null);
       }
     }
+
+    afterHandleColumnChange(selectedOptionFilter);
   }
 
   const setValue = (key, value) => {
@@ -121,12 +123,9 @@ export function FilterForm({ props: { options, ...rest } }) {
         autoComplete="off"
       >
         <Row gutter={[8, 16]}>
-          {/* print form  */}
-          {/* {JSON.stringify(filterFormRef, null, 2)} */}
-
           <AntdCascader {...filterForm.column} />
           <AntdSelect {...filterForm.operator} />
-          <AntdComponent type={componentType} {...filterForm.value} />
+          <AntdComponent type={componentType} {...filterForm.value} options={optionsForValues} />
         </Row>
       </Form>
     </>

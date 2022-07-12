@@ -1,33 +1,43 @@
 import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
 import { IFilterForm } from '@interfaces/IFilterForm';
-import { IUserEntity } from '@interfaces/IUserEntity';
+import { IUserEntity, IUserFilterMeta } from '@interfaces/IUserEntity';
 import { Redux } from '@redux/store';
 import { DeleteModal } from '@src/components/modals/DeleteModal';
 import { FilterModal } from '@src/components/modals/FilterModal';
+import { axios } from '@src/helpers/axios';
 import { Button, Form, FormInstance, Space } from 'antd';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { BsFunnel } from 'react-icons/bs';
 import { IoAddOutline } from 'react-icons/io5';
+import { useImmer } from 'use-immer';
 import { UserForm } from './UserForm';
 import { UsersList } from './UserList';
 import { UserMeta } from './UserMeta';
-
 const Index = () => {
   const { openDeleteDialog, closeDeleteDialog } = Redux.DataGridSlice.actions
   const { openFilterDialog, closeFilterDialog } = Redux.DataGridSlice.actions
   const { openAddDialog, closeAddDialog } = Redux.DataGridSlice.actions
   const { isDeleteDialogOpen, isFilterModalOpen } = Redux.DataGridSlice.state()
   const { entityName } = Redux.DataGridSlice.state()
-  
+
   const filterFormRef = Form.useForm()[0];
   const addFormRef = Form.useForm()[0];
 
-  const [users, setUsers] = React.useState<IUserEntity[]>([]);
   const [deleteUser, setDeleteUser] = React.useState<IUserEntity>();
   const [tags, setTags] = useState<IFilterForm[]>([]);
+  const [meta, setMeta] = useImmer<IUserFilterMeta>({ roles: [], users: [], filter: { optionValues: [] } });
 
-  const filterAttr = UserMeta.filterUserAttributes
+  const { filterUserAttributes: filterAttr } = UserMeta()
 
+  useEffect(() => {
+    axios.GET({ url: '/api/mockTable' }).then(res => {
+      setMeta(meta => { meta.users = res.data })
+    })
+    axios.GET({ url: '/api/roles' }).then(res => {
+      setMeta(meta => { meta.roles = res.data })
+    });
+    return () => { }
+  }, [])
 
   // ADD/EDIT OPERATION
 
@@ -44,6 +54,15 @@ const Index = () => {
   function handleAddEditSubmit() {
     console.log("ADDFORM VALUES", addFormRef.getFieldsValue())
     closeAddDialog()
+  }
+  function afterHandleColumnChange(selectedOption) {
+    if (selectedOption?.value === 'roles') {
+      console.log("SELECTED OPTION", selectedOption)
+      setMeta(meta => { meta.filter.optionValues = meta.roles })
+      return
+    }
+    setMeta(meta => { meta.filter.optionValues = [] })
+    console.log("AFTER COLUMN CHANGE", selectedOption)
   }
 
   // FILTER OPERATION
@@ -81,7 +100,9 @@ const Index = () => {
     const key = deleteUser?.key;
     closeDeleteDialog();
     if (key) {
-      setUsers(users.filter(user => user.key !== key));
+      setMeta(meta => {
+        meta.users = meta.users.filter(user => user?.key !== key)
+      });
     }
   }
 
@@ -124,13 +145,13 @@ const Index = () => {
     <Button type="primary" htmlType="submit" onClick={() => addFormRef.submit()} >Submit</Button>
   ];
 
-  const columns = UserMeta.getUserEntityColumns(tuppleAcion)
+  const columns = UserMeta().getUserEntityColumns(tuppleAcion)
 
   return (
     <>
-      <UsersList props={{ users, setUsers, applyFilters, columns, headerActions, tags, setTags }} />
+      <UsersList props={{ data: meta.users, applyFilters, columns, headerActions, tags, setTags }} />
       <UserForm props={{ handleAddEditSubmit, addFormRef, addEditFooterActions }} />
-      <FilterModal props={{ tags, setTags, filterFooterActions, filterFormRef, isFilterModalOpen, closeFilterDialog, filterAttr }} />
+      <FilterModal props={{ tags, setTags, afterHandleColumnChange, optionValues:meta.filter.optionValues, filterFooterActions, filterFormRef, isFilterModalOpen, closeFilterDialog, filterAttr }} />
       <DeleteModal props={{ handleDeleteSubmit, handleDeleteCancel, isDeleteDialogOpen, entityName }} />
     </>
   )

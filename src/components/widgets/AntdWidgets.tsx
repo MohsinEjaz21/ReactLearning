@@ -170,7 +170,7 @@ function foreachOption(props, widget) {
   const evaluateProp = (element, key) => UtilCommons.evaluateResult(element, key)
   return options?.map((option, index) => (
     React.createElement(widget, {
-      key: option?.key || index,
+      key: option?.key || option?.id || index,
       value: evaluateProp(option, optionValue),
     }, evaluateProp(option, optionLabel))
   ))
