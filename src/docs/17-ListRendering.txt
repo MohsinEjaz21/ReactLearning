@@ -1,0 +1,15 @@
+1- key should be unique for each item in the list
+2- key should be the index of the item in the list
+3- key prop is reserve , dont accessible in child nodes so access through different prop name
+
+Q:: Key
+A"key"is a special string attribute you need to include when creating lists of elements.
+Keys give the elements a stable identity.
+Keys help React identify which items have changed,are added,or are removed.
+Help in efficient update of the user interface.
+
+Index as key
+Q:: When to use index as a key?
+1.The items in your list do not have a unique id.
+2.The list is a static list and will not change.
+3.The list will never be reordered or filtered.

@@ -1,0 +1,3 @@
+
+- Higher Order components are used for reusable components that can be used in multiple places in the application.
+- To share common functionality between the components
