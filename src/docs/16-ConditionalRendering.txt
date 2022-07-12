@@ -1,0 +1,5 @@
+Conditional Rendering
+1.if/else
+2.Element variables
+3.Ternary conditional operator
+4.Short circuit operator
