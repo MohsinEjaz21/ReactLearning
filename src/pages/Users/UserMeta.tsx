@@ -2,7 +2,44 @@ import { IUserEntity } from "@interfaces/IUserEntity";
 import { ColumnsType } from "antd/lib/table";
 export function UserMeta() {
 
-  const filterUserAttributes = [
+
+  const addFormFields = {
+    role: {
+      controlName: 'role',
+      label: 'Role',
+      type: 'button',
+      placeholder: "Enter Role",
+      value: 'user',
+    },
+    dob: {
+      span: 24,
+      label: "Date Of Birth",
+      placeholder: "Enter value",
+      controlName: "dob",
+      rules: [
+        {
+          required: true,
+          message: "Please enter date of birth",
+        },
+      ],
+    },
+    isMarried: {
+      span: 24, labelCol: 24, wrapperCol: 24,
+      label: "Is Married",
+      placeholder: "Enter value",
+      controlName: "isMarried",
+      optionValue: 'value',
+      optionLabel: 'label',
+      rules: [
+        {
+          required: true,
+          message: "Please enter isMarried",
+        },
+      ],
+    },
+  }
+
+  const mFilterColumnOptions = [
     {
       value: 'Age',
       label: 'Age',
@@ -52,7 +89,7 @@ export function UserMeta() {
     },
   ]
 
-  const getUserEntityColumns = (tuppleAcion): ColumnsType<IUserEntity> => {
+  const mDataTableCols = (tuppleAcion): ColumnsType<IUserEntity> => {
     return ([
       {
         title: 'Name',
@@ -81,5 +118,5 @@ export function UserMeta() {
     ])
   }
 
-  return { filterUserAttributes, getUserEntityColumns }
+  return { FILTER_COLUMN_OPTIONS: mFilterColumnOptions, DATA_TABLE_COLS: mDataTableCols, addFormFields }
 }

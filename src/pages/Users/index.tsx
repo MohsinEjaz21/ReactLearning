@@ -1,161 +1,79 @@
-import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
 import { IFilterForm } from '@interfaces/IFilterForm';
-import { IUserEntity, IUserFilterMeta } from '@interfaces/IUserEntity';
+import { IUserApiMeta, IUserEntity } from '@interfaces/IUserEntity';
 import { Redux } from '@redux/store';
 import { DeleteModal } from '@src/components/modals/DeleteModal';
 import { FilterModal } from '@src/components/modals/FilterModal';
-import { axios } from '@src/helpers/axios';
-import { Button, Form, FormInstance, Space } from 'antd';
+import { Form } from 'antd';
 import React, { useEffect, useState } from 'react';
-import { BsFunnel } from 'react-icons/bs';
-import { IoAddOutline } from 'react-icons/io5';
 import { useImmer } from 'use-immer';
+import { UserActionJsx } from './UserActions';
+import { UserActionAddEdit } from './UserActions/UserActionAddEdit';
+import { UserActionDelete } from './UserActions/UserActionDelete';
+import { UserActionFilter } from './UserActions/UserActionFilter';
 import { UserForm } from './UserForm';
 import { UsersList } from './UserList';
 import { UserMeta } from './UserMeta';
+import { UserService } from './UserService';
 const Index = () => {
-  const { openDeleteDialog, closeDeleteDialog } = Redux.DataGridSlice.actions
-  const { openFilterDialog, closeFilterDialog } = Redux.DataGridSlice.actions
-  const { openAddDialog, closeAddDialog } = Redux.DataGridSlice.actions
-  const { isDeleteDialogOpen, isFilterModalOpen } = Redux.DataGridSlice.state()
-  const { entityName } = Redux.DataGridSlice.state()
 
   const filterFormRef = Form.useForm()[0];
   const addFormRef = Form.useForm()[0];
 
+  const { closeFilterDialog } = Redux.DataGridSlice.actions
+  const { entityName, isDeleteDialogOpen, isFilterModalOpen } = Redux.DataGridSlice.state()
+
   const [deleteUser, setDeleteUser] = React.useState<IUserEntity>();
   const [tags, setTags] = useState<IFilterForm[]>([]);
-  const [apiResponse, setApiResponse] = useImmer<IUserFilterMeta>({ roles: [], users: [] });
-  const [optionsForFilterValues, setOptionsForFilterValues] = useImmer<any[]>([]);
-  const { filterUserAttributes: filterAttr } = UserMeta()
+  const [apiResponse, setApiResponse] = useImmer<IUserApiMeta>({ roles: [], users: [] });
+  const [optionsForFilterValues, setOptionsForFilters] = useImmer<any[]>([]);
+  const { FILTER_COLUMN_OPTIONS, DATA_TABLE_COLS } = UserMeta()
+  const userAction = {
+    ...UserActionAddEdit({ addFormRef }),
+    ...UserActionDelete({ deleteUser, setDeleteUser, setApiResponse }),
+    ...UserActionFilter({ filterFormRef, apiResponse, setOptionsForFilters })
+  };
+  const userActionJsx = UserActionJsx({ userAction, addFormRef, filterFormRef })
 
   useEffect(() => {
-    axios.GET({ url: '/api/mockTable' }).then(res => {
-      setApiResponse(state => { state.users = res.data })
+    UserService.getRoles().then(res => {
+      setApiResponse(meta => { meta.roles = res })
     })
-    axios.GET({ url: '/api/roles' }).then(res => {
-      setApiResponse(state => { state.roles = res.data })
-    });
+    UserService.getUsers().then(res => {
+      setApiResponse(meta => { meta.users = res })
+    })
     return () => { }
   }, [])
 
-  // ADD/EDIT OPERATION
-
-  function onClickEdit(payload) {
-    console.log(payload)
-    openAddDialog()
-  }
-  function onClickAdd() {
-    openAddDialog()
-  }
-  function handleAddEditCancel() {
-    closeAddDialog()
-  }
-  function handleAddEditSubmit() {
-    console.log("ADDFORM VALUES", addFormRef.getFieldsValue())
-    closeAddDialog()
-  }
-
-  function afterHandleColumnChange(selectedOption) {
-    if (selectedOption?.value === 'roles') {
-      console.log("SELECTED OPTION", selectedOption)
-      setOptionsForFilterValues(apiResponse.roles)
-      return
-    }
-    setOptionsForFilterValues([])
-    console.log("AFTER COLUMN CHANGE", selectedOption)
-  }
-
-  // FILTER OPERATION
-
-  const applyFilters = (query) => {
-    console.log("query :: ", query)
-  }
-
-  function onClickFilter() {
-    openFilterDialog()
-  }
-
-  function handleFilterCancel(filterFormRef: FormInstance) {
-    filterFormRef.resetFields();
-    closeFilterDialog()
-  }
-
-  function handleResetFilterForm(filterFormRef: FormInstance) {
-    filterFormRef.resetFields();
-  }
-
-  // DELETE OPERATION
-
-  function onClickDelete(payload) {
-    console.log(payload)
-    setDeleteUser(payload);
-    openDeleteDialog()
-  }
-  function handleDeleteCancel() {
-    setDeleteUser(undefined);
-    closeDeleteDialog();
-    console.log("deleteUser ::", deleteUser)
-  }
-  function handleDeleteSubmit(payload) {
-    const key = deleteUser?.key;
-    closeDeleteDialog();
-    if (key) {
-      setApiResponse(meta => {
-        meta.users = meta.users.filter(user => user?.key !== key)
-      });
-    }
-  }
-
-  const tuppleAcion = (_, record) => (
-    <Space size="small" className='tupple-actions'>
-      <Button type="ghost"
-        icon={<EditOutlined />}
-        size="middle" shape="circle"
-        onClick={() => onClickEdit(record)} />
-
-      <Button type="ghost"
-        icon={<DeleteOutlined />}
-        size="middle" shape="circle"
-        onClick={() => onClickDelete(record)} />
-    </Space>
-  )
-
-  const headerActions = (
-    <Space size="small" className='header-actions'>
-      <Button
-        className='center-icon add-icon' type="ghost" size="middle"
-        shape="circle" icon={<IoAddOutline className='add-icon' />}
-        onClick={onClickAdd}
-      />
-      <Button
-        className='center-icon filter-icon' type="ghost" size="middle"
-        shape="circle" icon={<BsFunnel className='filter-icon' />}
-        onClick={onClickFilter} />
-    </Space>
-  )
-
-  const filterFooterActions = [
-    <Button key="back" onClick={() => handleFilterCancel(filterFormRef)}>Cancel</Button>,
-    <Button key="clear" onClick={() => handleResetFilterForm(filterFormRef)}>Clear</Button>,
-    <Button type="primary" htmlType="submit" onClick={() => { filterFormRef.submit() }} >Submit</Button>
-  ];
-
-  const addEditFooterActions = [
-    <Button type="default" htmlType="button" onClick={handleAddEditCancel} >Cancel</Button>,
-    <Button type="primary" htmlType="submit" onClick={() => addFormRef.submit()} >Submit</Button>
-  ];
-
-  const columns = UserMeta().getUserEntityColumns(tuppleAcion)
-  const data = apiResponse.users
-  const optionValues = optionsForFilterValues
-
   return (
     <>
-      <UsersList props={{ data, columns, headerActions, tags, setTags, applyFilters }} />
-      <UserForm props={{ addFormRef, addEditFooterActions, handleAddEditSubmit }} />
-      <FilterModal props={{ tags, setTags, afterHandleColumnChange, optionValues, filterFooterActions, filterFormRef, isFilterModalOpen, closeFilterDialog, filterAttr }} />
-      <DeleteModal props={{ handleDeleteSubmit, handleDeleteCancel, isDeleteDialogOpen, entityName }} />
+      <UsersList props={{
+        tags, setTags,
+        headerActions: userActionJsx.headerActions,
+        data: apiResponse.users,
+        columns: DATA_TABLE_COLS(userActionJsx.tuppleAcion),
+        applyFilters: userAction.applyFilters,
+      }} />
+
+      <UserForm props={{
+        addFormRef, apiResponse,
+        addEditFooterActions: userActionJsx.addEditFooterActions,
+        handleAddEditSubmit: userAction.handleAddEditSubmit
+      }} />
+
+      <FilterModal props={{
+        tags, setTags,
+        handleColumnChange: userAction.handleColumnChange,
+        optionValues: optionsForFilterValues,
+        filterFooterActions: userActionJsx.filterFooterActions,
+        filterFormRef, isFilterModalOpen,
+        closeFilterDialog, FILTER_COLUMN_OPTIONS
+      }} />
+
+      <DeleteModal props={{
+        handleDeleteSubmit: userAction.handleDeleteSubmit,
+        handleDeleteCancel: userAction.handleDeleteCancel,
+        isDeleteDialogOpen, entityName
+      }} />
     </>
   )
 }

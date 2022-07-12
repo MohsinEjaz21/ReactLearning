@@ -12,7 +12,7 @@ export function FilterForm({ props: { options, ...rest } }) {
   const [componentType, setComponentType] = React.useState<IAntdWidgetType>("input");
   const [operators, setOperatorsOptions] = useState<IOperators[]>();
   const [columnDataType, setColumnDataType] = useState<IDatatypes>();
-  const { tags, setTags, closeFilterDialog, afterHandleColumnChange, optionValues: optionsForValues } = rest
+  const { tags, setTags, closeFilterDialog, handleColumnChange:afterHandleColumnChange, optionValues: optionsForValues } = rest
 
   const filterFormRef: FormInstance = rest?.filterFormRef
   const operator = Form.useWatch('operator', filterFormRef);

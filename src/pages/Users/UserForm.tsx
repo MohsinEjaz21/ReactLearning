@@ -1,65 +1,23 @@
 import { Redux } from '@redux/store';
 import { AntdDatePicker, AntdMultiSelect, AntdRadio, AntdSwitch } from '@src/components/widgets/AntdWidgets';
 import { Form, Modal } from 'antd';
+import { UserMeta } from './UserMeta';
 
-export const UserForm = ({ props: { handleAddEditSubmit, addFormRef, addEditFooterActions } }) => {
+export const UserForm = ({ props: { handleAddEditSubmit, addFormRef, addEditFooterActions, apiResponse } }) => {
   const { isAddModalOpen } = Redux.DataGridSlice.state()
-
-  const addFormFields = {
-    role: {
-      controlName: 'role',
-      label: 'Role',
-      type: 'button',
-      placeholder: "Enter Role",
-      options: [
-        { key: "1", label: 'Admin', value: 'admin' },
-        { key: "2", label: 'User', value: 'user' },
-      ],
-      value: 'user',
-      onChange: (e) => {
-        setValue('role', e.target.value);
-      }
-    },
-    dob: {
-      span: 24,
-      label: "Date Of Birth",
-      placeholder: "Enter value",
-      controlName: "dob",
-      rules: [
-        {
-          required: true,
-          message: "Please enter date of birth",
-        },
-      ],
-    },
-    isMarried: {
-      span: 24, labelCol: 24, wrapperCol: 24,
-      label: "Is Married",
-      placeholder: "Enter value",
-      controlName: "isMarried",
-      optionValue: 'value',
-      optionLabel: 'label',
-      rules: [
-        {
-          required: true,
-          message: "Please enter isMarried",
-        },
-      ],
-    },
-  }
-
+  const { addFormFields } = UserMeta()
   const setValue = (key, value) => {
     addFormRef.setFieldsValue({ [key]: value });
   }
-
   return (
     <>
       <Form form={addFormRef} onFinish={handleAddEditSubmit} >
         <Modal title="Add User" visible={isAddModalOpen} footer={addEditFooterActions}>
           <AntdDatePicker {...addFormFields.dob} />
           <AntdSwitch {...addFormFields.isMarried} />
-          <AntdRadio {...addFormFields.role} />
-          <AntdMultiSelect {...addFormFields.role} />
+          <AntdRadio {...addFormFields.role} options={apiResponse.roles} />
+          <AntdMultiSelect {...addFormFields.role} options={apiResponse.roles}
+            onChange={(e) => { setValue('role', e.target.value) }} />
         </Modal>
       </Form>
     </>

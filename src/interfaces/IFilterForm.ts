@@ -1,3 +1,8 @@
+export type IFilterModalState = {
+  tags, setTags, optionValues, filterFooterActions, filterFormRef, isFilterModalOpen, closeFilterDialog, FILTER_COLUMN_OPTIONS,
+  afterHandleColumnChange, 
+}
+
 export type IFilterForm = {
   column: string;
   operator: string | null;

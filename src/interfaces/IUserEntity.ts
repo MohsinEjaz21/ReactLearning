@@ -5,7 +5,8 @@ export type IUserEntity = {
   address: string;
 }
 
-export type IUserFilterMeta = {
+export type IUserApiMeta = {
   roles: any[];
   users: IUserEntity[];
 }
+
