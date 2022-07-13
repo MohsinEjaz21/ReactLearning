@@ -1,5 +1,5 @@
 import { IFilterForm } from '@interfaces/IFilterForm';
-import { IUserApiMeta, IUserEntity } from '@interfaces/IUserEntity';
+import { IUserAction, IUserApiMeta, IUserEntity } from '@interfaces/IUserEntity';
 import { Redux } from '@redux/store';
 import { DeleteModal } from '@src/components/modals/DeleteModal';
 import { FilterModal } from '@src/components/modals/FilterModal';
@@ -12,27 +12,31 @@ import { UserActionDelete } from './UserActions/UserActionDelete';
 import { UserActionFilter } from './UserActions/UserActionFilter';
 import { UserForm } from './UserForm';
 import { UsersList } from './UserList';
-import { UserMeta } from './UserMeta';
+import { UserMetaAddForm, UserMetaFilterForm, UserMetaTable } from './UserMeta';
 import { UserService } from './UserService';
 const Index = () => {
 
-  const filterFormRef = Form.useForm()[0];
-  const addFormRef = Form.useForm()[0];
-
+  const [filterFormRef, addFormRef] = [Form.useForm()[0], Form.useForm()[0]];
   const { closeFilterDialog } = Redux.DataGridSlice.actions
-  const { entityName, isDeleteDialogOpen, isFilterModalOpen } = Redux.DataGridSlice.state()
+  const { isDeleteDialogOpen, isFilterModalOpen, entityName } = Redux.DataGridSlice.state()
 
   const [deleteUser, setDeleteUser] = React.useState<IUserEntity>();
   const [tags, setTags] = useState<IFilterForm[]>([]);
   const [apiResponse, setApiResponse] = useImmer<IUserApiMeta>({ roles: [], users: [] });
   const [optionsForFilterValues, setOptionsForFilters] = useImmer<any[]>([]);
-  const { FILTER_COLUMN_OPTIONS, DATA_TABLE_COLS } = UserMeta()
-  const userAction = {
+  const userMeta = {
+    ...UserMetaAddForm(),
+    ...UserMetaFilterForm(),
+    ...UserMetaTable()
+  };
+  const userAction: IUserAction = {
     ...UserActionAddEdit({ addFormRef }),
     ...UserActionDelete({ deleteUser, setDeleteUser, setApiResponse }),
     ...UserActionFilter({ filterFormRef, apiResponse, setOptionsForFilters })
   };
-  const userActionJsx = UserActionJsx({ userAction, addFormRef, filterFormRef })
+  const userActionJsx = UserActionJsx({
+    userAction, addFormRef, filterFormRef
+  });
 
   useEffect(() => {
     UserService.getRoles().then(res => {
@@ -47,36 +51,36 @@ const Index = () => {
   return (
     <>
       <UsersList props={{
-        tags, setTags,
+        tags, setTags, data: apiResponse.users,
         headerActions: userActionJsx.headerActions,
-        data: apiResponse.users,
-        columns: DATA_TABLE_COLS(userActionJsx.tuppleAcion),
+        columns: userMeta.userMetaTable(userActionJsx.tuppleAcion),
         applyFilters: userAction.applyFilters,
       }} />
 
       <UserForm props={{
         addFormRef, apiResponse,
+        userAddFormMeta: userMeta.userMetaAddForm,
         addEditFooterActions: userActionJsx.addEditFooterActions,
         handleAddEditSubmit: userAction.handleAddEditSubmit
       }} />
 
       <FilterModal props={{
-        tags, setTags,
-        handleColumnChange: userAction.handleColumnChange,
-        optionValues: optionsForFilterValues,
+        filterFormRef, isFilterModalOpen, closeFilterDialog,
+        tags, setTags, optionValues: optionsForFilterValues,
         filterFooterActions: userActionJsx.filterFooterActions,
-        filterFormRef, isFilterModalOpen,
-        closeFilterDialog, FILTER_COLUMN_OPTIONS
+        filterColumnOptions: userMeta.filterColumnOptions,
+        handleColumnChange: userAction.handleColumnChange,
       }} />
 
       <DeleteModal props={{
+        isDeleteDialogOpen, entityName,
         handleDeleteSubmit: userAction.handleDeleteSubmit,
         handleDeleteCancel: userAction.handleDeleteCancel,
-        isDeleteDialogOpen, entityName
       }} />
     </>
   )
 }
 
 export default Index;
+
 

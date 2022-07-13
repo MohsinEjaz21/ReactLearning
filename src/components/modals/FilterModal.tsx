@@ -5,11 +5,11 @@ export const FilterModal = ({ props:
     optionValues,
     filterFooterActions, filterFormRef,
     isFilterModalOpen, closeFilterDialog,
-    FILTER_COLUMN_OPTIONS }
+    filterColumnOptions }
 }) => {
   return (
     <Modal title="Filter User" visible={isFilterModalOpen} footer={filterFooterActions}>
-      <FilterForm props={{ options: FILTER_COLUMN_OPTIONS, optionValues, handleColumnChange, filterFormRef, tags, setTags, closeFilterDialog }} />
+      <FilterForm props={{ options: filterColumnOptions, optionValues, handleColumnChange, filterFormRef, tags, setTags, closeFilterDialog }} />
     </Modal>
   );
 };
