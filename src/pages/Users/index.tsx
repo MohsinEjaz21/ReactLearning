@@ -1,5 +1,5 @@
 import { IFilterForm } from '@interfaces/IFilterForm';
-import { IUserApiMeta, IUserEntity } from '@interfaces/IUserEntity';
+import { IUserAction, IUserApiMeta, IUserEntity } from '@interfaces/IUserEntity';
 import { Redux } from '@redux/store';
 import { DeleteModal } from '@src/components/modals/DeleteModal';
 import { FilterModal } from '@src/components/modals/FilterModal';
@@ -12,7 +12,7 @@ import { UserActionDelete } from './UserActions/UserActionDelete';
 import { UserActionFilter } from './UserActions/UserActionFilter';
 import { UserForm } from './UserForm';
 import { UsersList } from './UserList';
-import { UserMeta } from './UserMeta';
+import { UserMetaAddForm, UserMetaFilterForm, UserMetaTable } from './UserMeta';
 import { UserService } from './UserService';
 const Index = () => {
 
@@ -26,8 +26,12 @@ const Index = () => {
   const [tags, setTags] = useState<IFilterForm[]>([]);
   const [apiResponse, setApiResponse] = useImmer<IUserApiMeta>({ roles: [], users: [] });
   const [optionsForFilterValues, setOptionsForFilters] = useImmer<any[]>([]);
-  const { FILTER_COLUMN_OPTIONS, DATA_TABLE_COLS } = UserMeta()
-  const userAction = {
+  const userMeta = {
+    ...UserMetaAddForm(),
+    ...UserMetaFilterForm(),
+    ...UserMetaTable()
+  }
+  const userAction: IUserAction = {
     ...UserActionAddEdit({ addFormRef }),
     ...UserActionDelete({ deleteUser, setDeleteUser, setApiResponse }),
     ...UserActionFilter({ filterFormRef, apiResponse, setOptionsForFilters })
@@ -47,10 +51,9 @@ const Index = () => {
   return (
     <>
       <UsersList props={{
-        tags, setTags,
+        tags, setTags, data: apiResponse.users,
         headerActions: userActionJsx.headerActions,
-        data: apiResponse.users,
-        columns: DATA_TABLE_COLS(userActionJsx.tuppleAcion),
+        columns: userMeta.userMetaTable(userActionJsx.tuppleAcion),
         applyFilters: userAction.applyFilters,
       }} />
 
@@ -61,18 +64,17 @@ const Index = () => {
       }} />
 
       <FilterModal props={{
-        tags, setTags,
-        handleColumnChange: userAction.handleColumnChange,
-        optionValues: optionsForFilterValues,
+        filterFormRef, isFilterModalOpen, closeFilterDialog,
+        tags, setTags, optionValues: optionsForFilterValues,
         filterFooterActions: userActionJsx.filterFooterActions,
-        filterFormRef, isFilterModalOpen,
-        closeFilterDialog, FILTER_COLUMN_OPTIONS
+        filterColumnOptions: userMeta.filterColumnOptions,
+        handleColumnChange: userAction.handleColumnChange,
       }} />
 
       <DeleteModal props={{
+        isDeleteDialogOpen, entityName,
         handleDeleteSubmit: userAction.handleDeleteSubmit,
         handleDeleteCancel: userAction.handleDeleteCancel,
-        isDeleteDialogOpen, entityName
       }} />
     </>
   )
