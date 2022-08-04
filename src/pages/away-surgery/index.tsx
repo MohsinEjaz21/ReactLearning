@@ -14,13 +14,11 @@ export default function AwaySurgery(props) {
         </div>
         <div className="div-02">
           <div className="container">
-            <div className="container__item">
-              <div className="item__image" />
-              <div className="item__container">
-                <h1 className="title">Fully Equipped Hospitals</h1>
-                <p className="description">Surgeries are performed in prestigious fully equipped hospitals in which doctors from all specialties are present.</p>
-                <button className="btn">More Info</button>
-              </div>
+            <div className="item">
+              <div className="image-01" />
+              <h1 className="title">Fully Equipped Hospitals</h1>
+              <p className="description">Surgeries are performed in prestigious fully equipped hospitals in which doctors from all specialties are present.</p>
+              <button className="btn">More Info</button>
             </div>
           </div>
         </div>
