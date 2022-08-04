@@ -1,5 +1,5 @@
-import '@styles/base.css';
-import '@styles/grid.css';
+import '@styles/base.scss';
+import '@styles/grid.scss';
 
 function GridComponent() {
   return (

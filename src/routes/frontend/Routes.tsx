@@ -6,8 +6,8 @@ const AppRoutes = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<AwaySurgery />} />
-        <Route path="/awaySurgery" element={<GridComponent />} />
+        <Route path="/" element={<GridComponent />} />
+        <Route path="/aws" element={<AwaySurgery />} />
       </Routes>
     </BrowserRouter>
   );
