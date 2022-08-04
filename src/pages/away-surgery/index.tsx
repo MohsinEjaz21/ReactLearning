@@ -13,9 +13,33 @@ export default function AwaySurgery(props) {
           </h1>
         </div>
         <div className="div-02">
-          <div className="container">
+          <div className="item-grid">
             <div className="item">
-              <div className="image-01" />
+              <img className="image" src="../../../assets/images/image1.svg" alt="" />
+              <h1 className="title">Fully Equipped Hospitals</h1>
+              <p className="description">Surgeries are performed in prestigious fully equipped hospitals in which doctors from all specialties are present.</p>
+              <button className="btn">More Info</button>
+            </div>
+            <div className="item">
+              <img className="image" src="../../../assets/images/image1.svg" alt="" />
+              <h1 className="title">Fully Equipped Hospitals</h1>
+              <p className="description">Surgeries are performed in prestigious fully equipped hospitals in which doctors from all specialties are present.</p>
+              <button className="btn">More Info</button>
+            </div>
+            <div className="item">
+              <img className="image" src="../../../assets/images/image1.svg" alt="" />
+              <h1 className="title">Fully Equipped Hospitals</h1>
+              <p className="description">Surgeries are performed in prestigious fully equipped hospitals in which doctors from all specialties are present.</p>
+              <button className="btn">More Info</button>
+            </div>
+            <div className="item">
+              <img className="image" src="../../../assets/images/image1.svg" alt="" />
+              <h1 className="title">Fully Equipped Hospitals</h1>
+              <p className="description">Surgeries are performed in prestigious fully equipped hospitals in which doctors from all specialties are present.</p>
+              <button className="btn">More Info</button>
+            </div>
+            <div className="item">
+              <img className="image" src="../../../assets/images/image1.svg" alt="" />
               <h1 className="title">Fully Equipped Hospitals</h1>
               <p className="description">Surgeries are performed in prestigious fully equipped hospitals in which doctors from all specialties are present.</p>
               <button className="btn">More Info</button>
