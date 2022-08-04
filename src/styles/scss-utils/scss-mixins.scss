@@ -1,0 +1,325 @@
+@use "sass:math";
+@import "../scss-vars.scss";
+
+@function strip-unit($number) {
+  @return $number;
+}
+
+@function px-to-rem($number) {
+  @return math.div($number, $base-font-size) * 1rem;
+}
+
+@mixin media($min: 0, $max: 0) {
+  @if ($min != 0 and $max == 0) {
+    @media (min-width: $min) {
+      @content;
+    }
+  } @else if ($min == 0 and $max != 0) {
+    @media (max-width: $max) {
+      @content;
+    }
+  } @else if ($min != 0 and $max != 0) {
+    @media (min-width: $min) and (max-width: $max) {
+      @content;
+    }
+  }
+}
+
+
+@mixin responsive-width($min-width, $max-width) {
+  $small-em: px-to-rem($min-width);
+  $large-em: px-to-rem($max-width);
+
+  $min-width: $min-width;
+  $max-width: $max-width;
+
+  $m-width: math.div(
+    strip-unit($max-width) - strip-unit($min-width),
+    strip-unit($break-stop) - strip-unit($break-start)
+  );
+  $b-width: unquote("#{$min-width} - #{$m-width} * #{$break-start}");
+  $n-width: #{$m-width * 100vw};
+
+  width: #{$min-width};
+  width: #{$small-em};
+
+  @media (min-width: #{$break-start}) {
+    width: #{($min-width + $max-width) * 0.5};
+    width: calc(#{$n-width} + #{$b-width});
+  }
+
+  @media (min-width: $break-end) {
+    width: #{$max-width};
+    width: #{$large-em};
+  }
+}
+
+@mixin responsive-height($min-height, $max-height) {
+  $small-em: px-to-rem($min-height);
+  $large-em: px-to-rem($max-height);
+
+  $min-height: $min-height;
+  $max-height: $max-height;
+
+  $m-height: math.div(
+    strip-unit($max-height) - strip-unit($min-height),
+    strip-unit($break-stop) - strip-unit($break-start)
+  );
+  $b-height: unquote("#{$min-height} - #{$m-height} * #{$break-start}");
+  $n-height: #{$m-height * 100vw};
+
+  height: #{$min-height};
+  height: #{$small-em};
+
+  @media (min-width: #{$break-start}) {
+    height: #{($min-height + $max-height) * 0.5};
+    height: calc(#{$n-height} + #{$b-height});
+  }
+
+  @media (min-width: $break-end) {
+    height: #{$max-height};
+    height: #{$large-em};
+  }
+}
+
+// responsive line-height
+@mixin responsive-lineheight($min-line-height , $max-line-height, $min-line-height-mobile : false) {
+  $small-em: px-to-rem($min-line-height);
+  $large-em: px-to-rem($max-line-height);
+  $min-line-height: $min-line-height;
+  $max-line-height: $max-line-height;
+  $m-line-height: math.div(
+    strip-unit($max-line-height) - strip-unit($min-line-height),
+    strip-unit($break-stop) - strip-unit($break-start)
+  );
+  $b-line-height: unquote("#{$min-line-height} - #{$m-line-height} * #{$break-start}");
+  $n-line-height: #{$m-line-height * 100vw};
+  line-height: #{$min-line-height};
+  line-height: #{$small-em};
+  @media (min-width: #{$break-start}) {
+    line-height: #{($min-line-height + $max-line-height) * 0.5};
+    line-height: calc(#{$n-line-height} + #{$b-line-height});
+  }
+  @media (min-width: $break-end) {
+    line-height: #{$max-line-height};
+    line-height: #{$large-em};
+  }
+  @if ($min-line-height-mobile) {
+    @media (max-width: $break-start) {
+      line-height: #{$min-line-height-mobile};
+      line-height: #{$small-em};
+    }
+  }
+}
+
+@mixin responsive-typography($min-font-size, $max-font-size, $line-height: false) {
+  $small-em: px-to-rem($min-font-size);
+  $large-em: px-to-rem($max-font-size);
+
+  $min-line-height: $min-font-size * $base-min-line-height;
+  $max-line-height: $max-font-size * $base-max-line-height;
+
+  // Calculate M (how many pixels do we add to the font size for each increase of 1px to the viewport width)
+  $m-font: math.div(
+    strip-unit($max-font-size) - strip-unit($min-font-size),
+    strip-unit($break-stop) - strip-unit($break-start)
+  );
+  $m-line: math.div($max-line-height - $min-line-height, $break-stop - $break-start);
+
+  // Calculate B (font-size before we add any viewport-based value)
+  $b-font: unquote("#{$min-font-size} - #{$m-font} * #{$break-start}");
+  $b-line: unquote("#{$min-line-height} - #{$m-line} * #{$break-start}");
+
+  // Calculate N (convert to vw)
+  $n-font: #{$m-font * 100vw};
+  $n-line: #{$m-line * 100vw};
+
+  font-size: #{$min-font-size};
+  font-size: #{$small-em};
+
+  @if $line-height == true {
+    line-height: px-to-rem($min-line-height);
+  }
+
+  @media (min-width: #{$break-start}) {
+    font-size: #{($min-font-size + $max-font-size) * 0.5};
+    font-size: calc(#{$n-font} + #{$b-font});
+
+    @if $line-height == true {
+      line-height: #{($min-line-height + $max-line-height) * 0.5};
+      line-height: calc(#{$n-line} + #{$b-line});
+    }
+  }
+
+  @media (min-width: $break-end) {
+    font-size: #{$max-font-size};
+    font-size: #{$large-em};
+
+    @if $line-height == true {
+      line-height: px-to-rem($max-line-height);
+    }
+  }
+}
+
+// &&&&&&&&&&&&&&&&&
+//  Polyflex mixins
+// &&&&&&&&&&&&&&&&&
+
+/// poly-fluid-sizing
+/// Generate linear interpolated size values through multiple break points
+/// @param $property - A string CSS property name
+/// @param $map - A SASS map of viewport unit and size value pairs
+/// @requires function linear-interpolation
+/// @requires function map-sort
+/// @example
+///   @include poly-fluid-sizing('font-size', (576px: 22px, 768px: 24px, 992px: 34px));
+/// @author Jake Wilson <jake.e.wilson@gmail.com>
+@mixin poly-fluid-sizing($property, $map) {
+  // Get the number of provided breakpoints
+  $length: length(map-keys($map));
+
+  // Error if the number of breakpoints is < 2
+  @if ($length < 2) {
+    @error "poly-fluid-sizing() $map requires at least values"
+  }
+
+  // Sort the map by viewport width (key)
+  $map: map-sort($map);
+  $keys: map-keys($map);
+
+  // Minimum size
+  #{$property}: map-get($map, nth($keys,1));
+
+  // Interpolated size through breakpoints
+  @for $i from 1 through ($length - 1) {
+    @media (min-width:nth($keys,$i)) {
+      #{$property}: linear-interpolation((nth($keys,$i): map-get($map, nth($keys,$i)), nth($keys,($i+1)): map-get($map, nth($keys,($i + 1)))));
+    }
+  }
+
+  // Maxmimum size
+  @media (min-width:nth($keys,$length)) {
+    #{$property}: map-get($map, nth($keys,$length));
+  }
+}
+
+/// linear-interpolation
+/// Calculate the definition of a line between two points
+/// @param $map - A SASS map of viewport widths and size value pairs
+/// @returns A linear equation as a calc() function
+/// @example
+///   font-size: linear-interpolation((320px: 18px, 768px: 26px));
+/// @author Jake Wilson <jake.e.wilson@gmail.com>
+@function linear-interpolation($map) {
+  $keys: map-keys($map);
+  @if (length($keys) != 2) {
+    @error "linear-interpolation() $map must be exactly 2 values";
+  }
+  // The slope
+  $m: (map-get($map, nth($keys, 2)) - map-get($map, nth($keys, 1)))/(nth($keys, 2) - nth($keys,1));
+
+  // The y-intercept
+  $b: map-get($map, nth($keys, 1)) - $m * nth($keys, 1);
+
+  // Determine if the sign should be positive or negative
+  $sign: "+";
+  @if ($b < 0) {
+    $sign: "-";
+    $b: abs($b);
+  }
+
+  @return calc(#{$m*100}vw #{$sign} #{$b});
+}
+
+/// list-sort
+/// Sort a SASS list
+/// @param $list - A SASS list
+/// @returns A sorted SASS list
+/// @requires function list-remove
+/// @author Jake Wilson <jake.e.wilson@gmail.com>
+@function list-sort($list) {
+  $sortedlist: ();
+  @while length($list) > 0 {
+    $value: nth($list,1);
+    @each $item in $list {
+      @if $item < $value {
+        $value: $item;
+      }
+    }
+    $sortedlist: append($sortedlist, $value, 'space');
+    $list: list-remove($list, index($list, $value));
+  }
+  @return $sortedlist;
+}
+
+/// map-sort
+/// Sort map by keys
+/// @param $map - A SASS map
+/// @returns A SASS map sorted by keys
+/// @requires function list-sort
+/// @author Jake Wilson <jake.e.wilson@gmail.com>
+@function map-sort($map) {
+  $keys: list-sort(map-keys($map));
+  $sortedMap: ();
+  @each $key in $keys {
+    $sortedMap: map-merge($sortedMap, ($key: map-get($map, $key)));
+  }
+  @return $sortedMap;
+}
+
+/// list-remove
+/// Remove an item from a list
+/// @param $list - A SASS list
+/// @param $index - The list index to remove
+/// @returns A SASS list
+/// @author Jake Wilson <jake.e.wilson@gmail.com>
+@function list-remove($list, $index) {
+  $newList: ();
+  @for $i from 1 through length($list) {
+    @if $i != $index {
+      $newList: append($newList, nth($list,$i), 'space');
+    }
+  }
+  @return $newList;
+}
+
+
+
+
+
+
+// upto
+// above
+// only
+
+// @mixin media($size) {
+//   @if $size == phone-only {
+//     @media (max-width: 599px) {
+//       @content;
+//     }
+//   } @else if $size == tablet-portrait-up {
+//     @media (min-width: 600px) {
+//       @content;
+//     }
+//   } @else if $size == tablet-only {
+//     @media (max-width: 799px) {
+//       @content;
+//     }
+//   } @else if $size == tablet-landscape-up {
+//     @media (min-width: 900px) {
+//       @content;
+//     }
+//   } @else if $size == laptops-small-only {
+//     @media (max-width: 1024px) {
+//       @content;
+//     }
+//   } @else if $size == desktop-up {
+//     @media (min-width: 1200px) {
+//       @content;
+//     }
+//   } @else if $size == big-desktop-up {
+//     @media (min-width: 1800px) {
+//       @content;
+//     }
+//   }
+// }
