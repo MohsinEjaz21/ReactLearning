@@ -1,7 +1,7 @@
-import '@styles/base.css'
-import '@styles/grid.css'
+import '@styles/base.css';
+import '@styles/grid.css';
 
-function index() {
+function GridComponent() {
   return (
     <div className="grid">
       <h1 className="card">1</h1>
@@ -20,4 +20,4 @@ function index() {
   )
 }
 
-export default index
+export default GridComponent;

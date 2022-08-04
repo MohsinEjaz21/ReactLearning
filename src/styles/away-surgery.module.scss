@@ -1,0 +1,495 @@
+/* This source code is exported from pxCode, you can get more document from https://www.pxcode.io */
+@import "utils";
+
+$color_type_0: rgb(0, 0, 0);
+$color_type_1: rgb(255, 255, 255);
+$color_type_2: rgb(255, 95, 126);
+$color_type_3: rgb(85, 85, 85);
+
+$font_type_0: 600 36px/1.2 "Poppins", Helvetica, Arial, serif;
+$font_type_1: 25px/1.2 "Poppins", Helvetica, Arial, serif;
+$font_type_2: 18px/1.5 "Lato", Helvetica, Arial, serif;
+
+.block {
+  @include flex-column;
+  background-color: $color_type_1;
+}
+.block_layout {
+  position: relative;
+  min-height: 1095px;
+}
+.flex {
+  @include flex-column;
+}
+.medium_title {
+  @include h-center-content;
+  font: $font_type_1;
+  color: $color_type_2;
+  text-align: center;
+  letter-spacing: 0px;
+}
+.medium_title_layout {
+  position: relative;
+  width: 48.66%;
+  margin: 0px auto;
+}
+.hero_title {
+  @include h-center-content;
+  font: $font_type_0;
+  color: $color_type_0;
+  text-align: center;
+  letter-spacing: 0px;
+}
+.hero_title_layout {
+  position: relative;
+  width: 65.75%;
+  margin: 24px auto 0px;
+}
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  row-gap: 6px;
+  column-gap: 22px;
+}
+.list_layout {
+  position: relative;
+  margin: 69px 0px 0px;
+}
+.list1 {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.list1_layout {
+  position: relative;
+  flex: 1 1 365px;
+}
+.flex1 {
+  display: flex;
+}
+.flex1_layout {
+  position: relative;
+  flex: 1 1 365px;
+}
+.flex_item {
+  @include flex-column;
+  position: relative;
+  flex: 0 1 59px;
+}
+.block4 {
+  @include flex-column;
+}
+.block4_layout {
+  position: relative;
+  flex-grow: 1;
+  margin: 0px 0px 224px;
+}
+.medium_title_layout1 {
+  position: absolute;
+  top: 0px;
+  height: min-content;
+  left: -3px;
+  width: 30px;
+}
+.line {
+  background-color: $color_type_2;
+}
+.line_layout {
+  position: relative;
+  height: 2px;
+  margin: 18px 0px 18px 32px;
+}
+.flex_spacer {
+  @include flex-column;
+  position: relative;
+  flex: 0 1 8px;
+}
+.flex_item1 {
+  @include flex-column;
+  position: relative;
+  flex: 0 1 298px;
+}
+.block1 {
+  @include flex-column;
+}
+.block1_layout {
+  position: relative;
+  height: 262px;
+}
+.flex_layout {
+  position: relative;
+  flex-grow: 1;
+}
+.medium_title1 {
+  @include font-face($font_type_1, $color_type_2, 0px);
+}
+.medium_title1_layout {
+  position: relative;
+}
+.highlights {
+  @include font-face($font_type_2, $color_type_3, 0px);
+}
+.highlights_layout {
+  position: relative;
+  margin: 16px 0px 0px;
+}
+.flex2 {
+  display: flex;
+}
+.flex2_layout {
+  position: relative;
+  flex: 1 1 365px;
+}
+.flex_item2 {
+  @include flex-column;
+  position: relative;
+  flex: 0 1 62px;
+}
+.block7 {
+  display: flex;
+}
+.block7_layout {
+  position: relative;
+  flex-grow: 1;
+  margin: 0px 0px 232px;
+}
+.medium_title_layout2 {
+  position: relative;
+  flex: 0 0 auto;
+}
+.block7_spacer {
+  @include flex-column;
+  position: relative;
+  flex: 0 1 5px;
+}
+.block7_item {
+  @include flex-column;
+  position: relative;
+  flex: 0 1 20px;
+}
+.box1 {
+  background-color: $color_type_2;
+}
+.box1_layout {
+  position: relative;
+  height: 2px;
+  margin: 18px 0px 10px;
+}
+.flex_item3 {
+  @include flex-column;
+  position: relative;
+  flex: 0 1 298px;
+}
+.block11 {
+  @include flex-column;
+}
+.block11_layout {
+  position: relative;
+  flex-grow: 1;
+}
+.medium_title2 {
+  @include font-face($font_type_1, $color_type_2, 0px);
+}
+.medium_title2_layout {
+  position: relative;
+}
+.flex3 {
+  display: flex;
+}
+.flex3_layout {
+  position: relative;
+  flex: 1 1 365px;
+}
+.flex_item4 {
+  @include flex-column;
+  position: relative;
+  flex: 0 1 62px;
+}
+.block7_layout1 {
+  position: relative;
+  flex-grow: 1;
+  margin: 0px 0px 205px;
+}
+.medium_title_layout3 {
+  position: relative;
+  flex: 0 0 auto;
+}
+.flex_item5 {
+  @include flex-column;
+  position: relative;
+  flex: 0 1 298px;
+}
+.block2 {
+  @include flex-column;
+}
+.block2_layout {
+  position: relative;
+  flex-grow: 1;
+}
+.medium_title3 {
+  @include font-face($font_type_1, $color_type_2, 0px);
+}
+.medium_title3_layout {
+  position: relative;
+}
+.flex4 {
+  display: flex;
+}
+.flex4_layout {
+  position: relative;
+  flex: 1 1 365px;
+}
+.block5 {
+  @include flex-column;
+}
+.block5_layout {
+  position: relative;
+  flex-grow: 1;
+  margin: 0px 0px 197px;
+}
+.medium_title_layout4 {
+  position: absolute;
+  top: 0px;
+  height: min-content;
+  left: -3px;
+  width: 38px;
+}
+.box {
+  background-color: $color_type_2;
+}
+.box_layout {
+  position: relative;
+  height: 2px;
+  margin: 18px 0px 18px 40px;
+}
+.flex_item6 {
+  @include flex-column;
+  position: relative;
+  flex: 0 1 298px;
+}
+.medium_title4 {
+  @include font-face($font_type_1, $color_type_2, 0px);
+}
+.medium_title4_layout {
+  position: relative;
+}
+.flex5 {
+  display: flex;
+}
+.flex5_layout {
+  position: relative;
+  flex: 1 1 365px;
+}
+.flex_item7 {
+  @include flex-column;
+  position: relative;
+  flex: 0 1 62px;
+}
+.block8 {
+  display: flex;
+}
+.block8_layout {
+  position: relative;
+  flex-grow: 1;
+  margin: 0px 0px 232px;
+}
+.medium_title_layout5 {
+  position: relative;
+  flex: 0 0 auto;
+}
+.block8_spacer {
+  @include flex-column;
+  position: relative;
+  flex: 0 1 5px;
+}
+.block8_item {
+  @include flex-column;
+  position: relative;
+  flex: 0 1 19px;
+}
+.box_layout1 {
+  position: relative;
+  height: 2px;
+  margin: 18px 0px 10px;
+}
+.flex_item8 {
+  @include flex-column;
+  position: relative;
+  flex: 0 1 298px;
+}
+.block12 {
+  @include flex-column;
+}
+.block12_layout {
+  position: relative;
+  flex-grow: 1;
+}
+.medium_title5 {
+  @include font-face($font_type_1, $color_type_2, 0px);
+}
+.medium_title5_layout {
+  position: relative;
+  margin: 0px 10px 0px 0px;
+}
+.flex6 {
+  display: flex;
+}
+.flex6_layout {
+  position: relative;
+  flex: 1 1 365px;
+}
+.flex_item9 {
+  @include flex-column;
+  position: relative;
+  flex: 0 1 62px;
+}
+.block8_layout1 {
+  position: relative;
+  flex-grow: 1;
+  margin: 0px 0px 178px;
+}
+.medium_title_layout6 {
+  position: relative;
+  flex: 0 0 auto;
+}
+.box_layout2 {
+  position: relative;
+  height: 2px;
+  margin: 18px 0px 10px;
+}
+.flex_item10 {
+  @include flex-column;
+  position: relative;
+  flex: 0 1 298px;
+}
+.block3 {
+  @include flex-column;
+}
+.block3_layout {
+  position: relative;
+  flex-grow: 1;
+}
+.medium_title6 {
+  @include font-face($font_type_1, $color_type_2, 0px);
+}
+.medium_title6_layout {
+  position: relative;
+  margin: 0px 28px 0px 0px;
+}
+.flex7 {
+  display: flex;
+}
+.flex7_layout {
+  position: relative;
+  flex: 1 1 365px;
+}
+.block6 {
+  @include flex-column;
+}
+.block6_layout {
+  position: relative;
+  flex-grow: 1;
+  margin: 0px 0px 197px;
+}
+.medium_title_layout7 {
+  position: absolute;
+  top: 0px;
+  height: min-content;
+  left: -3px;
+  width: 36px;
+}
+.line1 {
+  background-color: $color_type_2;
+}
+.line1_layout {
+  position: relative;
+  height: 2px;
+  margin: 18px 0px 18px 38px;
+}
+.flex_item11 {
+  @include flex-column;
+  position: relative;
+  flex: 0 1 298px;
+}
+.medium_title7 {
+  @include font-face($font_type_1, $color_type_2, 0px);
+}
+.medium_title7_layout {
+  position: relative;
+}
+.flex8 {
+  display: flex;
+}
+.flex8_layout {
+  position: relative;
+  flex: 1 1 365px;
+}
+.flex_item12 {
+  @include flex-column;
+  position: relative;
+  flex: 0 1 62px;
+}
+.block8_layout2 {
+  position: relative;
+  flex-grow: 1;
+  margin: 0px 0px 205px;
+}
+.medium_title_layout8 {
+  position: relative;
+  flex: 0 0 auto;
+}
+.box_layout3 {
+  position: relative;
+  height: 2px;
+  margin: 18px 0px 10px;
+}
+.flex_item13 {
+  @include flex-column;
+  position: relative;
+  flex: 0 1 298px;
+}
+.medium_title8 {
+  @include font-face($font_type_1, $color_type_2, 0px);
+}
+.medium_title8_layout {
+  position: relative;
+  margin: 0px 38px 0px 0px;
+}
+.flex9 {
+  display: flex;
+}
+.flex9_layout {
+  position: relative;
+  flex: 1 1 365px;
+}
+.flex_item14 {
+  @include flex-column;
+  position: relative;
+  flex: 0 1 62px;
+}
+.block8_layout3 {
+  position: relative;
+  flex-grow: 1;
+  margin: 0px 0px 205px;
+}
+.medium_title_layout9 {
+  position: relative;
+  flex: 0 0 auto;
+}
+.box_layout4 {
+  position: relative;
+  height: 2px;
+  margin: 18px 0px 10px;
+}
+.flex_item15 {
+  @include flex-column;
+  position: relative;
+  flex: 0 1 298px;
+}
+.medium_title9 {
+  @include font-face($font_type_1, $color_type_2, 0px);
+}
+.medium_title9_layout {
+  position: relative;
+}
