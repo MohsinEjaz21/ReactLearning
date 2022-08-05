@@ -4,7 +4,7 @@ export default function AwaySurgery(props) {
   return (
     <section className="section-01">
       <div className="container">
-        <div className="div-01">
+        <div className="left-section">
           <h2 className="h-01">
             Why Clineca?.
           </h2>
@@ -12,37 +12,37 @@ export default function AwaySurgery(props) {
             From beginning to end, we inform you, guide you, serve you, and help you.
           </h1>
         </div>
-        <div className="div-02">
+        <div className="right-section">
           <div className="item-grid">
             <div className="item">
               <img className="image" src="../../../assets/images/image1.svg" alt="" />
               <h1 className="title">Fully Equipped Hospitals</h1>
               <p className="description">Surgeries are performed in prestigious fully equipped hospitals in which doctors from all specialties are present.</p>
-              <button className="btn">More Info</button>
+              <button className="button">More Info</button>
+            </div>
+            <div className="item">
+              <img className="image" src="../../../assets/images/image1.svg" alt="" />
+              <h1 className="title">Free Consultation</h1>
+              <p className="description">We provide free online consultation with our surgeons through video chat.</p>
+              <button className="button">More Info</button>
             </div>
             <div className="item">
               <img className="image" src="../../../assets/images/image1.svg" alt="" />
               <h1 className="title">Fully Equipped Hospitals</h1>
               <p className="description">Surgeries are performed in prestigious fully equipped hospitals in which doctors from all specialties are present.</p>
-              <button className="btn">More Info</button>
+              <button className="button">More Info</button>
             </div>
             <div className="item">
               <img className="image" src="../../../assets/images/image1.svg" alt="" />
               <h1 className="title">Fully Equipped Hospitals</h1>
               <p className="description">Surgeries are performed in prestigious fully equipped hospitals in which doctors from all specialties are present.</p>
-              <button className="btn">More Info</button>
+              <button className="button">More Info</button>
             </div>
             <div className="item">
               <img className="image" src="../../../assets/images/image1.svg" alt="" />
               <h1 className="title">Fully Equipped Hospitals</h1>
               <p className="description">Surgeries are performed in prestigious fully equipped hospitals in which doctors from all specialties are present.</p>
-              <button className="btn">More Info</button>
-            </div>
-            <div className="item">
-              <img className="image" src="../../../assets/images/image1.svg" alt="" />
-              <h1 className="title">Fully Equipped Hospitals</h1>
-              <p className="description">Surgeries are performed in prestigious fully equipped hospitals in which doctors from all specialties are present.</p>
-              <button className="btn">More Info</button>
+              <button className="button">More Info</button>
             </div>
           </div>
         </div>

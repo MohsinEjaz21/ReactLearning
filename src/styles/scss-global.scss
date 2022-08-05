@@ -13,7 +13,7 @@
 }
 
 #root {
-  @extend .flex-center;
+  // @extend .flex-center;
 }
 
 * {
@@ -57,6 +57,12 @@ html {
   align-items: center;
 }
 
+.sticky {
+  position: -webkit-sticky;
+  position: sticky;
+  z-index: 1;
+}
+
 .heading-medium {
   font-family: "Poppins";
   font-style: normal;
@@ -96,29 +102,39 @@ html {
 //&&&&&&&&&&&&&&&&&&&
 
 .section-01 {
-  // max-width: 1440px;
-  @extend .flex-center;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: minmax(320px, 1440px);
+  justify-content: center;
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 
-  .div-01 {
+  .left-section {
+    width: 100%;
+    max-width: 762px;
     display: flex;
     flex-direction: column;
     align-items: center;
     .h-01 {
-      @extend .heading-small, .color-primary;
+      @extend .heading-small, .color-primary, .text-center;
     }
     .h-02 {
-      @extend .heading-medium;
-      // max-width: 762px;
+      @extend .heading-medium, .text-center;
     }
   }
 
-  .div-02 {
+  .right-section {
+    width: 100%;
     margin-top: 4.8rem;
 
     .item-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(365px, 1fr));
-      grid-gap: 1rem;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 365px));
+      grid-gap: 2rem;
+      justify-content: center;
     }
 
     .item-grid > .item {
@@ -127,23 +143,26 @@ html {
 
       .title {
         @extend .heading-small;
-        max-width: 317px;
+        // max-width: 317px;
       }
       .description {
         @extend .paragraph;
-        max-width: 317px;
+        // max-width: 317px;
+        min-height: 100px;
+
         padding-bottom: 1.6rem;
       }
-      .btn {
+      .button {
         display: flex;
         flex-direction: row;
         justify-content: center;
         align-items: center;
         padding: 16px 40px;
         gap: 10px;
-        width: 317px;
+        // width: 317px;
         height: 50px;
         @extend .btn;
+        bottom: 0;
         border: 3px solid #ff5f7e;
         color: #ff5f7e;
       }
@@ -153,7 +172,6 @@ html {
         height: auto;
         width: 82px;
         padding-bottom: 2.4rem;
-        // background-image: url("../../assets/images/image1.svg");
       }
     }
   }
