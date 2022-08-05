@@ -132,8 +132,8 @@ html {
 
     .item-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 365px));
-      grid-gap: 2rem;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 365px));
+      grid-gap: 4rem;
       justify-content: center;
     }
 
@@ -149,7 +149,6 @@ html {
         @extend .paragraph;
         // max-width: 317px;
         min-height: 100px;
-
         padding-bottom: 1.6rem;
       }
       .button {
@@ -168,6 +167,7 @@ html {
       }
 
       .image {
+        max-height: 104px;
         width: 100%;
         height: auto;
         width: 82px;
