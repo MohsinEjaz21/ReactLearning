@@ -1,5 +1,6 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import AwaySurgery from '../../pages/away-surgery';
+import Section01 from '../../pages/away-surgery/section-01';
+import Section02 from '../../pages/away-surgery/section-02';
 import GridComponent from '../../pages/grid-component';
 
 const AppRoutes = () => {
@@ -7,7 +8,8 @@ const AppRoutes = () => {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<GridComponent />} />
-        <Route path="/aws" element={<AwaySurgery />} />
+        <Route path="/sec1" element={<Section01 />} />
+        <Route path="/sec2" element={<Section02 />} />
       </Routes>
     </BrowserRouter>
   );
