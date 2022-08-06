@@ -269,148 +269,80 @@ html {
 //&&&&&&&&&&&&&&&&&&&
 
 .section-03 {
+  box-shadow: 0 0 0 100vmax var(--color-secondary);
+  clip-path: inset(0 -100vmax);
+  overflow-x: hidden;
   background: var(--color-secondary);
   max-width: 1440px;
   margin: 0 auto;
 
-  @include min-md {
-    box-shadow: 0 0 0 100vmax var(--color-secondary);
-    clip-path: inset(0 -100vmax);
-  }
-
-  @include md {
-    width: 100vh;
+  .container {
+    column-gap: 4rem;
     display: flex;
     justify-content: center;
-  }
-
-  .container > * {
-    background: var(--color-secondary);
-    flex-basis: 100%;
-    @include md {
-      // flex-shrink: 0;
-    }
-  }
-
-  .container {
-    height: 569px;
-    display: flex;
-    gap: 5vw;
+    align-items: center;
 
     @include md {
       flex-direction: column;
-      gap: 0;
-      // width: 100vh;
+    }
+  }
+  // ===========LEFT SECTION===========
+  .left-section {
+    @include md {
+      width: 100%;
     }
 
-    .left-section {
-      position: relative;
-
+    .content {
       @include md {
-        box-shadow: 0 0 0 100vmax var(--color-secondary);
-        clip-path: inset(0 -100vmax);
         display: flex;
         justify-content: center;
+        background-color: #ff5f7e;
       }
 
       .image1 {
-        position: absolute;
-        width: 388.91px;
-        height: 506px;
-        left: 139.09px;
-        top: 63px;
-        background-image: url("../../../../assets/images/image_21.png");
-        z-index: 1;
-
-        @include md {
-          position: relative;
-          display: block;
-          // margin: 0 auto;
-          left: auto;
-          right: auto;
-          background-size: contain;
-          // width: 100%;
-          // height: 100%;
-          background-repeat: no-repeat;
-          // left: 0;
-          // top: 0;
-        }
-
-        @include sm {
-        }
-      }
-
-      .image2 {
-        position: absolute;
-        width: 255.76px;
+        width: 478px;
         height: 569px;
-        left: 135.25px;
-        top: 0px;
-        background: #ff5f7e;
-
-        @include md {
-          width: 100%;
-          box-shadow: 0 0 0 100vmax var(--color-primary);
-          clip-path: inset(0 -100vmax);
-        }
-      }
-
-      .image3 {
-        background-image: url("../../../../assets/images/img20.svg");
-        position: absolute;
-        width: 164.76px;
-        height: 172px;
         left: 50px;
         top: 79px;
+        background-image: url("../../../../assets/images/img_21.svg");
         @include md {
-          display: none;
+          width: 320px;
+          height: 406px;
+          background-size: contain;
+          background-image: url("../../../../assets/images/img_23.png");
+          background-repeat: no-repeat;
         }
       }
     }
+  }
 
-    .right-section > * {
-      @include md {
-        flex-shrink: 0;
-      }
+  .right-section {
+    padding: 50px 0;
+    max-width: 564px;
+    width: (calc(100% - 20px));
+    .content {
+      padding: 20px;
+      // background: blue;
     }
 
-    .right-section {
-      @include md {
-        box-shadow: 0 0 0 100vmax var(--color-secondary);
-        clip-path: inset(0 -100vmax);
-        margin-left: 100px;
-        // max-width: 100%;
-        // width: 100vh;
-      }
-
-      padding: 50px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      // max-width: 564px;
-      .text1 {
-        @extend .heading-small;
-        color: #ff5f7e;
-        max-width: 326px;
-      }
-
-      .text2 {
-        @extend .heading-medium;
-        max-width: 564px;
-        color: #ffffff;
-      }
-
-      .w-btn {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-        padding: 16px 32px;
-        gap: 10px;
-        width: 237px;
-        height: 50px;
-        background: #ffffff;
-      }
+    .text1 {
+      @extend .heading-small;
+      color: #ff5f7e;
+      width: 326px;
+      height: 38px;
+    }
+    .text2 {
+      @extend .heading-medium;
+      color: #ffffff;
+    }
+    .w-btn {
+      width: 237px;
+      height: 50px;
+      background: #ffffff;
+      padding: 16px 32px;
+      margin-top: 10px;
+      white-space: nowrap;
+      font-size: 15px;
     }
   }
 }

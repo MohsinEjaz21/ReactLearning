@@ -96,3 +96,8 @@
   color: $color;
   letter-spacing: $letterSpacing;
 }
+
+@function get-vh($object) {
+  $vh: (768 * 0.01) * 1px;
+  @return ($object / $vh) * 1vh;
+}
