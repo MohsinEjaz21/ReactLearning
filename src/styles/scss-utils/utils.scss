@@ -28,6 +28,12 @@
   }
 }
 
+@mixin min-md {
+  @media (min-width: 991px) {
+    @content;
+  }
+}
+
 @mixin lg {
   @media (max-width: 1199px) {
     @content;
