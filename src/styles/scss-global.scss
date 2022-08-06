@@ -211,7 +211,7 @@ html {
     justify-content: center;
     justify-items: center;
     display: grid;
-    grid-gap: 4rem;
+    grid-gap: 3.2rem;
     grid-template-columns: repeat(auto-fit, minmax(300px, 365px));
     // background-color: green;
 
@@ -240,7 +240,10 @@ html {
       }
 
       .item-right {
-        .title {
+        .title2 {
+          min-height: 45px;
+          display: flex;
+          align-items: center;
           @extend .color-primary;
           // min-width: 298px;
         }

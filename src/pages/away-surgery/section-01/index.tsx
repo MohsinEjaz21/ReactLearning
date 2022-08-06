@@ -82,7 +82,7 @@ const items = [
   }
 ];
 
-export default function AwaySurgery(props) {
+export function SectionO1(props) {
   return (
     <section className="section-01">
       <div className="container">

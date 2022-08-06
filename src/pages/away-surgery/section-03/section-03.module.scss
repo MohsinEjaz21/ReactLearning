@@ -1,0 +1,146 @@
+/* This source code is exported from pxCode, you can get more document from https://www.pxcode.io */
+@import "@styles/scss-utils/utils";
+
+$color_type_0: rgb(255, 255, 255);
+$color_type_1: rgb(255, 95, 126);
+$color_type_2: rgb(26, 74, 103);
+
+$font_type_0: 600 36px/1.2 "Poppins", Helvetica, Arial, serif;
+$font_type_1: 25px/1.2 "Poppins", Helvetica, Arial, serif;
+$font_type_2: 700 15px/1.2 "Lato", Helvetica, Arial, serif;
+
+.full_bleed {
+  box-shadow: 0 0 0 100vmax $color_type_2;
+  clip-path: inset(0 -100vmax);
+}
+
+.block {
+  @include flex-column;
+  background-color: $color_type_0;
+}
+.block_layout {
+  background-color: $color_type_2;
+  @media screen and (min-width: 1400px) {
+    position: relative;
+  }
+  min-height: 569px;
+}
+.block1 {
+  @include flex-column;
+}
+.block1_layout {
+  position: absolute;
+  top: -9px;
+  height: 588px;
+  left: -10px;
+  width: 1450px;
+}
+.box {
+  background-color: $color_type_2;
+}
+.box_layout {
+  position: relative;
+  height: 568px;
+  width: 1440px;
+  min-width: 1440px;
+  margin: 10px 0px 0px 10px;
+}
+.block2 {
+  @include flex-column;
+}
+.block2_layout {
+  position: relative;
+  height: 348px;
+  width: 564px;
+  min-width: 564px;
+  margin: 97px 0px 0px 736px;
+}
+.medium_title {
+  @include font-face($font_type_1, $color_type_1, 0px);
+}
+.medium_title_layout {
+  position: relative;
+}
+.hero_title {
+  overflow: visible;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  margin: 0px;
+  @include font-face($font_type_0, $color_type_0, 0px);
+  white-space: pre-wrap;
+}
+.hero_title_box_layout {
+  position: relative;
+  margin: 30px 0px 0px;
+}
+.block3 {
+  @include flex-column;
+  background-color: $color_type_0;
+}
+.block3_layout {
+  position: relative;
+  width: 42.02%;
+  margin: 65px 57.98% 0px 0%;
+}
+.highlights {
+  @include h-center-content;
+  font: $font_type_2;
+  color: $color_type_2;
+  text-align: center;
+  letter-spacing: 0px;
+}
+.highlights_layout {
+  position: relative;
+  flex-grow: 1;
+  margin: 16px 30px;
+}
+.group {
+  @include flex-column;
+}
+.group_layout {
+  position: absolute;
+  top: 0px;
+  height: 569px;
+  left: 50px;
+  width: 478px;
+}
+.box1 {
+  background-color: $color_type_1;
+}
+.box1_layout {
+  position: absolute;
+  top: 0px;
+  height: 569px;
+  left: 0px;
+  right: 0px;
+  width: 53.56%;
+  margin: 0px 28.66% 0px 17.78%;
+}
+.image {
+  background: var(--src) center center / cover no-repeat;
+}
+.image_layout {
+  position: absolute;
+  top: 0px;
+  height: 506px;
+  left: 0px;
+  right: 0px;
+  width: 81.38%;
+  margin: 63px 0% 0px 18.62%;
+}
+.block4 {
+  width: 100%;
+  height: auto;
+  vertical-align: top;
+  object-fit: contain;
+  object-position: center top;
+}
+.block4_layout {
+  position: absolute;
+  top: 79px;
+  bottom: 318px;
+  left: 0px;
+  right: 0px;
+  width: 34.52%;
+  margin: 0px 65.48% 0px 0%;
+}
