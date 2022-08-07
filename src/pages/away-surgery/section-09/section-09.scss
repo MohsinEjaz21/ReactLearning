@@ -1,0 +1,71 @@
+@use "sass:math";
+@import "@styles/scss-utils/utils";
+@import "@styles/scss-vars.scss";
+@import "@styles/scss-utils/scss-mixins.scss";
+@import "@styles/scss-global.scss";
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap");
+@import url("https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap-grid.css");
+
+.section-09 {
+  max-width: 1440px;
+  margin: 0 auto;
+  .block-1 {
+    display: grid;
+    justify-items: center;
+    .text1 {
+      @extend .heading-small, .color-primary, .text-center;
+      max-width: 564px;
+    }
+    .text2 {
+      @extend .heading-medium, .text-center;
+      max-width: 564px;
+    }
+  }
+  .block-2 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(365px, 1fr));
+    grid-gap: 3rem;
+    margin: 20px;
+
+    @include xs {
+      grid-template-columns: 1fr;
+    }
+
+    .content {
+      border: 2.5px solid rgba(255, 95, 126, 0.4);
+      filter: drop-shadow(10px 15px 40px rgba(18, 47, 65, 0.15));
+      padding: 20px;
+      align-items: center;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .image {
+      max-width: 80px;
+    }
+
+    .text1 {
+      @extend .heading-small, .color-secondary, .text-center;
+    }
+    .text2 {
+      @extend .paragraph;
+      color: #555555;
+    }
+
+    .ul > .li {
+      display: grid;
+      gap: 16px;
+      grid-auto-flow: column;
+      justify-content: start;
+      @extend .paragraph;
+      color: #555555;
+      > .icon {
+        @include min-md {
+          padding-top: 5px;
+        }
+      }
+    }
+  }
+}
