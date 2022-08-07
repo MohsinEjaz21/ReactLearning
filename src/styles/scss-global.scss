@@ -133,6 +133,11 @@ ul {
   padding: 20px;
   display: grid;
   grid-template-columns: minmax(320px, 1440px);
+
+  @include md {
+    grid-template-columns: 1fr;
+  }
+
   justify-content: center;
   .container {
     display: flex;
@@ -160,7 +165,7 @@ ul {
 
     .item-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 365px));
+      grid-template-columns: repeat(auto-fit, minmax(280px, 365px));
       grid-gap: 4rem;
       justify-content: center;
     }
@@ -176,7 +181,7 @@ ul {
       .description {
         @extend .paragraph;
         // max-width: 317px;
-        min-height: 100px;
+        min-height: 130px;
         padding-bottom: 1.6rem;
       }
       .button {
@@ -314,6 +319,8 @@ ul {
 
     .content {
       @include md {
+        box-shadow: 0 0 0 100vmax var(--color-primary);
+        clip-path: inset(0 -100vmax);
         display: flex;
         justify-content: center;
         background-color: #ff5f7e;

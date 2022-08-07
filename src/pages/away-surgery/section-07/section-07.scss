@@ -77,7 +77,8 @@
       @include md {
         min-height: auto;
         max-height: auto;
-        object-fit: contain;
+        object-fit: cover;
+        object-position: top;
       }
     }
   }

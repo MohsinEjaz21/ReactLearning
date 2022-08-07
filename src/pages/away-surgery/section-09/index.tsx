@@ -85,7 +85,7 @@ const data = {
 
 
 
-export function SectionO9(props) {
+export function Section09(props) {
   const windowSize = useWindowSize();
   const isSmall = windowSize.innerWidth < 991;
 
