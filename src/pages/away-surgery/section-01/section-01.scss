@@ -1,0 +1,94 @@
+@use "sass:math";
+@import "@styles/scss-utils/utils";
+@import "@styles/scss-vars.scss";
+@import "@styles/scss-utils/scss-mixins.scss";
+@import "@styles/scss-global.scss";
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap");
+// @import url("https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap-grid.css");
+
+//&&&&&&&&&&&&&&&&&&&
+//    Section-01
+//&&&&&&&&&&&&&&&&&&&
+
+.section-01 {
+  padding: 20px;
+  display: grid;
+  grid-template-columns: minmax(320px, 1440px);
+
+  @include md {
+    grid-template-columns: 1fr;
+  }
+
+  justify-content: center;
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .left-section {
+    width: 100%;
+    max-width: 762px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .h-01 {
+      @extend .heading-small, .color-primary, .text-center;
+    }
+    .h-02 {
+      @extend .heading-medium, .text-center;
+    }
+  }
+
+  .right-section {
+    width: 100%;
+    margin-top: 4.8rem;
+
+    .item-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 365px));
+      grid-gap: 4rem;
+      justify-content: center;
+    }
+
+    .item-grid > .item {
+      display: flex;
+      flex-direction: column;
+
+      .title {
+        @extend .heading-small;
+        // max-width: 317px;
+      }
+      .description {
+        @extend .paragraph;
+        // max-width: 317px;
+        min-height: 130px;
+        padding-bottom: 1.6rem;
+      }
+      .button {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        padding: 16px 40px;
+        gap: 10px;
+        // width: 317px;
+        height: 50px;
+        @extend .btn;
+        bottom: 0;
+        border: 3px solid #ff5f7e;
+        color: #ff5f7e;
+      }
+
+      .image {
+        max-height: 104px;
+        width: 100%;
+        height: auto;
+        width: 82px;
+        padding-bottom: 2.4rem;
+      }
+    }
+  }
+}

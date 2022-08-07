@@ -1,5 +1,5 @@
 
-import '@styles/scss-global.scss';
+import './section-02.scss';
 
 
 
