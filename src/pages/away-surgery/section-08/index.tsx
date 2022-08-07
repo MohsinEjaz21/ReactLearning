@@ -11,6 +11,7 @@ function ForeachElement(props) {
 }
 
 
+
 const data = {
   text1: 'What to Do Before the Rhinoplasty?',
   text2: 'Our surgeons ask your medical history and physical examination.',

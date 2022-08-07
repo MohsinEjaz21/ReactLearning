@@ -47,12 +47,9 @@ const data = {
   ]
 }
 
-
-
 export function SectionO5(props) {
   const windowSize = useWindowSize();
   const isSmall = windowSize.innerWidth < 991;
-
 
   return (
     <div className="section-05">
