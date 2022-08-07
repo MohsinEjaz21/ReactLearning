@@ -1,5 +1,4 @@
 import useWindowSize from '@rehooks/window-size';
-import './section-08.scss';
 
 function ForeachElement(props) {
   return (

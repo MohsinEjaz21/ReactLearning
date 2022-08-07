@@ -1,6 +1,4 @@
 
-import './section-01.scss';
-
 function Item({ title, description, btnText, image }) {
   const assets = '../../../assets'
   return (

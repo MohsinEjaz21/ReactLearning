@@ -1,5 +1,4 @@
 import useWindowSize from '@rehooks/window-size';
-import './section-04.scss';
 
 function ForeachElement(props) {
   const icon = "../../../../assets/images/sec04/img-1.svg";

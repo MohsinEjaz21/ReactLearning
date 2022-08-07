@@ -1,0 +1,19 @@
+@use "sass:math";
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap");
+
+@import "@styles/scss-vars.scss";
+@import "@styles/scss-utils/utils";
+@import "@styles/scss-utils/scss-mixins.scss";
+@import "@styles/scss-global.scss";
+@import "@pages/away-surgery/section-01/section-01.scss";
+@import "@pages/away-surgery/section-02/section-02.scss";
+@import "@pages/away-surgery/section-03/section-03.scss";
+@import "@pages/away-surgery/section-04/section-04.scss";
+@import "@pages/away-surgery/section-05/section-05.scss";
+@import "@pages/away-surgery/section-06/section-06.scss";
+@import "@pages/away-surgery/section-07/section-07.scss";
+@import "@pages/away-surgery/section-08/section-08.scss";
+@import "@pages/away-surgery/section-09/section-09.scss";
+@import "@pages/away-surgery/section-10/section-10.scss";
+@import "@pages/away-surgery/section-11/section-11.scss";

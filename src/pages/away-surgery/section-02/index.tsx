@@ -1,5 +1,4 @@
 
-import './section-02.scss';
 
 
 

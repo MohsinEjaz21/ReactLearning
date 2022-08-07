@@ -1,5 +1,4 @@
 import useWindowSize from '@rehooks/window-size';
-import './section-06.scss';
 
 const listOfElements = [
   {

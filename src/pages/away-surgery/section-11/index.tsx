@@ -1,5 +1,4 @@
 import useWindowSize from '@rehooks/window-size';
-import './section-11.scss';
 
 const data = {
   text1: 'What to Do After the Rhinoplasty?',

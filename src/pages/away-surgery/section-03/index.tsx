@@ -1,4 +1,3 @@
-import './section-03.scss';
 
 export function SectionO3(props) {
 
