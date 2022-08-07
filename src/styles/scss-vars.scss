@@ -41,7 +41,7 @@ $map-h4: (
   320px: 14px,
   544px: 16px,
   768px: 20px,
-  1440px: 24px,
+  1440px: 25px,
   1920px: 28px,
 );
 $map-h5: (
@@ -78,4 +78,24 @@ $map-rectangle: (
   1024px: 60px,
   1440px: 80px,
   1920: 100px,
+);
+
+$map-line-height-h1: (
+  300px: 30px,
+  544px: 40px,
+  768px: 50px,
+);
+
+$map-line-height-h3: (
+  300px: 25px,
+  544px: 30px,
+  768px: 40px,
+);
+
+$map-line-height-p: (
+  320px: 20px,
+  544px: 24px,
+  768px: 28px,
+  1440px: 32px,
+  1920px: 40px,
 );

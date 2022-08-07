@@ -1,8 +1,5 @@
+import useWindowSize from '@rehooks/window-size';
 import './section-04.scss';
-
-
-
-
 
 function ForeachElement(props) {
   const icon = "../../../../assets/images/sec04/img-1.svg";
@@ -54,15 +51,22 @@ const listOfElements = [
 
 export function SectionO4(props) {
 
+  const windowSize = useWindowSize();
+  const isSmallScreen = windowSize.innerWidth < 991;
+
   return (
     <div className="section-04">
+      {/* <h1>
+        isMobile: {isSmallScreen && "true"}
+      </h1> */}
+
       <div className="block-1">
         <h1 className="text1">What To Expect During A Recovery?</h1>
         <h2 className="text2">Clineca with you from your consultation to the very end of your recovery.</h2>
       </div>
       {listOfElements?.map((e, index) => (
         <div className="block-2">
-          <img className="image" style={{ order: index - 1 % 2 == 0 ? 1 : 0 }} src={e.image} />
+          <img className="image" style={!isSmallScreen && { order: (index % 2 == 0) ? 1 : 0 } || {}} src={e.image} />
           <div className="content">
             <h1 className="heading">{e.title}</h1>
             <ul className="ul">

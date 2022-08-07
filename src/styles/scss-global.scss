@@ -68,28 +68,37 @@ html {
 }
 
 .heading-medium {
+  @include poly-fluid-sizing("font-size", $map-h1);
+  @include poly-fluid-sizing("line-height", $map-line-height-h1);
+
   font-family: "Poppins";
   font-style: normal;
   font-weight: 600;
-  font-size: 3.6rem;
-  line-height: 5.4rem;
+  // font-size: 3.6rem;
+  // line-height: 5.4rem;
   color: var(--color-dark);
 }
 
 .heading-small {
+  @include poly-fluid-sizing("font-size", $map-h4);
+  @include poly-fluid-sizing("line-height", $map-line-height-h3);
+
   font-family: "Poppins";
   font-style: normal;
   font-weight: 400;
-  font-size: 2.5rem;
-  line-height: 3.8rem;
+  // font-size: 2.5rem;
+  // line-height: 3.8rem;
 }
 
 .paragraph {
+  @include poly-fluid-sizing("font-size", $map-p);
+  @include poly-fluid-sizing("line-height", $map-line-height-p);
+
   font-family: "Lato";
   font-style: normal;
   font-weight: 400;
   font-size: 1.8rem;
-  line-height: 150%;
+  // line-height: 150%;
 }
 
 .btn {
