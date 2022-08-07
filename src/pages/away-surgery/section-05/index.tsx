@@ -1,3 +1,4 @@
+import useWindowSize from '@rehooks/window-size';
 import './section-05.scss';
 
 function ForeachElement(props) {
@@ -10,12 +11,14 @@ function ForeachElement(props) {
   );
 }
 
+
 const data = {
   text1: 'What to Do After the Rhinoplasty?',
   text2: 'Clineca will provide you with all the support and guidance you need.',
   text3: <>What you need to do after the surgery will be explained to you in detail by your surgeon and Clineca will provide you with all the support and guidance you need.<br /><br />You will have a complete and detailed list of instructions.</>,
   text4: 'The Most Important Instructions',
   image: "../../../../assets/images/sec05/img_1.png",
+  imageMobile: "../../../../assets/images/sec05/img_2.png",
   list: [
     "Your breasts might be covered with bandages or dressings to reduce swelling and to support the new shape of your breasts.",
     "Your surgeon may recommend support bra to minimize swelling.",
@@ -29,6 +32,10 @@ const data = {
 
 
 export function SectionO5(props) {
+  const windowSize = useWindowSize();
+  const isSmall = windowSize.innerWidth < 991;
+
+
   return (
     <div className="section-05">
       <div className="block-1">
@@ -41,7 +48,8 @@ export function SectionO5(props) {
         </ul>
       </div>
       <div className="block-2">
-        <img className="image" src={data.image} />
+        {isSmall && <img className="image" src={data.imageMobile} />}
+        {!isSmall && <img className="image" src={data.image} />}
       </div>
     </div>
   );
