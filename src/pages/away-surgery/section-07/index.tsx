@@ -57,7 +57,7 @@ export function SectionO7(props) {
       <div className="block-1">
         <div className="text1">{data.text1}</div>
         <div className="text2">{data.text2}</div>
-        <div className="text3 pre-whitespace">{data.text3}</div>
+        <div className="text3 whitespace_prewrap">{data.text3}</div>
         <div className="text4">{data.text4}</div>
         <ul className="ul">
           {data?.list?.map(e => <ForeachElement text={e.text} icon={e.icon} />)}

@@ -44,7 +44,7 @@ export function SectionO6(props) {
           <img className="image" style={!isSmallScreen && { order: (index % 2 == 0) ? 0 : 1 } || {}} src={e.image} />
           <div className="content">
             <h1 className="heading">{e.title}</h1>
-            <h2 className="description pre-whitespace" >{e.text}</h2>
+            <h2 className="description whitespace_prewrap" >{e.text}</h2>
           </div>
         </div>
       ))}

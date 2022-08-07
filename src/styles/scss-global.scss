@@ -42,7 +42,7 @@ ul {
   list-style-type: none;
 }
 
-.pre-whitespace {
+.whitespace_prewrap {
   white-space: pre-wrap;
 }
 //&&&&&&&&&&&&&&&&&&&
@@ -51,6 +51,10 @@ ul {
 
 .color-primary {
   color: var(--color-primary);
+}
+
+.color-secondary {
+  color: var(--color-secondary);
 }
 
 .full-bleed {
