@@ -18,7 +18,7 @@
   .item {
     align-items: center;
     display: grid;
-    grid-template-columns: 40px 40px repeat(2, 1fr);
+    grid-template-columns: repeat(2, 40px) 1fr;
     grid-template-rows: 45px 1fr;
     grid-column-gap: 0px;
     grid-row-gap: 0px;
@@ -29,6 +29,7 @@
     }
     .div2 {
       grid-area: 1 / 2 / 2 / 3;
+      align-self: center;
       width: 27px;
       height: 0px;
       background: #ff5f7e;
@@ -39,6 +40,7 @@
       @extend .heading-small, .color-primary;
     }
     .div4 {
+      align-self: flex-start;
       grid-area: 2 / 3 / 6 / 5;
       @extend .paragraph;
       color: #555555;
