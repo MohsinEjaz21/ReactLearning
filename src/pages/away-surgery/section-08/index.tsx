@@ -14,7 +14,7 @@ function ForeachElement(props) {
 
 const data = {
   text1: 'What to Do Before the Rhinoplasty?',
-  text2: 'Our surgeons ask your medical history and physical examination.',
+  text2: 'The results of rhinoplasty can be analyzed in three main',
   block2: [
     {
       image: "../../../../assets/images/sec08/img_1.svg",
