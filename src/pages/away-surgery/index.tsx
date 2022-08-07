@@ -18,7 +18,6 @@ export function AwaySurgery(props) {
       <SectionO5 />
       <SectionO6 />
       <Section07 />
-      {/* <Section08 /> */}
       <Section09 />
       <Section10 />
       <Section11 />

@@ -5,18 +5,10 @@
 function Item({ title, description, index }) {
   return (
     <div className="item">
-      <div className="item-left">
-        <h3 className="title1 heading-small color-primary">{index}</h3>
-        <div className="separator color-primary"></div>
-      </div>
-      <div className="item-right">
-        <h3 className="title2 heading-small">
-          {title}
-        </h3>
-        <p className="description">
-          {description}
-        </p>
-      </div>
+      <h3 className="div1 index">{index}</h3>
+      <div className="div2 separator"></div>
+      <div className="div3 title">{title}</div>
+      <div className="div4 description">{description}</div>
     </div>
   );
 }
@@ -52,14 +44,12 @@ const ItemsData = [
 export function SectionO2(props) {
   return (
     <div className="section-02">
-      <div className="container">
-        <h3 className="title heading-small color-primary"> Step by Step Experience for International Patients</h3>
-        <h2 className="sub-title heading-medium">Clineca believes that everything should be correct, detailed and satisfying.</h2>
-        <div className="sub-container">
-          {ItemsData.map(
-            (item, index) => (<Item key={index} {...item} index={index + 1} />)
-          )}
-        </div>
+      <h3 className="text1"> Step by Step Experience for International Patients</h3>
+      <h2 className="text2">Clineca believes that everything should be correct, detailed and satisfying.</h2>
+      <div className="content">
+        {ItemsData.map(
+          (item, index) => (<Item key={index} {...item} />)
+        )}
       </div>
     </div>
   );
