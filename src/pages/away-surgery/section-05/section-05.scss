@@ -1,0 +1,89 @@
+@use "sass:math";
+@import "@styles/scss-utils/utils";
+@import "@styles/scss-vars.scss";
+@import "@styles/scss-utils/scss-mixins.scss";
+@import "@styles/scss-global.scss";
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap");
+@import url("https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap-grid.css");
+
+.section-05 {
+  // height: 100vh;
+  display: grid;
+  align-items: center;
+  grid-template-columns: auto 1fr;
+
+  @include md {
+    grid-template-columns: 1fr;
+  }
+
+  margin: 0 auto;
+  max-width: 1440px;
+  // background-color: #1a4a67;
+  padding-top: 50px;
+  // clip-path: inset(0 -100vmax);
+  // box-shadow: 0 0 0 100vmax var(--color-secondary);
+
+  .block-1 {
+    padding: 20px;
+    display: grid;
+    justify-content: center;
+    margin-bottom: 48px;
+    max-width: 564px;
+    margin: 0 auto;
+
+    .text1 {
+      @extend .heading-small;
+      color: var(--color-primary);
+    }
+
+    .text2 {
+      margin-top: 8px;
+      @extend .heading-medium;
+    }
+
+    .text3 {
+      margin-top: 8px;
+      @extend .paragraph;
+      color: #555555;
+    }
+
+    .text4 {
+      @extend .heading-small;
+    }
+
+    .ul {
+      display: grid;
+      gap: 1rem;
+      .li {
+        display: flex;
+        gap: 16px;
+        align-items: flex-start;
+
+        .text {
+          @extend .paragraph;
+          color: #555555;
+        }
+      }
+    }
+  }
+
+  .block-2 {
+    // background-color: blue;
+
+    .image {
+      object-fit: contain;
+      background-attachment: fixed;
+      width: 100%;
+      min-height: 786px;
+      max-height: 786px;
+      // background-color: #e3e3e3;
+      @include md {
+        min-height: auto;
+        max-height: auto;
+        object-fit: contain;
+      }
+    }
+  }
+}

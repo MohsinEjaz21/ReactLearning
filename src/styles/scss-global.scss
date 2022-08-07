@@ -38,6 +38,9 @@ html {
   word-wrap: break-word;
 }
 
+ul {
+  list-style-type: none;
+}
 //&&&&&&&&&&&&&&&&&&&
 //    Utilities
 //&&&&&&&&&&&&&&&&&&&
@@ -68,8 +71,8 @@ html {
 }
 
 .heading-medium {
-  @include poly-fluid-sizing("font-size", $map-h1);
-  @include poly-fluid-sizing("line-height", $map-line-height-h1);
+  @include poly-fluid-sizing("font-size", $map-heading-medium);
+  @include poly-fluid-sizing("line-height", $map-LH-heading-medium);
 
   font-family: "Poppins";
   font-style: normal;
@@ -80,8 +83,8 @@ html {
 }
 
 .heading-small {
-  @include poly-fluid-sizing("font-size", $map-h4);
-  @include poly-fluid-sizing("line-height", $map-line-height-h3);
+  @include poly-fluid-sizing("font-size", $map-heading-small);
+  @include poly-fluid-sizing("line-height", $map-LH-heading-medium);
 
   font-family: "Poppins";
   font-style: normal;
@@ -91,8 +94,8 @@ html {
 }
 
 .paragraph {
-  @include poly-fluid-sizing("font-size", $map-p);
-  @include poly-fluid-sizing("line-height", $map-line-height-p);
+  @include poly-fluid-sizing("font-size", $map-paragraph);
+  @include poly-fluid-sizing("line-height", $map-LH-paragraph);
 
   font-family: "Lato";
   font-style: normal;

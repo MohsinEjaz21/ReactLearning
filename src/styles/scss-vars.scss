@@ -16,86 +16,143 @@ $break-start: ($base-spacing-unit * 15);
 $break-end: ($base-spacing-unit * 45);
 $break-stop: $break-end - 1px;
 
-$map-h1: (
+//&&&&&&&&&&&&&
+// HEADINGS
+//&&&&&&&&&&&&&
+
+$map-heading-large: (
   320px: 20px,
-  544px: 24px,
-  768px: 28px,
-  1440px: 32px,
-  1920px: 40px,
+  544px: 28px,
+  768px: 38px,
+  1440px: 48px,
 );
-$map-h2: (
+
+$map-heading-medium: (
   320px: 20px,
-  544px: 24px,
-  768px: 28px,
-  1440px: 32px,
-  1920px: 40px,
-);
-$map-h3: (
-  320px: 16px,
   544px: 20px,
-  768px: 24px,
-  1440px: 28px,
-  1920px: 32px,
+  768px: 28px,
+  1440px: 36px,
 );
-$map-h4: (
-  320px: 14px,
+
+$map-heading-small: (
+  320px: 16px,
   544px: 16px,
   768px: 20px,
   1440px: 25px,
-  1920px: 28px,
+  // 1920px: 22px,
 );
-$map-h5: (
-  320px: 14px,
-  544px: 16px,
-  768px: 20px,
-  1440px: 20px,
-  1920px: 28px,
-);
-$map-h6: (
-  320px: 10px,
-  544px: 12px,
-  768px: 14px,
-  1440px: 16px,
-  1920px: 18px,
-);
-$map-p: (
-  320px: 12px,
-  544px: 14px,
-  768px: 16px,
-  1440px: 18px,
-  1920px: 20px,
-);
-$map-btn: (
-  320px: 12px,
+
+$map-paragraph: (
+  320px: 16px,
   544px: 16px,
   768px: 18px,
   1440px: 18px,
-  1920px: 22px,
-);
-$map-rectangle: (
-  320px: 20px,
-  576px: 40px,
-  1024px: 60px,
-  1440px: 80px,
-  1920: 100px,
+  // 1920px: 22px,
 );
 
-$map-line-height-h1: (
-  300px: 30px,
+//&&&&&&&&&&&&&
+// LINE-HEIGHT
+//&&&&&&&&&&&&&
+
+$map-LH-heading-medium: (
+  320px: 30px,
   544px: 40px,
   768px: 50px,
 );
 
-$map-line-height-h3: (
-  300px: 25px,
+$map-LH-heading-small: (
+  320px: 25px,
   544px: 30px,
   768px: 40px,
 );
 
-$map-line-height-p: (
-  320px: 20px,
-  544px: 24px,
+$map-LH-paragraph: (
+  320px: 25px,
+  544px: 25px,
   768px: 28px,
   1440px: 32px,
   1920px: 40px,
 );
+
+// $map-h1: (
+//   320px: 20px,
+//   544px: 24px,
+//   768px: 28px,
+//   1440px: 32px,
+//   1920px: 40px,
+// );
+// $map-h2: (
+//   320px: 20px,
+//   544px: 24px,
+//   768px: 28px,
+//   1440px: 32px,
+//   1920px: 40px,
+// );
+// $map-h3: (
+//   320px: 18px,
+//   544px: 20px,
+//   768px: 24px,
+//   1440px: 28px,
+//   1920px: 32px,
+// );
+// $map-h4: (
+//   320px: 14px,
+//   544px: 16px,
+//   768px: 20px,
+//   1440px: 25px,
+//   1920px: 28px,
+// );
+// $map-h5: (
+//   320px: 14px,
+//   544px: 16px,
+//   768px: 20px,
+//   1440px: 20px,
+//   1920px: 28px,
+// );
+// $map-h6: (
+//   320px: 10px,
+//   544px: 12px,
+//   768px: 14px,
+//   1440px: 16px,
+//   1920px: 18px,
+// );
+// $map-p: (
+//   320px: 16px,
+//   544px: 16px,
+//   768px: 16px,
+//   1440px: 18px,
+// );
+// $map-btn: (
+//   320px: 12px,
+//   544px: 16px,
+//   768px: 18px,
+//   1440px: 18px,
+//   1920px: 22px,
+// );
+// $map-rectangle: (
+//   320px: 20px,
+//   576px: 40px,
+//   1024px: 60px,
+//   1440px: 80px,
+//   1920: 100px,
+// );
+
+// $map-line-height-h1: (
+//   300px: 30px,
+//   544px: 40px,
+//   768px: 50px,
+// );
+
+// $map-line-height-h3: (
+//   300px: 25px,
+//   544px: 30px,
+//   768px: 40px,
+// );
+
+// $map-line-height-p: (
+//   320px: 20px,
+//   544px: 24px,
+//   768px: 28px,
+//   1440px: 32px,
+//   1920px: 40px,
+// );
