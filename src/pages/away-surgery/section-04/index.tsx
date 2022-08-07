@@ -22,6 +22,18 @@ export function SectionO4(props) {
                 Your breasts might be covered with bandages or dressings to reduce swelling and to support the new shape of your breasts.
               </p>
             </li>
+            <li className="li">
+              <img src={icon} />
+              <p className="text">
+                Your breasts might be covered with bandages or dressings to reduce swelling and to support the new shape of your breasts.
+              </p>
+            </li>
+            <li className="li">
+              <img src={icon} />
+              <p className="text">
+                Your breasts might be covered with bandages or dressings to reduce swelling and to support the new shape of your breasts.
+              </p>
+            </li>
           </ul>
         </div>
       </div>
