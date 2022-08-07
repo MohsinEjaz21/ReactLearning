@@ -25,7 +25,6 @@
   }
 }
 
-
 @mixin responsive-width($min-width, $max-width) {
   $small-em: px-to-rem($min-width);
   $large-em: px-to-rem($max-width);
@@ -83,7 +82,7 @@
 }
 
 // responsive line-height
-@mixin responsive-lineheight($min-line-height , $max-line-height, $min-line-height-mobile : false) {
+@mixin responsive-lineheight($min-line-height, $max-line-height, $min-line-height-mobile: false) {
   $small-em: px-to-rem($min-line-height);
   $large-em: px-to-rem($max-line-height);
   $min-line-height: $min-line-height;
@@ -180,7 +179,7 @@
 
   // Error if the number of breakpoints is < 2
   @if ($length < 2) {
-    @error "poly-fluid-sizing() $map requires at least values"
+    @error "poly-fluid-sizing() $map requires at least values";
   }
 
   // Sort the map by viewport width (key)
@@ -188,18 +187,23 @@
   $keys: map-keys($map);
 
   // Minimum size
-  #{$property}: map-get($map, nth($keys,1));
+  #{$property}: map-get($map, nth($keys, 1));
 
   // Interpolated size through breakpoints
   @for $i from 1 through ($length - 1) {
-    @media (min-width:nth($keys,$i)) {
-      #{$property}: linear-interpolation((nth($keys,$i): map-get($map, nth($keys,$i)), nth($keys,($i+1)): map-get($map, nth($keys,($i + 1)))));
+    @media (min-width: nth($keys,$i)) {
+      #{$property}: linear-interpolation(
+        (
+          nth($keys, $i): map-get($map, nth($keys, $i)),
+          nth($keys, ($i + 1)): map-get($map, nth($keys, ($i + 1))),
+        )
+      );
     }
   }
 
   // Maxmimum size
-  @media (min-width:nth($keys,$length)) {
-    #{$property}: map-get($map, nth($keys,$length));
+  @media (min-width: nth($keys,$length)) {
+    #{$property}: map-get($map, nth($keys, $length));
   }
 }
 
@@ -216,7 +220,8 @@
     @error "linear-interpolation() $map must be exactly 2 values";
   }
   // The slope
-  $m: (map-get($map, nth($keys, 2)) - map-get($map, nth($keys, 1)))/(nth($keys, 2) - nth($keys,1));
+  $m: math.div(map-get($map, nth($keys, 2)) - map-get($map, nth($keys, 1)), nth($keys, 2) - nth($keys, 1));
+  // or calc((map-get($map, nth($keys, 2)) - map-get($map, nth($keys, 1))) / (nth($keys, 2) - nth($keys, 1)));
 
   // The y-intercept
   $b: map-get($map, nth($keys, 1)) - $m * nth($keys, 1);
@@ -228,7 +233,7 @@
     $b: abs($b);
   }
 
-  @return calc(#{$m*100}vw #{$sign} #{$b});
+  @return calc(#{$m * 100}vw #{$sign} #{$b});
 }
 
 /// list-sort
@@ -240,13 +245,13 @@
 @function list-sort($list) {
   $sortedlist: ();
   @while length($list) > 0 {
-    $value: nth($list,1);
+    $value: nth($list, 1);
     @each $item in $list {
       @if $item < $value {
         $value: $item;
       }
     }
-    $sortedlist: append($sortedlist, $value, 'space');
+    $sortedlist: append($sortedlist, $value, "space");
     $list: list-remove($list, index($list, $value));
   }
   @return $sortedlist;
@@ -262,7 +267,12 @@
   $keys: list-sort(map-keys($map));
   $sortedMap: ();
   @each $key in $keys {
-    $sortedMap: map-merge($sortedMap, ($key: map-get($map, $key)));
+    $sortedMap: map-merge(
+      $sortedMap,
+      (
+        $key: map-get($map, $key),
+      )
+    );
   }
   @return $sortedMap;
 }
@@ -277,16 +287,11 @@
   $newList: ();
   @for $i from 1 through length($list) {
     @if $i != $index {
-      $newList: append($newList, nth($list,$i), 'space');
+      $newList: append($newList, nth($list, $i), "space");
     }
   }
   @return $newList;
 }
-
-
-
-
-
 
 // upto
 // above
