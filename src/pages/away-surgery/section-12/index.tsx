@@ -12,8 +12,8 @@ const data = {
     { imageUrl: '', text: 'Ear Surgery', className: "type2" },
     { imageUrl: '', text: 'Facelift', className: "type2" },
     { imageUrl: '', text: 'Neck Lift', className: "type2" },
-    { imageUrl: 'assets/images/sec12/img_1.svg', text: 'Breast Opearation', className: "type3" },
-    { imageUrl: 'assets/images/img_1.svg', text: 'Body Operation', className: "type3" }
+    { imageUrl: 'assets/images/sec12/img_2.svg', text: 'Breast Opearation', className: "type3" },
+    { imageUrl: 'assets/images/sec12/img_3.svg', text: 'Body Operation', className: "type3" }
   ],
   block2: {
     title: 'Our Pantients Say',
@@ -31,12 +31,15 @@ export function Section12(props) {
       <div className="block1">
         {data.block1.map((item, index) => (
           <div className={`item ${item.className}`} key={index}>
-            {item.imageUrl && <img className="img" src={item.imageUrl} alt="" />}
-            {item.text && <p className="text">{item.text}</p>}
+            <img className="img" src={item.imageUrl} alt="" />
+            <p className="text">{item.text}</p>
           </div>
         ))}
       </div>
-      <div className="block2"></div>
+      <div className="block2">
+        <h1 className="heading">{data.block2.title}</h1>
+        <h2 className="subheading">{data.block2.subTitle}</h2>
+      </div>
     </div>
   );
 }
