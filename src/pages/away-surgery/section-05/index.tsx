@@ -15,31 +15,31 @@ const data = {
   text2: 'Clineca will provide you with all the support and guidance you need.',
   text3: <>What you need to do after the surgery will be explained to you in detail by your surgeon and Clineca will provide you with all the support and guidance you need.<br /><br />You will have a complete and detailed list of instructions.</>,
   text4: 'The Most Important Instructions',
-  image: "../../../../assets/images/sec05/img_1.png",
-  imageMobile: "../../../../assets/images/sec05/icons/img_2.png",
+  image: "assets/images/sec05/img_1.png",
+  imageMobile: "assets/images/sec05/icons/img_2.png",
   list: [
     {
-      icon: "../../../../assets/images/sec05/icons/icon_1.png",
+      icon: "assets/images/sec05/icons/icon_1.png",
       text: "Do not smoke for at least 2 weeks after the surgery."
     },
     {
-      icon: "../../../../assets/images/sec05/icons/icon_1.png",
+      icon: "assets/images/sec05/icons/icon_1.png",
       text: "Do not take non-steroidal anti-inflammatory medications after the surgery until your surgeon approves using them."
     },
     {
-      icon: "../../../../assets/images/sec05/icons/icon_1.png",
+      icon: "assets/images/sec05/icons/icon_1.png",
       text: "Do not blow your nose."
     },
     {
-      icon: "../../../../assets/images/sec05/icons/icon_1.png",
+      icon: "assets/images/sec05/icons/icon_1.png",
       text: "Avoid strenuous activities."
     },
     {
-      icon: "../../../../assets/images/sec05/icons/icon_1.png",
+      icon: "assets/images/sec05/icons/icon_1.png",
       text: "Do not let your sunglasses or eyeglasses put pressure on your nose for at least 1 month after the surgery. You can tape your glasses to your forehead."
     },
     {
-      icon: "../../../../assets/images/sec05/icons/icon_2.png",
+      icon: "assets/images/sec05/icons/icon_2.png",
       text: "Love yourself and show the world how beautiful you are!."
     }
 

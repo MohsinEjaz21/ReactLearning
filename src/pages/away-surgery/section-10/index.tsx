@@ -11,7 +11,7 @@ const data = {
     <div className="spacer" />Anyone older than 18 years old with good health can be a candidate. In special cases, ones younger than 18 can also be considered.
     <div className="spacer" />To be informed about your specific case in detail, you should have a consultation with a plastic surgeon.
   </>,
-  image: "../../../../assets/images/sec10/img_1.png",
+  image: "assets/images/sec10/img_1.png",
 }
 
 export function Section10(props) {

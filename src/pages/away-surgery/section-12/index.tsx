@@ -2,17 +2,23 @@ import useWindowSize from '@rehooks/window-size';
 
 const data = {
   block1: [
-    { icon: 'icon1', text: 'Face Operation' },
-    { icon: '', text: 'Hair Transplants' },
-    { icon: '', text: 'Rhinoplasty' },
-    { icon: '', text: 'Brow Lift' },
-    { icon: '', text: 'Chin Augmentation' },
-    { icon: '', text: 'Dimple Surgery' },
-    { icon: '', text: 'Eyelid Surgery' },
-    { icon: '', text: 'Ear Surgery' },
-    { icon: '', text: 'Facelift' },
-    { icon: '', text: 'Neck Lift' },
-  ]
+    { imageUrl: 'assets/images/sec12/img_1.svg', text: 'Face Operation', className: "type1" },
+    { imageUrl: '', text: 'Hair Transplants', className: "type2" },
+    { imageUrl: '', text: 'Rhinoplasty', className: "type2 active" },
+    { imageUrl: '', text: 'Brow Lift', className: "type2" },
+    { imageUrl: '', text: 'Chin Augmentation', className: "type2" },
+    { imageUrl: '', text: 'Dimple Surgery', className: "type2" },
+    { imageUrl: '', text: 'Eyelid Surgery', className: "type2" },
+    { imageUrl: '', text: 'Ear Surgery', className: "type2" },
+    { imageUrl: '', text: 'Facelift', className: "type2" },
+    { imageUrl: '', text: 'Neck Lift', className: "type2" },
+    { imageUrl: 'assets/images/sec12/img_1.svg', text: 'Breast Opearation', className: "type3" },
+    { imageUrl: 'assets/images/img_1.svg', text: 'Body Operation', className: "type3" }
+  ],
+  block2: {
+    title: 'Our Pantients Say',
+    subTitle: 'Don’t just take our word for it but let’s listen to our patients.',
+  }
 
 }
 
@@ -22,7 +28,15 @@ export function Section12(props) {
 
   return (
     <div className="section-12">
-
+      <div className="block1">
+        {data.block1.map((item, index) => (
+          <div className={`item ${item.className}`} key={index}>
+            {item.imageUrl && <img className="img" src={item.imageUrl} alt="" />}
+            {item.text && <p className="text">{item.text}</p>}
+          </div>
+        ))}
+      </div>
+      <div className="block2"></div>
     </div>
   );
 }

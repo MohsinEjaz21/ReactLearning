@@ -1,7 +1,7 @@
 import useWindowSize from '@rehooks/window-size';
 
 function ForeachElement(props) {
-  const icon = "../../../../assets/images/sec04/img-1.svg";
+  const icon = "assets/images/sec04/img-1.svg";
   return (
     <li className="li">
       <img src={icon} />
@@ -13,7 +13,7 @@ function ForeachElement(props) {
 const listOfElements = [
   {
     title: 'The First Week',
-    image: "../../../../assets/images/sec04/img-2.png",
+    image: "assets/images/sec04/img-2.png",
     listOfValues: [
       "Your breasts might be covered with bandages or dressings to reduce swelling and to support the new shape of your breasts.",
       "Your surgeon may recommend support bra to minimize swelling.",
@@ -25,7 +25,7 @@ const listOfElements = [
   },
   {
     title: 'Later',
-    image: "../../../../assets/images/sec04/img-3.png",
+    image: "assets/images/sec04/img-3.png",
     listOfValues: [
       "Take 2-3 weeks off work, but it can change from patient to patient.",
       "Avoid tiresome activities for at least two weeks.",
@@ -36,7 +36,7 @@ const listOfElements = [
   },
   {
     title: 'Guidance & Support',
-    image: "../../../../assets/images/sec04/img-4.png",
+    image: "assets/images/sec04/img-4.png",
     listOfValues: [
       "A nurse will visit you in your hotel every day during the first week after the surgery.",
       "We will expect you to be in our clinic for your post-op examination 1 week after the surgery, before you leave İstanbul.",

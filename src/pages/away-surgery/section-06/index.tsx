@@ -3,13 +3,13 @@ import useWindowSize from '@rehooks/window-size';
 const listOfElements = [
   {
     title: 'The First Week',
-    image: "../../../../assets/images/sec06/img_1.png",
+    image: "assets/images/sec06/img_1.png",
     text: `Like all kinds of surgery, rhinoplasty requires anesthesia.
           \nDepending on the particular case, it can be performed using general anesthesia.`
   },
   {
     title: 'Surgery',
-    image: "../../../../assets/images/sec06/img_2.png",
+    image: "assets/images/sec06/img_2.png",
     text: `The details of the surgery depend on the patient’s needs and the surgeon’s approach. During the surgery, nasal bones, nasal cartilage, and the skin covering the nose can be worked on.
           \nSometimes it may be necessary to remove parts of nasal tissues or add tissue inside the nose. If tissue addition is necessary, the required tissue may be taken from deeper parts of the nose, or other parts of the body.
           \nPatient’s septum may also be corrected during the surgery to improve breathing. There are 2 main approaches to rhinoplasty: open method and the closed method.`,
@@ -17,7 +17,7 @@ const listOfElements = [
   },
   {
     title: 'Open And Closed Rhinoplasty',
-    image: "../../../../assets/images/sec06/img_3.png",
+    image: "assets/images/sec06/img_3.png",
     text: `Our surgeons, while being highly skilled in both open and closed rhinoplasty, have specialized in the closed method which leaves no visible scars.
           \nIn this method, whole surgery is done inside the nostrils. In some cases, using the open method (in which an incision between the nostrils is made) may be necessary.
     `,

@@ -3,4 +3,17 @@
   gap: 10px;
   align-items: center;
   grid-template-columns: 1fr 1fr;
+  background: #1a6667;
+
+  .item {
+    display: flex;
+    gap: 16px;
+
+    .img {
+      max-width: 46px;
+    }
+
+    &.type1 {
+    }
+  }
 }
