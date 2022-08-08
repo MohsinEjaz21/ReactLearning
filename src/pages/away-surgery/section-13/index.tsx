@@ -15,7 +15,7 @@ const data = {
 
 export function Section13(props) {
   const windowSize = useWindowSize();
-  const isSmall = windowSize.innerWidth < 991;
+  const isSmall = windowSize.innerWidth < 1144;
 
   return (
     <div className="section-13">

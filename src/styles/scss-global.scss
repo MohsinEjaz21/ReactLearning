@@ -76,19 +76,22 @@ ul {
 
 .heading-medium {
   @include poly-fluid-sizing("font-size", $map-heading-medium);
-  @include poly-fluid-sizing("line-height", $map-LH-heading-medium);
+  // @include poly-fluid-sizing("line-height", $map-LH-heading-medium);
+  @include responsive-prop("line-height", 30px, 48px);
 
   font-family: "Poppins";
   font-style: normal;
   font-weight: 600;
   // font-size: 3.6rem;
   // line-height: 5.4rem;
+
   color: var(--color-dark);
 }
 
 .heading-regular {
   @include poly-fluid-sizing("font-size", $map-heading-regular);
-  @include poly-fluid-sizing("line-height", $map-LH-heading-regular);
+  // @include poly-fluid-sizing("line-height", $map-LH-heading-regular);
+  @include responsive-prop("line-height", 30px, 40px);
 
   font-family: "Poppins";
   font-style: normal;
@@ -100,7 +103,8 @@ ul {
 
 .heading-small {
   @include poly-fluid-sizing("font-size", $map-heading-small);
-  @include poly-fluid-sizing("line-height", $map-LH-heading-medium);
+  // @include poly-fluid-sizing("line-height", $map-LH-heading-medium);
+  @include responsive-prop("line-height", 30px, 35px);
 
   font-family: "Poppins";
   font-style: normal;
@@ -111,7 +115,8 @@ ul {
 
 .paragraph {
   @include poly-fluid-sizing("font-size", $map-paragraph);
-  @include poly-fluid-sizing("line-height", $map-LH-paragraph);
+  // @include poly-fluid-sizing("line-height", $map-LH-paragraph);
+  @include responsive-prop("line-height", 24px, 30px);
 
   font-family: "Lato";
   font-style: normal;
