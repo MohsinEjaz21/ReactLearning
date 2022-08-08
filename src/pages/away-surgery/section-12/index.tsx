@@ -1,4 +1,5 @@
 import useWindowSize from '@rehooks/window-size';
+import Slider from '../../../components/slider';
 
 const data = {
   block1: [
@@ -39,6 +40,9 @@ export function Section12(props) {
       <div className="block2">
         <h1 className="heading">{data.block2.title}</h1>
         <h2 className="subheading">{data.block2.subTitle}</h2>
+        <div className="slider">
+          <Slider />
+        </div>
       </div>
     </div>
   );

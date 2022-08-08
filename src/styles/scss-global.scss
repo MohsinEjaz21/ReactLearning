@@ -86,6 +86,18 @@ ul {
   color: var(--color-dark);
 }
 
+.heading-regular {
+  @include poly-fluid-sizing("font-size", $map-heading-regular);
+  @include poly-fluid-sizing("line-height", $map-LH-heading-regular);
+
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 600;
+  // font-size: 3.6rem;
+  // line-height: 5.4rem;
+  color: var(--color-dark);
+}
+
 .heading-small {
   @include poly-fluid-sizing("font-size", $map-heading-small);
   @include poly-fluid-sizing("line-height", $map-LH-heading-medium);
@@ -115,4 +127,41 @@ ul {
   font-size: 1.5rem;
   line-height: 18px;
   text-align: center;
+}
+
+// &&&&&&&&&&&&&&&&&
+//    Animations
+// &&&&&&&&&&&&&&&&&
+
+.fadeInLeft {
+  -webkit-animation-name: fadeInLeft;
+  animation-name: fadeInLeft;
+}
+
+@-webkit-keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(-100%, 0, 0);
+    transform: translate3d(-100%, 0, 0);
+  }
+
+  to {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(-100%, 0, 0);
+    transform: translate3d(-100%, 0, 0);
+  }
+
+  to {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
 }

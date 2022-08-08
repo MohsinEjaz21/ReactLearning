@@ -9,13 +9,20 @@
   /*  1 */
 }
 .section-12 {
+  max-width: 1440px;
   display: grid;
   gap: 10px;
-  align-items: center;
-  grid-template-columns: 1fr 1fr;
+  margin: 50px 0;
+  justify-items: center;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  row-gap: 40px;
   // background: #67611a;
+  @include md {
+    grid-template-columns: 1fr;
+  }
 
   .block1 {
+    // align-self: center;
     max-width: 365px;
     background: var(--color__1);
     box-shadow: 10px 15px 40px var(--color__5);
@@ -50,6 +57,17 @@
   }
 
   .block2 {
+    padding: 0px 30px;
+    display: flex;
+    flex-direction: column;
+
+    @include md {
+      align-items: center;
+    }
+
+    .slider {
+      margin-top: 4.8rem;
+    }
     .heading {
       @extend .heading-small;
       color: var(--color__3);
@@ -57,6 +75,10 @@
     .subheading {
       @extend .heading-medium;
       max-width: 663px;
+
+      @include md {
+        max-width: 500px;
+      }
     }
   }
 }

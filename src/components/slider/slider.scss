@@ -1,0 +1,55 @@
+.slider01 {
+  background: #ffffff;
+  max-width: 663px;
+
+  .footer-btns {
+    display: flex;
+    gap: 3.2rem;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top: 4.8rem;
+    .btn {
+      border: none;
+      outline: none;
+    }
+
+    @include xs {
+      justify-content: center;
+    }
+  }
+
+  .slider-container {
+    box-shadow: 10px 15px 40px rgba(18, 47, 65, 0.07);
+  }
+
+  .slider-content {
+    padding: 40px;
+    display: grid;
+    grid-template-columns: 88px 1fr;
+    grid-template-rows: 88px 1fr;
+    grid-column-gap: 10px;
+  }
+
+  .img {
+    grid-area: 1 / 1 / 2 / 2;
+  }
+  .text {
+    grid-area: 1 / 2 / 2 / 3;
+    // align-self: center;
+    .heading {
+      @extend .heading-regular, .color-secondary;
+    }
+    .subheading {
+      @extend .paragraph, .color-primary;
+    }
+  }
+  .detail {
+    grid-area: 2 / 2 / 3 / 3;
+    @extend .paragraph;
+    color: #555555;
+    @include tn {
+      margin-top: 10px;
+      grid-area: 2 / 1 / 3 / 3;
+    }
+  }
+}

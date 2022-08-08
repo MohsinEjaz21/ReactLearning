@@ -6,6 +6,10 @@
 @import "@styles/scss-utils/utils";
 @import "@styles/scss-utils/scss-mixins.scss";
 @import "@styles/scss-global.scss";
+
+// utils
+@import "@src/components/slider/slider.scss";
+
 @import "@pages/away-surgery/section-01/section-01.scss";
 @import "@pages/away-surgery/section-02/section-02.scss";
 @import "@pages/away-surgery/section-03/section-03.scss";
@@ -18,3 +22,4 @@
 @import "@pages/away-surgery/section-10/section-10.scss";
 @import "@pages/away-surgery/section-11/section-11.scss";
 @import "@pages/away-surgery/section-12/section-12.scss";
+@import "@pages/away-surgery/section-13/section-13.scss";

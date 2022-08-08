@@ -31,7 +31,15 @@ $map-heading-medium: (
   320px: 20px,
   544px: 20px,
   768px: 28px,
+  1024px: 28px,
   1440px: 36px,
+);
+
+$map-heading-regular: (
+  320px: 20px,
+  544px: 20px,
+  768px: 25px,
+  1024px: 30px,
 );
 
 $map-heading-small: (
@@ -60,10 +68,17 @@ $map-LH-heading-medium: (
   768px: 50px,
 );
 
+$map-LH-heading-regular: (
+  320px: 25px,
+  768px: 35px,
+  1024px: 45px,
+);
+
 $map-LH-heading-small: (
   320px: 25px,
   544px: 30px,
-  768px: 40px,
+  768px: 30px,
+  1024px: 40px,
 );
 
 $map-LH-paragraph: (
@@ -71,7 +86,6 @@ $map-LH-paragraph: (
   544px: 25px,
   768px: 28px,
   1440px: 32px,
-  1920px: 40px,
 );
 
 // $map-h1: (

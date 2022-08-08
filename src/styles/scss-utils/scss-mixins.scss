@@ -22,7 +22,7 @@
   }
 }
 
-@mixin responsive-width($min-width, $max-width) {
+@mixin responsive-property($property, $min-width, $max-width) {
   $small-em: px-to-rem($min-width);
   $large-em: px-to-rem($max-width);
 
@@ -36,17 +36,17 @@
   $b-width: unquote("#{$min-width} - #{$m-width} * #{$break-start}");
   $n-width: #{$m-width * 100vw};
 
-  width: #{$min-width};
-  width: #{$small-em};
+  #{$property}: #{$min-width};
+  #{$property}: #{$small-em};
 
   @media (min-width: #{$break-start}) {
-    width: #{($min-width + $max-width) * 0.5};
-    width: calc(#{$n-width} + #{$b-width});
+    #{$property}: #{($min-width + $max-width) * 0.5};
+    #{$property}: calc(#{$n-width} + #{$b-width});
   }
 
   @media (min-width: $break-end) {
-    width: #{$max-width};
-    width: #{$large-em};
+    #{$property}: #{$max-width};
+    #{$property}: #{$large-em};
   }
 }
 
@@ -105,6 +105,29 @@
       line-height: #{$min-line-height-mobile};
       line-height: #{$small-em};
     }
+  }
+}
+
+@mixin responsive-any-property($property, $min-value, $max-value) {
+  $small-em: px-to-rem($min-value);
+  $large-em: px-to-rem($max-value);
+  $min-value: $min-value;
+  $max-value: $max-value;
+  $m-value: math.div(
+    strip-unit($max-value) - strip-unit($min-value),
+    strip-unit($break-stop) - strip-unit($break-start)
+  );
+  $b-value: unquote("#{$min-value} - #{$m-value} * #{$break-start}");
+  $n-value: #{$m-value * 100vw};
+  $property: #{$min-value};
+  $property: #{$small-em};
+  @media (min-width: #{$break-start}) {
+    $property: #{($min-value + $max-value) * 0.5};
+    $property: calc(#{$n-value} + #{$b-value});
+  }
+  @media (min-width: $break-end) {
+    $property: #{$max-value};
+    $property: #{$large-em};
   }
 }
 
