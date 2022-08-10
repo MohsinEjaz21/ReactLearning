@@ -10,14 +10,14 @@ const data = {
     {
       imageUrl: 'assets/images/sec12/img_4.png',
       heading: 'Face Operation',
-      subheading: 'Hair Transplants',
+      subheading: 'Hair Transplant',
       detail: '“Oh, my God! I dont think I hava a whole new appearance. I’m like myself but with a nose where I can breathe through and with a nose I like”',
     },
     {
-      imageUrl: 'assets/images/sec12/img_4.png',
-      heading: 'Face Opasddseration',
-      subheading: 'Hair Transplants',
-      detail: '“Oh, my God! I dont think I hava a whole new appearance. lorem12I’m like myself but with a nose where I can breathe through and with a nose I like”',
+      imageUrl: 'assets/images/sec12/img_5.png',
+      heading: 'John Smith',
+      subheading: 'Hair Transplant',
+      detail: '“it really helps me look younger and more confident. You guys are really great at making me look more charming. Thanks for everything”',
     }
   ]
 }

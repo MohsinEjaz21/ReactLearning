@@ -35,7 +35,7 @@
     .item-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 365px));
-      grid-gap: 2rem;
+      grid-gap: 3rem;
       justify-content: center;
     }
 
@@ -51,7 +51,8 @@
         @extend .paragraph;
         // max-width: 317px;
         min-height: 130px;
-        padding-bottom: 1.6rem;
+        // padding-bottom: 1.6rem;
+        color: #555555;
       }
       .button {
         display: flex;
@@ -64,8 +65,12 @@
         height: 50px;
         @extend .btn;
         bottom: 0;
-        border: 3px solid #ff5f7e;
         color: #ff5f7e;
+        border: 3px solid var(--color-primary);
+        &:hover {
+          background: var(--color-primary);
+          color: var(--color-light);
+        }
       }
 
       .image {

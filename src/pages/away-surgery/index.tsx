@@ -8,10 +8,15 @@ import { Section07 } from "./section-07";
 import { Section09 } from "./section-09";
 import { Section10 } from "./section-10";
 import { Section11 } from "./section-11";
+import { Section12 } from "./section-12";
+import { Section13 } from "./section-13";
 
 export function AwaySurgery(props) {
   return (
     <>
+      <Section13 />
+      <Section11 />
+      <Section10 />
       <SectionO1 />
       <SectionO2 />
       <SectionO4 />
@@ -19,8 +24,7 @@ export function AwaySurgery(props) {
       <SectionO6 />
       <Section07 />
       <Section09 />
-      <Section10 />
-      <Section11 />
+      <Section12 />
       <SectionO3 />
     </>
   );

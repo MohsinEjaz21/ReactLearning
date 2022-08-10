@@ -12,10 +12,13 @@ $base-font-size: 10px;
 $base-min-line-height: 1.2;
 $base-max-line-height: 1.8;
 
+// $break-start: ($base-spacing-unit * 15);
+// $break-end: ($base-spacing-unit * 45);
+// $break-stop: $break-end - 1px;
+
 $break-start: ($base-spacing-unit * 15);
 $break-end: ($base-spacing-unit * 45);
 $break-stop: $break-end - 1px;
-
 //&&&&&&&&&&&&&
 // HEADINGS
 //&&&&&&&&&&&&&

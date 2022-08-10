@@ -1,6 +1,8 @@
 .section-09 {
   max-width: 1440px;
   margin: 0 auto;
+  padding: 50px 0;
+
   .block-1 {
     display: grid;
     justify-items: center;
@@ -34,6 +36,9 @@
 
     .image {
       max-width: 80px;
+      &:hover {
+        @extend .scaleOnHover;
+      }
     }
 
     .text1 {

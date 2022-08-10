@@ -37,7 +37,28 @@ const ItemsData = [
     index: '05',
     title: 'Examination & Surgery',
     description: 'The next morning, we will take you from your hotel and drive you the hospital. Your surgeon will examine you and inform you about the procedure. On the same day, you will have the surgery. You will stay at the hospital 1-2 day(s), depending on the procedure.',
-  }
+  },
+  {
+    index: '06',
+    title: 'Resting & Recovering',
+    description: 'After your stay at the hospital, we will drive you your hotel. You will rest and recover at your hotel room during the following week. A nurse will visit you every day to inform you, to examine, and to provide medical care.',
+  },
+  {
+    index: '07',
+    title: 'Entertainment',
+    description: 'We will gladly and proudly show you around our beautiful city. We will be more than happy to provide you with professional guidance in historical sightseeing. You can also learn from us where you can find anything from shopping to entertainment.',
+  },
+  {
+    index: '08',
+    title: 'Follow-Up & Leaving',
+    description: 'We will drive you for your 1-week follow-up with your surgeon. They will examine you, remove your bandages if required, and inform you about what you should/shouldn’t do during your recovery period, in detail. Then, we will drive you airport.',
+  },
+  {
+    index: '09',
+    title: 'Recovery Period',
+    description: 'During your recovery, we will be in touch. We will inform you, check on you, and answer your questions. You can reach us 7 days 24 hours. We will expect you to send photos periodically to follow your recovery period.',
+  },
+
 ]
 
 

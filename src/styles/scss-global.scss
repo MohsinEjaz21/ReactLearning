@@ -138,6 +138,13 @@ ul {
 //    Animations
 // &&&&&&&&&&&&&&&&&
 
+.scaleOnHover {
+  transition: transform 0.3s ease-in-out;
+  &:hover {
+    transform: scale(1.1);
+  }
+}
+
 .fadeInLeft {
   -webkit-animation-name: fadeInLeft;
   animation-name: fadeInLeft;

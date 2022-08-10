@@ -7,10 +7,14 @@
   margin: 0 auto;
 
   .container {
-    column-gap: 4rem;
+    // column-gap: 15%;
+    column-gap: calc(10% - 50px);
+
     display: flex;
     justify-content: center;
     align-items: center;
+
+    // @include responsive-prop("column-gap", 50px, 100px);
 
     @include md {
       flex-direction: column;
@@ -23,6 +27,7 @@
     }
 
     .content {
+      margin-left: 20px;
       @include md {
         box-shadow: 0 0 0 100vmax var(--color-primary);
         clip-path: inset(0 -100vmax);
@@ -68,13 +73,21 @@
       color: #ffffff;
     }
     .w-btn {
-      width: 237px;
+      display: flex;
+      align-items: center;
+      width: 250px;
       height: 50px;
       background: #ffffff;
       padding: 16px 32px;
       margin-top: 10px;
       white-space: nowrap;
       font-size: 15px;
+
+      &:hover {
+        background: var(--color-secondary);
+        border: 1px solid var(--color-light);
+        color: var(--color-light);
+      }
     }
   }
 }
