@@ -2,10 +2,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap");
 
-@import "@styles/scss-vars.scss";
-@import "@styles/scss-utils/utils";
-@import "@styles/scss-utils/scss-mixins.scss";
-@import "@styles/scss-global.scss";
+@import "@styles/vars.scss";
+@import "@styles/animations.scss";
+@import "@styles/scss-utils/layout.mixins.scss";
+@import "@styles/scss-utils/media-query.mixins.scss";
+@import "@styles/scss-utils/responsive.mixins.scss";
+@import "@styles/global.scss";
 
 // utils
 @import "@src/components/slider/slider.scss";
