@@ -4,7 +4,7 @@
 // @import url("https://unpkg.com/modern-css-reset/dist/reset.min.css");
 
 @import "@styles/vars.scss";
-@import "@styles/animations.scss";
+@import "@styles/scss-utils/animations.scss";
 @import "@styles/scss-utils/layout.mixins.scss";
 @import "@styles/scss-utils/media-query.mixins.scss";
 @import "@styles/scss-utils/responsive.mixins.scss";
