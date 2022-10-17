@@ -43,6 +43,7 @@ function Slider() {
     });
   }
 
+
   const handleNext = () => {
     if (currentSlide < data.slides.length - 1) {
       fadeInOutGsap('.slider-content');
