@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 export const DataGridSlice = createSlice({
-  name: 'DataGridSlice',
+  name: 'InventorySlice',
   initialState: {
     isFilterModalOpen: false,
     isAddModalOpen: false,
